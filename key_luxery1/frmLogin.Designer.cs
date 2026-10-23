@@ -126,7 +126,7 @@
 			this.TxtPassword.TabIndex = 4;
 			this.TxtPassword.UseSystemPasswordChar = true;
 			this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
-			this.TxtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyDown);
+			//this.TxtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyDown);
 			// 
 			// chkShowPassword
 			// 

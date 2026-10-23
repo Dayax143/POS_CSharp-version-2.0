@@ -8,7 +8,8 @@ namespace key_luxery1
 	{
 		private sharedClass db = new sharedClass();
 		private string selectedProductId = "";
-
+		// ➡️ ADD THIS LINE HERE:
+		private string selectedProductName = "";
 		public frmStock()
 		{
 			InitializeComponent();
@@ -45,34 +46,54 @@ namespace key_luxery1
 		}
 
 		/// <summary>
-		/// Loads stock movement logs/history ledger
+		/// Loads stock movement logs, active sales count, units sold, and profit for the selected product, ignoring deleted invoices/sales.
 		/// </summary>
 		private void LoadStockLogs()
 		{
 			try
 			{
-				// Optional: If you maintain a stock movement audit log table, load it here.
-				// Fallback query displays recent product records or activity.
-				string query = "SELECT Product_ID, Product_Name, quantity, 'status' AS [Action Status] from tblProduct";
-				sharedClass.DisplayData(dgvStockLogs, query);
+				// If no product is selected yet, clear the grid
+				if (string.IsNullOrEmpty(selectedProductId))
+				{
+					dgvStockLogs.DataSource = null;
+					return;
+				}
+
+				// Query joining product sales data, filtering out deleted invoices/records
+				string query = $@"SELECT 
+									p.Product_ID AS [Product ID],
+									p.Product_Name AS [Product Name],
+									p.Category AS [Category],
+									ISNULL(SUM(si.quantity), 0) AS [Total Units Sold],
+									COUNT(DISTINCT i.invoice_id) AS [Total Invoices],
+									ISNULL(SUM(i.total_profit), 0) AS [Total Profit ($)],
+									ISNULL(SUM(si.total_price), 0) AS [Total Sales Amount ($)]
+								 FROM tblProduct p
+								 LEFT JOIN tblSale si ON p.Product_ID = si.product_id and si.deleted=0
+								 LEFT JOIN tblInvoice i ON si.invoice_id = i.invoice_id 
+									AND (i.deleted = 0 OR i.deleted IS NULL)
+								 WHERE p.Product_ID = {selectedProductId}
+								 GROUP BY p.Product_ID, p.Product_Name, p.Category";
+
+				DataTable dt = sharedClass.GetData(query);
+				dgvStockLogs.DataSource = dt;
 			}
-			catch
+			catch (Exception ex)
 			{
-				// Suppress if audit log table hasn't been created yet
+				MessageBox.Show("Error loading product analytics: " + ex.Message, "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
 			}
 		}
 
 		private void dgvCurrentStock_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
-			if (e.RowIndex >= 0)
-			{
-				DataGridViewRow row = dgvCurrentStock.Rows[e.RowIndex];
-				selectedProductId = row.Cells["ID"].Value.ToString();
-				string productName = row.Cells["Product Name"].Value.ToString();
-				int currentStock = Convert.ToInt32(row.Cells["Stock In Hand"].Value);
+			if (e.RowIndex < 0) return;
 
-				txtSelectedProduct.Text = $"{productName} (Qty: {currentStock})";
-			}
+			var row = dgvCurrentStock.Rows[e.RowIndex];
+			selectedProductId = row.Cells["ID"].Value.ToString();
+			selectedProductName = row.Cells["Product Name"].Value.ToString();
+
+			txtSelectedProduct.Text = $"{selectedProductName} (Qty: {row.Cells["Stock In Hand"].Value})";
+			LoadStockLogs();
 		}
 
 		private void txtSearchStock_TextChanged(object sender, EventArgs e)
@@ -111,6 +132,20 @@ namespace key_luxery1
 			{
 				string operation = isRestock ? "+" : "-";
 				string actionType = isRestock ? "Restock" : "Shrinkage/Damage";
+				// Prevent stock from dropping below 0 on subtraction (Adjust/Damage)
+				if (!isRestock)
+				{
+					DataTable dt = sharedClass.GetData($"SELECT Quantity FROM tblProduct WHERE Product_ID = {selectedProductId} and deleted=0");
+					if (dt != null && dt.Rows.Count > 0)
+					{
+						int currentStock = Convert.ToInt32(dt.Rows[0]["Quantity"]);
+						if (currentStock - qty < 0)
+						{
+							MessageBox.Show($"Action denied! Stock cannot drop below 0. Current stock is only {currentStock}.", "Invalid Operation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+							return;
+						}
+					}
+				}
 
 				string query = $"UPDATE tblProduct SET Quantity = Quantity {operation} {qty} WHERE Product_ID = {selectedProductId}";
 				db.ExecuteQueries(query);

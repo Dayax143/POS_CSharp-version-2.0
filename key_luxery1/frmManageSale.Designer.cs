@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageSale));
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.grpCustomerInfo = new System.Windows.Forms.GroupBox();
@@ -75,6 +75,9 @@
 			this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
 			this.txtcustomer_id = new System.Windows.Forms.TextBox();
 			this.txtProduct_name = new System.Windows.Forms.TextBox();
+			this.lblExchangeRateTitle = new System.Windows.Forms.Label();
+			this.lblExchangeRateDisplay = new System.Windows.Forms.Label();
+			this.cmbCurrencyMode = new System.Windows.Forms.ComboBox();
 			this.grpCustomerInfo.SuspendLayout();
 			this.grpItemSelection.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
@@ -314,14 +317,14 @@
 			this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
 			this.dgvCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvCart.ColumnHeadersHeight = 35;
 			this.dgvCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductID,
@@ -329,23 +332,23 @@
             this.colPrice,
             this.colQuantity,
             this.colSubtotal});
-			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvCart.DefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvCart.DefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvCart.EnableHeadersVisualStyles = false;
-			this.dgvCart.Location = new System.Drawing.Point(475, 65);
+			this.dgvCart.Location = new System.Drawing.Point(475, 80);
 			this.dgvCart.Name = "dgvCart";
 			this.dgvCart.ReadOnly = true;
 			this.dgvCart.RowHeadersVisible = false;
 			this.dgvCart.RowHeadersWidth = 51;
 			this.dgvCart.RowTemplate.Height = 30;
 			this.dgvCart.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvCart.Size = new System.Drawing.Size(619, 510);
+			this.dgvCart.Size = new System.Drawing.Size(619, 495);
 			this.dgvCart.TabIndex = 3;
 			// 
 			// colProductID
@@ -585,7 +588,7 @@
 			// txtcustomer_id
 			// 
 			this.txtcustomer_id.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtcustomer_id.Location = new System.Drawing.Point(514, 12);
+			this.txtcustomer_id.Location = new System.Drawing.Point(367, 12);
 			this.txtcustomer_id.Name = "txtcustomer_id";
 			this.txtcustomer_id.Size = new System.Drawing.Size(90, 29);
 			this.txtcustomer_id.TabIndex = 2;
@@ -594,11 +597,48 @@
 			// txtProduct_name
 			// 
 			this.txtProduct_name.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtProduct_name.Location = new System.Drawing.Point(622, 12);
+			this.txtProduct_name.Location = new System.Drawing.Point(475, 12);
 			this.txtProduct_name.Name = "txtProduct_name";
 			this.txtProduct_name.Size = new System.Drawing.Size(150, 29);
 			this.txtProduct_name.TabIndex = 0;
 			this.txtProduct_name.Visible = false;
+			// 
+			// lblExchangeRateTitle
+			// 
+			this.lblExchangeRateTitle.AutoSize = true;
+			this.lblExchangeRateTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+			this.lblExchangeRateTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			this.lblExchangeRateTitle.Location = new System.Drawing.Point(646, 9);
+			this.lblExchangeRateTitle.Name = "lblExchangeRateTitle";
+			this.lblExchangeRateTitle.Size = new System.Drawing.Size(199, 23);
+			this.lblExchangeRateTitle.TabIndex = 0;
+			this.lblExchangeRateTitle.Text = "1 Dollar / Shilling Rate:";
+			// 
+			// lblExchangeRateDisplay
+			// 
+			this.lblExchangeRateDisplay.AutoSize = true;
+			this.lblExchangeRateDisplay.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold);
+			this.lblExchangeRateDisplay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+			this.lblExchangeRateDisplay.Location = new System.Drawing.Point(651, 41);
+			this.lblExchangeRateDisplay.Name = "lblExchangeRateDisplay";
+			this.lblExchangeRateDisplay.Size = new System.Drawing.Size(268, 23);
+			this.lblExchangeRateDisplay.TabIndex = 1;
+			this.lblExchangeRateDisplay.Text = "Current Rate: 1 USD = 8,500 SLSH";
+			// 
+			// cmbCurrencyMode
+			// 
+			this.cmbCurrencyMode.FormattingEnabled = true;
+			this.cmbCurrencyMode.Items.AddRange(new object[] {
+            "10000",
+            "10500",
+            "11000",
+            "11500",
+            "12000",
+            "13000"});
+			this.cmbCurrencyMode.Location = new System.Drawing.Point(851, 8);
+			this.cmbCurrencyMode.Name = "cmbCurrencyMode";
+			this.cmbCurrencyMode.Size = new System.Drawing.Size(216, 24);
+			this.cmbCurrencyMode.TabIndex = 8;
 			// 
 			// frmManageSale
 			// 
@@ -606,11 +646,14 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
 			this.ClientSize = new System.Drawing.Size(1106, 650);
+			this.Controls.Add(this.cmbCurrencyMode);
 			this.Controls.Add(this.btnClearCart);
 			this.Controls.Add(this.btnRemoveItem);
 			this.Controls.Add(this.btnCloseForm);
 			this.Controls.Add(this.btnSaveAndPrint);
 			this.Controls.Add(this.btnSaveOnly);
+			this.Controls.Add(this.lblExchangeRateDisplay);
+			this.Controls.Add(this.lblExchangeRateTitle);
 			this.Controls.Add(this.txtProduct_name);
 			this.Controls.Add(this.txtcustomer_id);
 			this.Controls.Add(this.grpSummary);
@@ -682,5 +725,8 @@
 		public System.Windows.Forms.TextBox txtcustomer_id;
 		public System.Windows.Forms.TextBox txtProduct_name;
 		public System.Windows.Forms.TextBox txtCustomer_name;
+		private System.Windows.Forms.Label lblExchangeRateTitle;
+		private System.Windows.Forms.Label lblExchangeRateDisplay;
+		private System.Windows.Forms.ComboBox cmbCurrencyMode;
 	}
 }

@@ -1,8 +1,6 @@
-refresh the home dashboard
+- refresh the home dashboard
 
-reports calculation (decorate reports)
-
-search by id the product
+- reports calculation (decorate reports)
 
 =========================
 - return payment, sale and invoice if mis created
@@ -33,13 +31,24 @@ search by id the product
 
 - backup & restoration simplification
 
-customer purchase history report (correct) and other related reports
+- restocking must be minimum 0 it ledger reports
 
-* add payment reference number
+invoice management and deletion permissions (use settings)
 
-* add invoice double click and 
+=====================================================
+report developing and improvement
 
-* enter the invoice bill and reference number
+> customer purchase history report (correct) and other related reports 
+> (sale returned remove, sale discount, print only the filtered and searched content
+-> [profit loss report] add the date range, calculate each payment method uniquely
+-> [product stock] add total estimated profit, and number of items, other related summary if any
+> [customer purchase] remove dollar sign from total invoices
+== best [dialy and sales & expense break] summarize only related and filtered report 
+->> [low stock inventory report] best but if filtered by text update the calculation
+-> [payment report] print only the filtered and searched content and (each payment method sum)
+
+
+* add invoice double click and add payment reference number
 
 * add user logs which user have added, updated or deleted something
 

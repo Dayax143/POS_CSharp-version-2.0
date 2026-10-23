@@ -55,8 +55,9 @@
 			this.lblDate = new System.Windows.Forms.Label();
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.btnSales = new System.Windows.Forms.Button();
-			this.panel3 = new System.Windows.Forms.Panel();
+			this.pnlTopNav = new System.Windows.Forms.Panel();
 			this.pnlInvoice = new System.Windows.Forms.Panel();
+			this.btnChangePassword = new System.Windows.Forms.Button();
 			this.btnInvoice = new System.Windows.Forms.Button();
 			this.lblRole = new System.Windows.Forms.Label();
 			this.uInvoice1 = new key_luxery1.uInvoice();
@@ -68,9 +69,9 @@
 			this.uHome1 = new key_luxery1.uHome();
 			this.uSales1 = new key_luxery1.uSales();
 			this.uProducts1 = new key_luxery1.uProducts();
-			this.btnChangePassword = new System.Windows.Forms.Button();
+			this.pnlMainContent = new System.Windows.Forms.Panel();
 			this.PnlSidebar.SuspendLayout();
-			this.panel3.SuspendLayout();
+			this.pnlTopNav.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// BtnSetting
@@ -319,7 +320,7 @@
 			this.btnProducts.Text = "  🛍️  Products";
 			this.btnProducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.btnProducts.UseVisualStyleBackColor = true;
-			this.btnProducts.Click += new System.EventHandler(this.btnPlates_Click);
+			this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
 			// 
 			// btnCustomer
 			// 
@@ -462,32 +463,31 @@
 			this.btnSales.TabIndex = 0;
 			this.btnSales.Text = "Sales";
 			this.btnSales.UseVisualStyleBackColor = true;
-			this.btnSales.Click += new System.EventHandler(this.btnLora_Click);
+			this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
 			// 
-			// panel3
+			// pnlTopNav
 			// 
-			this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
-			this.panel3.Controls.Add(this.BtnSidebar);
-			this.panel3.Controls.Add(this.pnlInvoice);
-			this.panel3.Controls.Add(this.pnlSale);
-			this.panel3.Controls.Add(this.btnChangePassword);
-			this.panel3.Controls.Add(this.btnLogout);
-			this.panel3.Controls.Add(this.btnInvoice);
-			this.panel3.Controls.Add(this.lblRole);
-			this.panel3.Controls.Add(this.lblUsername);
-			this.panel3.Controls.Add(this.label1);
-			this.panel3.Controls.Add(this.lblDate);
-			this.panel3.Controls.Add(this.lblTitle);
-			this.panel3.Controls.Add(this.BtnAbout);
-			this.panel3.Controls.Add(this.PnlAbout);
-			this.panel3.Controls.Add(this.btnSales);
-			this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel3.Location = new System.Drawing.Point(0, 0);
-			this.panel3.Margin = new System.Windows.Forms.Padding(4);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(1293, 100);
-			this.panel3.TabIndex = 14;
-			this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
+			this.pnlTopNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+			this.pnlTopNav.Controls.Add(this.BtnSidebar);
+			this.pnlTopNav.Controls.Add(this.pnlInvoice);
+			this.pnlTopNav.Controls.Add(this.pnlSale);
+			this.pnlTopNav.Controls.Add(this.btnChangePassword);
+			this.pnlTopNav.Controls.Add(this.btnLogout);
+			this.pnlTopNav.Controls.Add(this.btnInvoice);
+			this.pnlTopNav.Controls.Add(this.lblRole);
+			this.pnlTopNav.Controls.Add(this.lblUsername);
+			this.pnlTopNav.Controls.Add(this.label1);
+			this.pnlTopNav.Controls.Add(this.lblDate);
+			this.pnlTopNav.Controls.Add(this.lblTitle);
+			this.pnlTopNav.Controls.Add(this.BtnAbout);
+			this.pnlTopNav.Controls.Add(this.PnlAbout);
+			this.pnlTopNav.Controls.Add(this.btnSales);
+			this.pnlTopNav.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnlTopNav.Location = new System.Drawing.Point(0, 0);
+			this.pnlTopNav.Margin = new System.Windows.Forms.Padding(4);
+			this.pnlTopNav.Name = "pnlTopNav";
+			this.pnlTopNav.Size = new System.Drawing.Size(1293, 100);
+			this.pnlTopNav.TabIndex = 14;
 			// 
 			// pnlInvoice
 			// 
@@ -499,6 +499,23 @@
 			this.pnlInvoice.Size = new System.Drawing.Size(120, 6);
 			this.pnlInvoice.TabIndex = 3;
 			this.pnlInvoice.Visible = false;
+			// 
+			// btnChangePassword
+			// 
+			this.btnChangePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+			this.btnChangePassword.FlatAppearance.BorderSize = 0;
+			this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+			this.btnChangePassword.ForeColor = System.Drawing.Color.White;
+			this.btnChangePassword.Location = new System.Drawing.Point(959, 15);
+			this.btnChangePassword.Margin = new System.Windows.Forms.Padding(4);
+			this.btnChangePassword.Name = "btnChangePassword";
+			this.btnChangePassword.Size = new System.Drawing.Size(203, 35);
+			this.btnChangePassword.TabIndex = 0;
+			this.btnChangePassword.Text = "Change password";
+			this.btnChangePassword.UseVisualStyleBackColor = false;
+			this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
 			// 
 			// btnInvoice
 			// 
@@ -537,6 +554,7 @@
 			this.uInvoice1.Name = "uInvoice1";
 			this.uInvoice1.Size = new System.Drawing.Size(1090, 694);
 			this.uInvoice1.TabIndex = 5;
+			this.uInvoice1.UserRole = "";
 			// 
 			// uCustomer1
 			// 
@@ -611,22 +629,13 @@
 			this.uProducts1.Size = new System.Drawing.Size(1090, 694);
 			this.uProducts1.TabIndex = 16;
 			// 
-			// btnChangePassword
+			// pnlMainContent
 			// 
-			this.btnChangePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-			this.btnChangePassword.FlatAppearance.BorderSize = 0;
-			this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.btnChangePassword.ForeColor = System.Drawing.Color.White;
-			this.btnChangePassword.Location = new System.Drawing.Point(959, 15);
-			this.btnChangePassword.Margin = new System.Windows.Forms.Padding(4);
-			this.btnChangePassword.Name = "btnChangePassword";
-			this.btnChangePassword.Size = new System.Drawing.Size(203, 35);
-			this.btnChangePassword.TabIndex = 0;
-			this.btnChangePassword.Text = "Change password";
-			this.btnChangePassword.UseVisualStyleBackColor = false;
-			this.btnChangePassword.Click += new System.EventHandler(this.btnChangePassword_Click);
+			this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlMainContent.Location = new System.Drawing.Point(203, 100);
+			this.pnlMainContent.Name = "pnlMainContent";
+			this.pnlMainContent.Size = new System.Drawing.Size(1090, 694);
+			this.pnlMainContent.TabIndex = 24;
 			// 
 			// frmDashboard
 			// 
@@ -634,6 +643,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
 			this.ClientSize = new System.Drawing.Size(1293, 794);
+			this.Controls.Add(this.pnlMainContent);
 			this.Controls.Add(this.uInvoice1);
 			this.Controls.Add(this.uCustomer1);
 			this.Controls.Add(this.uPayments1);
@@ -644,7 +654,7 @@
 			this.Controls.Add(this.uSales1);
 			this.Controls.Add(this.uProducts1);
 			this.Controls.Add(this.PnlSidebar);
-			this.Controls.Add(this.panel3);
+			this.Controls.Add(this.pnlTopNav);
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "frmDashboard";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -653,8 +663,8 @@
 			this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDashboard_FormClosed);
 			this.Load += new System.EventHandler(this.frmDashboard_Load);
 			this.PnlSidebar.ResumeLayout(false);
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
+			this.pnlTopNav.ResumeLayout(false);
+			this.pnlTopNav.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -682,7 +692,7 @@
 		private System.Windows.Forms.Label lblDate;
 		private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.Button btnSales;
-		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.Panel pnlTopNav;
 		public System.Windows.Forms.Button btnReport;
 		public System.Windows.Forms.Panel pnlReport;
 		private uProducts uProducts1;
@@ -702,5 +712,6 @@
 		public uHome uHome1;
 		public System.Windows.Forms.Label lblRole;
 		private System.Windows.Forms.Button btnChangePassword;
+		private System.Windows.Forms.Panel pnlMainContent;
 	}
 }

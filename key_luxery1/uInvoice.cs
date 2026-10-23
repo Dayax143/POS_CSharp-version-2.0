@@ -11,6 +11,9 @@ namespace key_luxery1
 		private int pageSize = 20;
 		private int totalPages = 1;
 
+
+		string userRole = Properties.Settings.Default.userRole;
+
 		/// <summary>
 		/// Property to receive or hold the active user's role.
 		/// </summary>
@@ -195,15 +198,14 @@ namespace key_luxery1
 		private void btnManageInvoice_Click(object sender, EventArgs e)
 		{
 			frmManageInvoice manageForm = new frmManageInvoice();
-			frmDashboard dashboard = new frmDashboard();
-			if(dashboard.lblRole.Text .Trim().Equals("Admin", StringComparison.OrdinalIgnoreCase))
+			// Check user role and hide buttons if not Admin
+			if (!string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
 			{
-				manageForm.btnDeleteInvoice.Visible= true;
+				manageForm.btnDeleteInvoice.Visible = false;
 			}
-			else
+			else if (string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
 			{
-				manageForm.btnDeleteInvoice.Visible= false;
-				
+				manageForm.btnDeleteInvoice.Visible = true;
 			}
 			manageForm.ShowDialog();
 		}

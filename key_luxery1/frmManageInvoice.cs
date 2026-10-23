@@ -10,7 +10,7 @@ namespace key_luxery1
 	{
 		sharedClass db = new sharedClass();
 		private string selectedInvoiceNoForPrint = "";
-
+		string userRole = Properties.Settings.Default.userRole;
 		public frmManageInvoice()
 		{
 			InitializeComponent();
@@ -22,6 +22,15 @@ namespace key_luxery1
 			try
 			{
 				LoadInvoices();
+				//// Check user role and hide buttons if not Admin
+				//if (!string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
+				//{
+				//	btnDeleteInvoice.Visible = false;
+				//}
+				//else if (string.Equals(userRole, "Admin", StringComparison.OrdinalIgnoreCase))
+				//{
+				//	btnDeleteInvoice.Visible = true;
+				//}
 			}
 			catch (Exception ex)
 			{

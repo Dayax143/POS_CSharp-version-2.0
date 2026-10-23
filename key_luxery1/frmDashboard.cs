@@ -6,244 +6,154 @@ namespace key_luxery1
 {
 	public partial class frmDashboard : Form
 	{
-		// Property to store the logged-in user's role (Set from Login Form)
 		public string UserRole { get; set; } = "Admin";
 
 		public frmDashboard()
 		{
 			InitializeComponent();
+			this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+			this.UpdateStyles();
 		}
 
 		private void frmDashboard_Load(object sender, EventArgs e)
 		{
-			// Set current date on load
 			lblDate.Text = "Date: " + DateTime.Now.ToString("yyyy-MM-dd");
-
-			// Apply Role-Based Access Control
+			Properties.Settings.Default.userRole = UserRole; // Store role in settings for child controls
 			ApplyUserPermissions();
 		}
 
-		#region Role-Based Access Control & Layout Alignment
+		#region Role-Based Access Control
 
 		public void ApplyUserPermissions()
 		{
 			bool isAdmin = string.Equals(UserRole, "Admin", StringComparison.OrdinalIgnoreCase);
 
+			// Hide Admin-only sidebar and top buttons for non-admins
+			BtnDashboard.Visible = isAdmin;
+			PnlDashboard.Visible = isAdmin;
+			btnExpense.Visible = isAdmin;
+			pnlExpense.Visible = isAdmin;
+			btnReport.Visible = isAdmin;
+			pnlReport.Visible = isAdmin;
+			BtnUsers.Visible = isAdmin;
+			PnlUsers.Visible = isAdmin;
+
+			btnProducts.Visible = isAdmin;
+			pnlProducts.Visible = isAdmin;
+			btnPayments.Visible = isAdmin;
+			pnlPayment.Visible = isAdmin;
+			btnCustomer.Visible = isAdmin;
+			pnlCustomer.Visible = isAdmin;
+
 			if (!isAdmin)
 			{
-				// --- 1. SIDEBAR PERMISSIONS (Non-Admin) ---
-				BtnDashboard.Visible = false;
-				PnlDashboard.Visible = false;
-
-				btnExpense.Visible = false;
-				pnlExpense.Visible = false;
-
-				btnReport.Visible = false;
-				pnlReport.Visible = false;
-
-				BtnUsers.Visible = false;
-				PnlUsers.Visible = false;
-
-				// Non-Admin keeps: Settings (for changing password) and About
-				BtnSetting.Visible = true;
-				PnlSetting.Visible = true;
-				BtnAbout.Visible = true;
-				PnlAbout.Visible = true;
-
-				// --- 2. TOP TABS PERMISSIONS (Non-Admin) ---
-				btnProducts.Visible = false;
-				pnlProducts.Visible = false;
-
-				btnPayments.Visible = false;
-				pnlPayment.Visible = false;
-
-				btnCustomer.Visible = false;
-				pnlCustomer.Visible = false;
-
-				// Non-Admin keeps: Sales & Invoices
-				btnSales.Visible = true;
-				pnlSale.Visible = true;
-				btnInvoice.Visible = true;
-				pnlInvoice.Visible = true;
-
-				// --- 3. RE-ALIGN TOP TABS FOR CLEANER UI ---
-				// Move Sales and Invoices together cleanly when other tabs are hidden
+				// Reposition Non-Admin top tabs cleanly
 				btnSales.Location = new Point(241, 43);
 				pnlSale.Location = new Point(241, 86);
-
 				btnInvoice.Location = new Point(373, 43);
 				pnlInvoice.Location = new Point(373, 86);
 
-				// --- 4. DEFAULT VIEW FOR NON-ADMIN ---
-				ShowView(uSales1, pnlSale);
+				// Default view for non-admin
+				LoadUserControl(new uSales(), pnlSale);
 			}
 			else
 			{
-				// --- ADMIN HAS FULL ACCESS ---
-				BtnDashboard.Visible = true;
-				PnlDashboard.Visible = true;
-				btnExpense.Visible = true;
-				pnlExpense.Visible = true;
-				BtnSetting.Visible = true;
-				PnlSetting.Visible = true;
-				btnReport.Visible = true;
-				pnlReport.Visible = true;
-				BtnUsers.Visible = true;
-				PnlUsers.Visible = true;
-				BtnAbout.Visible = true;
-				PnlAbout.Visible = true;
-
-				btnSales.Visible = true;
-				pnlSale.Visible = true;
-				btnProducts.Visible = true;
-				pnlProducts.Visible = true;
-				btnInvoice.Visible = true;
-				pnlInvoice.Visible = true;
-				btnPayments.Visible = true;
-				pnlPayment.Visible = true;
-				btnCustomer.Visible = true;
-				pnlCustomer.Visible = true;
-
-				// Default view for Admin
-				ShowView(uHome1, PnlDashboard);
+				// Default view for admin
+				LoadUserControl(new uHome(), PnlDashboard);
 			}
 		}
 
 		#endregion
 
-		#region Helper Methods for Navigation
+		#region High-Performance Dynamic Navigation (Lazy Loading)
 
-		/// <summary>
-		/// Brings the target UserControl to the front and lights up its active indicator panel.
-		/// </summary>
-		private void ShowView(UserControl view, Panel activeIndicator)
+		private void LoadUserControl(UserControl uc, Panel activeIndicator)
 		{
-			// Hide all active indicator panels
-			PnlDashboard.Visible = false;
-			pnlExpense.Visible = false;
-			PnlSetting.Visible = false;
-			pnlReport.Visible = false;
-			PnlUsers.Visible = false;
-			PnlAbout.Visible = false;
-
-			pnlSale.Visible = false;
-			pnlProducts.Visible = false;
-			pnlInvoice.Visible = false;
-			pnlPayment.Visible = false;
-			pnlCustomer.Visible = false;
-
-			// Highlight active selection
-			if (activeIndicator != null)
+			// Reset all indicator panels visibility quickly
+			foreach (Control ctrl in pnlTopNav.Controls)
 			{
-				activeIndicator.Visible = true;
+				if (ctrl is Panel p && p != pnlTopNav) p.Visible = false;
+			}
+			foreach (Control ctrl in PnlSidebar.Controls)
+			{
+				if (ctrl is Panel p) p.Visible = false;
 			}
 
-			// Bring selected UserControl to front
-			view.BringToFront();
+			if (activeIndicator != null)
+				activeIndicator.Visible = true;
+
+			// Inject user control into main content area dynamically
+			pnlMainContent.Controls.Clear();
+			uc.Dock = DockStyle.Fill;
+
+			// Pass role down if control supports it (e.g., uInvoice)
+			if (uc is uInvoice inv) inv.UserRole = this.UserRole;
+
+			pnlMainContent.Controls.Add(uc);
+			uc.BringToFront();
 		}
 
 		#endregion
 
-		#region Sidebar Navigation Click Events
+		#region Navigation Click Events
 
-		private void BtnDashboard_Click(object sender, EventArgs e)
+		private void BtnDashboard_Click(object sender, EventArgs e) => LoadUserControl(new uHome(), PnlDashboard);
+		// Inside frmDashboard navigation click event
+		private void btnSales_Click(object sender, EventArgs e)
 		{
-			ShowView(uHome1, PnlDashboard);
+			// Instantiates uSales ONLY on click, keeping login & dashboard startup instantaneous
+			LoadUserControl(new uSales(), pnlSale);
 		}
+		private void btnProducts_Click(object sender, EventArgs e) => LoadUserControl(new uProducts(), pnlProducts);
+		private void btnInvoice_Click(object sender, EventArgs e) => LoadUserControl(new uInvoice(), pnlInvoice);
+		private void btnPayments_Click(object sender, EventArgs e) => LoadUserControl(new uPayments(), pnlPayment);
+		private void btnCustomer_Click(object sender, EventArgs e) => LoadUserControl(new uCustomer(), pnlCustomer);
+		private void BtnUsers_Click(object sender, EventArgs e) => LoadUserControl(new uManageUsers(), PnlUsers);
+		private void BtnSetting_Click(object sender, EventArgs e) => LoadUserControl(new uSettings(), PnlSetting);
+		private void BtnAbout_Click(object sender, EventArgs e) => LoadUserControl(new uAbout(), PnlAbout);
 
 		private void btnExpense_Click(object sender, EventArgs e)
 		{
-			// If you have a User Control for Expenses, show it here:
-			frmExpense expense = new frmExpense();
-			expense.ShowDialog();
-			PnlSidebar.Visible = true;
-		}
-
-		private void BtnSetting_Click(object sender, EventArgs e)
-		{
-			ShowView(uSettings1, PnlSetting);
+			using (var expense = new frmExpense()) { expense.ShowDialog(); }
 		}
 
 		private void btnReport_Click(object sender, EventArgs e)
 		{
-			frmReport frmReport = new frmReport();
-			frmReport.ShowDialog();
-		}
-
-		private void BtnUsers_Click(object sender, EventArgs e)
-		{
-			ShowView(uManageUsers1, PnlUsers);
-		}
-
-		private void BtnAbout_Click(object sender, EventArgs e)
-		{
-			ShowView(uAbout1, PnlAbout);
+			using (var report = new frmReport()) { report.ShowDialog(); }
 		}
 
 		private void BtnSidebar_Click(object sender, EventArgs e)
 		{
-			// Toggle sidebar width (Expand / Collapse feature)
-			if (PnlSidebar.Width == 203)
-			{
-				PnlSidebar.Width = 0;
-			}
-			else
-			{
-				PnlSidebar.Width = 203;
-			}
+			PnlSidebar.Width = (PnlSidebar.Width == 203) ? 0 : 203;
 		}
 
 		#endregion
 
-		#region Top Bar Navigation Click Events
-
-		private void btnLora_Click(object sender, EventArgs e) // Sales Button
-		{
-			ShowView(uSales1, pnlSale);
-		}
-
-		private void btnPlates_Click(object sender, EventArgs e) // Products Button
-		{
-			ShowView(uProducts1, pnlProducts);
-		}
-
-		private void btnInvoice_Click(object sender, EventArgs e)
-		{
-			ShowView(uInvoice1, pnlInvoice);
-		}
-
-		private void btnPayments_Click(object sender, EventArgs e)
-		{
-			ShowView(uPayments1, pnlPayment != null ? pnlPayment : null);
-		}
-
-		private void btnCustomer_Click(object sender, EventArgs e)
-		{
-			ShowView(uCustomer1, pnlCustomer);
-		}
-
-		#endregion
-
-		#region Logout & Close Handling
+		#region Logout & Password Handling
 
 		private void btnLogout_Click(object sender, EventArgs e)
 		{
-			DialogResult result = MessageBox.Show(
-				"Are you sure you want to log out?",
-				"Logout Confirmation",
-				MessageBoxButtons.YesNo,
-				MessageBoxIcon.Question
-			);
-
-			if (result == DialogResult.Yes)
+			if (MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
-				// Find and show login form, then close this dashboard
 				Form loginForm = Application.OpenForms["frmLogin"];
-				if (loginForm != null)
-				{
-					loginForm.Show();
-				}
+				if (loginForm != null) loginForm.Show();
 				this.Hide();
+			}
+		}
+
+		private void btnChangePassword_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				using (var changePass = new frmChangePassword())
+				{
+					changePass.txtUsername.Text = lblUsername.Text;
+					changePass.ShowDialog();
+				}
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
 			}
 		}
 
@@ -252,25 +162,6 @@ namespace key_luxery1
 			Application.Exit();
 		}
 
-		private void panel3_Paint(object sender, PaintEventArgs e)
-		{
-			// Optional custom painting for header panel if needed
-		}
-
 		#endregion
-
-		private void btnChangePassword_Click(object sender, EventArgs e)
-		{
-			try
-			{
-				frmChangePassword changePasswordForm = new frmChangePassword();
-				changePasswordForm.txtUsername.Text = lblUsername.Text; // Pass the current username to the change password form
-				changePasswordForm.ShowDialog();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
-		}
 	}
 }

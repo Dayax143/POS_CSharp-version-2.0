@@ -20,6 +20,8 @@ namespace key_luxery1
 		private decimal foundProductPrice = 0;
 		private int foundProductStock = 0;
 
+		string userrole = Properties.Settings.Default.userRole;
+
 		public frmManageSale()
 		{
 			InitializeComponent();
@@ -27,16 +29,15 @@ namespace key_luxery1
 
 		private void frmManageSale_Load(object sender, EventArgs e)
 		{
-			//LoadCustomers();
 			InitializeNewInvoiceOnOpen();
-			frmDashboard dashboard = new frmDashboard();
-			if(dashboard.lblRole.Text != "Admin")
+
+			if (userrole != "Admin")
 			{
-				txtDiscount.ReadOnly= true;
+				txtDiscount.ReadOnly = true;
 			}
-			else if(dashboard.lblRole.Text == "Admin")
+			else if (userrole == "Admin")
 			{
-				txtDiscount.ReadOnly= false;
+				txtDiscount.ReadOnly = false;
 			}
 		}
 
@@ -238,10 +239,11 @@ namespace key_luxery1
 		private void btnCompleteSale_Click(object sender, EventArgs e)
 		{
 			completeSale();
-			printPreviewFunction ();
+			printPreviewFunction();
 		}
 
-		public void printPreviewFunction() {
+		public void printPreviewFunction()
+		{
 
 			// 7. Safe Print Execution Block
 			try
@@ -652,6 +654,25 @@ namespace key_luxery1
 		private void txtTax_TextChanged(object sender, EventArgs e)
 		{
 			CalculateGrandTotal();
+		}
+
+		private decimal exchangeRate = 8500m; // Example exchange rate
+
+		private void cmbCurrencyMode_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (cmbCurrencyMode.SelectedItem?.ToString() == "SLSH")
+			{
+				lblExchangeRateDisplay.Text = $"Current Rate: 1 USD = {exchangeRate:N0} SLSH";
+			}
+			else
+			{
+				lblExchangeRateDisplay.Text = "Base Currency: USD ($)";
+			}
+		}
+
+		private void cmbCurrencyMode_TextChanged(object sender, EventArgs e)
+		{
+			cmbCurrencyMode_SelectedIndexChanged(sender , e);
 		}
 	}
 }
