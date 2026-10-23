@@ -196,18 +196,6 @@ namespace key_luxery1
 			Application.Exit();
 		}
 
-		private void txtPassword_KeyDown(object sender, KeyEventArgs e)
-		{
-			// Check if the Enter key was pressed
-			if (e.KeyCode == Keys.Enter)
-			{
-				// Suppress the annoying "ding" sound
-				e.SuppressKeyPress = true;
-
-				// Trigger the login button's click event
-				btnLogin_Click(sender, e);
-			}
-		}
 		private void btnConfig_Click(object sender, EventArgs e)
 		{
 
@@ -224,6 +212,31 @@ namespace key_luxery1
 			{
 				MessageBox.Show(ex.Message);
 			}
+		}
+
+		private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+		{
+			// Check if the Enter key was pressed
+			if (e.KeyCode == Keys.Enter)
+			{
+				// Suppress the annoying "ding" sound
+				e.SuppressKeyPress = true;
+
+				// Trigger the login button's click event
+				btnLogin_Click(sender, e);
+			}
+		}
+		private void txtPassword_KeyDown(object sender, KeyPressEventArgs e)
+		{
+			//// Check if the Enter key was pressed
+			//if (e.KeyCode == Keys.Enter)
+			//{
+			//	// Suppress the annoying "ding" sound
+			//	e.SuppressKeyPress = true;
+
+			//	// Trigger the login button's click event
+			//	btnLogin_Click(sender, e);
+			//}
 		}
 	}
 }

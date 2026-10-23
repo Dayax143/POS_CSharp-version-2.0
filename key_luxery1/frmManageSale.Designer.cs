@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageSale));
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.grpCustomerInfo = new System.Windows.Forms.GroupBox();
@@ -143,7 +143,7 @@
 			this.btnFindCustomer.Name = "btnFindCustomer";
 			this.btnFindCustomer.Size = new System.Drawing.Size(99, 29);
 			this.btnFindCustomer.TabIndex = 1;
-			this.btnFindCustomer.Text = "Create cust";
+			this.btnFindCustomer.Text = "Register";
 			this.btnFindCustomer.UseVisualStyleBackColor = false;
 			this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
 			// 
@@ -151,7 +151,7 @@
 			// 
 			this.lblInvoiceId.AutoSize = true;
 			this.lblInvoiceId.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblInvoiceId.Location = new System.Drawing.Point(20, 72);
+			this.lblInvoiceId.Location = new System.Drawing.Point(20, 153);
 			this.lblInvoiceId.Name = "lblInvoiceId";
 			this.lblInvoiceId.Size = new System.Drawing.Size(85, 21);
 			this.lblInvoiceId.TabIndex = 0;
@@ -161,7 +161,7 @@
 			// 
 			this.txtInvoiceId.Enabled = false;
 			this.txtInvoiceId.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtInvoiceId.Location = new System.Drawing.Point(145, 69);
+			this.txtInvoiceId.Location = new System.Drawing.Point(145, 150);
 			this.txtInvoiceId.Name = "txtInvoiceId";
 			this.txtInvoiceId.Size = new System.Drawing.Size(255, 29);
 			this.txtInvoiceId.TabIndex = 2;
@@ -188,7 +188,7 @@
 			// txtCustomer_name
 			// 
 			this.txtCustomer_name.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtCustomer_name.Location = new System.Drawing.Point(145, 145);
+			this.txtCustomer_name.Location = new System.Drawing.Point(145, 64);
 			this.txtCustomer_name.Name = "txtCustomer_name";
 			this.txtCustomer_name.Size = new System.Drawing.Size(255, 29);
 			this.txtCustomer_name.TabIndex = 4;
@@ -198,11 +198,11 @@
 			// 
 			this.lblCustomer.AutoSize = true;
 			this.lblCustomer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblCustomer.Location = new System.Drawing.Point(20, 148);
+			this.lblCustomer.Location = new System.Drawing.Point(20, 67);
 			this.lblCustomer.Name = "lblCustomer";
-			this.lblCustomer.Size = new System.Drawing.Size(85, 21);
+			this.lblCustomer.Size = new System.Drawing.Size(86, 21);
 			this.lblCustomer.TabIndex = 0;
-			this.lblCustomer.Text = "Customer :";
+			this.lblCustomer.Text = "Cus name :";
 			// 
 			// lblSaleDate
 			// 
@@ -314,14 +314,14 @@
 			this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
 			this.dgvCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
 			this.dgvCart.ColumnHeadersHeight = 35;
 			this.dgvCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductID,
@@ -329,14 +329,14 @@
             this.colPrice,
             this.colQuantity,
             this.colSubtotal});
-			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvCart.DefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvCart.DefaultCellStyle = dataGridViewCellStyle6;
 			this.dgvCart.EnableHeadersVisualStyles = false;
 			this.dgvCart.Location = new System.Drawing.Point(475, 65);
 			this.dgvCart.Name = "dgvCart";

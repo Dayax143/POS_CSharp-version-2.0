@@ -514,13 +514,77 @@ namespace key_luxery1
 		{
 
 		}
-
-
-		private void LoadCustomers()
+		/// <summary>
+		/// 1. Searches for an existing customer by phone number and updates UI state dynamically.
+		/// </summary>
+		/// 
+		private void SearchCustomer(bool showMessages)
 		{
 			try
 			{
 				string phone = txtSearchCustomerPhone.Text.Trim();
+				if (string.IsNullOrEmpty(phone))
+				{
+					if (showMessages)
+					{
+						MessageBox.Show("Please enter a customer phone number.", "Validation Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+						txtSearchCustomerPhone.Focus();
+					}
+					else
+					{
+						txtcustomer_id.Clear();
+						txtCustomer_name.Clear();
+						btnFindCustomer.Text = "Search";
+					}
+					return;
+				}
+
+				string query = $"SELECT customer_id, customer_name, customer_phone, status FROM tblCustomer WHERE deleted = 0 AND customer_phone = '{phone.Replace("'", "''")}'";
+				DataTable dt = sharedClass.GetData(query);
+
+				if (dt != null && dt.Rows.Count > 0)
+				{
+					// Customer Found: Populate fields and switch button to "History"
+					txtcustomer_id.Text = dt.Rows[0]["customer_id"].ToString();
+					txtCustomer_name.Text = dt.Rows[0]["customer_name"].ToString();
+					btnFindCustomer.Text = "History";
+				}
+				else
+				{
+					// Customer Not Found: Clear fields and switch button to "Register"
+					txtcustomer_id.Clear();
+					txtCustomer_name.Clear();
+					btnFindCustomer.Text = "Register";
+
+					if (showMessages)
+					{
+						MessageBox.Show("No active customer found with that phone number. Enter their name and click 'Register'.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				if (showMessages)
+				{
+					MessageBox.Show("Error searching customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+		}
+		private void LoadSearchedCustomer()
+		{
+			SearchCustomer(true);
+		}
+
+		/// <summary>
+		/// 2. Handles registering a brand new customer into tblCustomer.
+		/// </summary>
+		private void RegisterCustomer()
+		{
+			try
+			{
+				string phone = txtSearchCustomerPhone.Text.Trim();
+				string name = txtCustomer_name.Text.Trim();
+
 				if (string.IsNullOrEmpty(phone))
 				{
 					MessageBox.Show("Please enter a customer phone number.", "Validation Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -528,57 +592,61 @@ namespace key_luxery1
 					return;
 				}
 
-				// Properly assign the returned DataTable from sharedClass.GetData
-				// Added single quotes around phone value and sanitized input against quotes
-				string query = $"SELECT customer_id, customer_name, customer_phone,status FROM tblCustomer WHERE deleted = 0 AND customer_phone = '{phone.Replace("'", "''")}'";
-				DataTable dt = sharedClass.GetData(query);
+				if (string.IsNullOrEmpty(name))
+				{
+					MessageBox.Show("Please enter the customer name to register.", "Validation Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					txtCustomer_name.Focus();
+					return;
+				}
 
-				// Check if any records were actually returned
-				if (dt != null && dt.Rows.Count > 0)
-				{
-					// Use Rows[0] for the first matching record (0-based index)
-					txtcustomer_id.Text = dt.Rows[0]["customer_id"].ToString();
-					txtCustomer_name.Text = dt.Rows[0]["customer_name"].ToString();
-					string customer_status = dt.Rows[0]["status"].ToString();
-				}
-				else
-				{
-					DialogResult dialog = MessageBox.Show("No active customer found with that phone number, register now !", "Not Found", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-					if (dialog == DialogResult.Yes)
-					{
-						if (txtCustomer_name.Text == "")
-						{
-							MessageBox.Show("Please enter the customer name to register now");
-						}
-						else
-						{
-							query = $"Insert into tblCustomer (customer_phone,customer_name,deleted,status,date) values({txtSearchCustomerPhone.Text},'{txtCustomer_name.Text}',0,'start',GetDate())";
-							db.ExecuteQueries(query);
-							MessageBox.Show("Successfully registered");
-						}
-					}
-					else if (dialog == DialogResult.No)
-					{
-						txtcustomer_id.Clear();
-						txtCustomer_name.Clear();
-						txtSearchCustomerPhone.Clear();
-					}
-				}
+				// Fixed phone quotation to ensure safe SQL insertion for numbers starting with 0 or symbols
+				string query = $"INSERT INTO tblCustomer (customer_phone, customer_name, deleted, status, date) VALUES ('{phone.Replace("'", "''")}', '{name.Replace("'", "''")}', 0, 'Active', GETDATE())";
+				db.ExecuteQueries(query);
+
+				MessageBox.Show("Customer registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+				// Automatically reload the newly registered customer and switch button back to "History"
+				LoadSearchedCustomer();
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("Error loading customers: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Error registering customer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+		}
+
+		/// <summary>
+		/// Dynamic Action Button: Acts as Search, Register, or History based on current state text.
+		/// </summary>
+
+		/// <label>Optional: Reset button text to 'Search' if the phone number is changed</label>
+		private void txtSearchCustomerPhone_TextChanged(object sender, EventArgs e)
+		{
+			// Reset button back to Search/Default when typing a new phone number
+			SearchCustomer(false);
+
+			//btnFindCustomer.Text = "Search";
 		}
 
 		private void btnFindCustomer_Click(object sender, EventArgs e)
 		{
-			LoadCustomers();
-		}
+			string currentAction = btnFindCustomer.Text.Trim();
 
-		private void txtSearchCustomerPhone_TextChanged(object sender, EventArgs e)
-		{
-			//LoadCustomers();
+			if (currentAction == "Register")
+			{
+				RegisterCustomer();
+			}
+			else if (currentAction == "History")
+			{
+				// Open the Customer History Profile form we built
+				frmCustomerHistory historyForm = new frmCustomerHistory();
+				historyForm.CustomerName = txtCustomer_name.Text.Trim();
+				historyForm.ShowDialog();
+			}
+			else
+			{
+				// Default action: Search
+				LoadSearchedCustomer();
+			}
 		}
 
 		private void txtTax_TextChanged(object sender, EventArgs e)

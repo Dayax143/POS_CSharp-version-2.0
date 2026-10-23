@@ -50,7 +50,7 @@ namespace key_luxery1
 				lblCard2Value.Text = (res2 ?? 0).ToString();
 
 				// 3. Card 3: Active Products Count (from tblproduct)
-				string qryActiveProducts = "SELECT COUNT(*) FROM tblproduct WHERE status = 'Active' AND (deleted = 0 OR deleted IS NULL)";
+				string qryActiveProducts = "SELECT COUNT(*) FROM tblproduct WHERE quantity>0 AND (deleted = 0 OR deleted IS NULL)";
 				object res3 = db.ExecuteScalarQuery(qryActiveProducts);
 				lblCard3Value.Text = (res3 ?? 0).ToString();
 
@@ -96,9 +96,19 @@ namespace key_luxery1
 				lblBankVal.Text = Convert.ToDecimal(resBank ?? 0).ToString("C2");
 
 				// Other Payment Methods Total
-				string qryOther = "SELECT ISNULL(SUM(amount_paid), 0) FROM tblPayment WHERE payment_method NOT IN ('Zaad', 'eDahab', 'Premiere Bank') AND (deleted = 0 OR deleted IS NULL)";
+				string qryOther = "SELECT ISNULL(SUM(amount_paid), 0) FROM tblPayment WHERE payment_method NOT IN ('Zaad', 'eDahab', 'Premiere Bank','Cash') AND (deleted = 0 OR deleted IS NULL)";
 				object resOther = db.ExecuteScalarQuery(qryOther);
 				lblOtherVal.Text = Convert.ToDecimal(resOther ?? 0).ToString("C2");
+
+				// 4. Total Customers Count
+				object custObj = db.ExecuteScalar("SELECT COUNT(customer_id) FROM tblCustomer WHERE deleted = 0");
+				int totalCustomers = (custObj != null && custObj != DBNull.Value) ? Convert.ToInt32(custObj) : 0;
+				lblCustomers.Text = totalCustomers.ToString("N0");
+
+				//5. Low Stock Items Count
+				object lowStockObj = db.ExecuteScalar($"SELECT COUNT(product_id) FROM tblProduct WHERE deleted = 0 AND quantity <= {LOW_STOCK_THRESHOLD}");
+				int lowStockCount = (lowStockObj != null && lowStockObj != DBNull.Value) ? Convert.ToInt32(lowStockObj) : 0;
+				lblCard5Value.Text = lowStockCount.ToString("N0");
 			}
 			catch (Exception ex)
 			{

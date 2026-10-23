@@ -5,5 +5,8 @@
     <Setting Name="SqlConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Server=RT\RTSER22; database=key_luxery; user id='sa'; password=123;</Value>
     </Setting>
+    <Setting Name="userRole" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

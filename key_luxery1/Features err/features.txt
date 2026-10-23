@@ -1,0 +1,48 @@
+refresh the home dashboard
+
+reports calculation (decorate reports)
+
+search by id the product
+
+=========================
+- return payment, sale and invoice if mis created
+
+- save tax to expenses for every invoice
+
+- filter sales 
+
+- edit expenses
+
+- decorate dashboard with expenses
+
+- encrypt the user password
+
+- make it setup
+
+- add pagination to all datagridviews
+
+- add none admin form access (make sale, invoice, print invoices)
+
+- low stock report
+
+- press enter to login
+
+- the find button for customer searching and the search by phone textbox best performance
+
+- customer history in reports and in sales window
+
+- backup & restoration simplification
+
+customer purchase history report (correct) and other related reports
+
+* add payment reference number
+
+* add invoice double click and 
+
+* enter the invoice bill and reference number
+
+* add user logs which user have added, updated or deleted something
+
+* which is the last_updated date of each action
+
+add supplier registration, payable & receivable management for both customers and suppliers (later)

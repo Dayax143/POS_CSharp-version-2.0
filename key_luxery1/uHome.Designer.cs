@@ -19,6 +19,9 @@
 		{
 			this.pnlTop = new System.Windows.Forms.Panel();
 			this.btnRefresh = new System.Windows.Forms.Button();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
+			this.lblCustomers = new System.Windows.Forms.Label();
 			this.pnlCard6 = new System.Windows.Forms.Panel();
 			this.lblCard6Title = new System.Windows.Forms.Label();
 			this.lblCard6Value = new System.Windows.Forms.Label();
@@ -69,10 +72,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblGrossSalesVal = new System.Windows.Forms.Label();
 			this.lblGrossSalesTitle = new System.Windows.Forms.Label();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.label2 = new System.Windows.Forms.Label();
-			this.lbl = new System.Windows.Forms.Label();
 			this.pnlTop.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.pnlCard6.SuspendLayout();
 			this.pnlCard5.SuspendLayout();
 			this.pnlCard4.SuspendLayout();
@@ -92,7 +93,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.dgvCategorySales)).BeginInit();
 			this.tabFinancial.SuspendLayout();
 			this.pnlFinancialContainer.SuspendLayout();
-			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// pnlTop
@@ -109,7 +109,7 @@
 			this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
 			this.pnlTop.Location = new System.Drawing.Point(0, 0);
 			this.pnlTop.Name = "pnlTop";
-			this.pnlTop.Size = new System.Drawing.Size(1266, 163);
+			this.pnlTop.Size = new System.Drawing.Size(1279, 163);
 			this.pnlTop.TabIndex = 8;
 			// 
 			// btnRefresh
@@ -119,13 +119,45 @@
 			this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
 			this.btnRefresh.ForeColor = System.Drawing.Color.White;
-			this.btnRefresh.Location = new System.Drawing.Point(1159, 59);
+			this.btnRefresh.Location = new System.Drawing.Point(1163, 59);
 			this.btnRefresh.Name = "btnRefresh";
-			this.btnRefresh.Size = new System.Drawing.Size(104, 90);
+			this.btnRefresh.Size = new System.Drawing.Size(100, 90);
 			this.btnRefresh.TabIndex = 12;
 			this.btnRefresh.Text = "Refresh";
 			this.btnRefresh.UseVisualStyleBackColor = false;
 			this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+			this.panel1.Controls.Add(this.label2);
+			this.panel1.Controls.Add(this.lblCustomers);
+			this.panel1.Location = new System.Drawing.Point(999, 59);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(158, 90);
+			this.panel1.TabIndex = 12;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.label2.ForeColor = System.Drawing.Color.White;
+			this.label2.Location = new System.Drawing.Point(10, 12);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(123, 20);
+			this.label2.TabIndex = 0;
+			this.label2.Text = "Total Customers";
+			// 
+			// lblCustomers
+			// 
+			this.lblCustomers.AutoSize = true;
+			this.lblCustomers.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Bold);
+			this.lblCustomers.ForeColor = System.Drawing.Color.White;
+			this.lblCustomers.Location = new System.Drawing.Point(10, 42);
+			this.lblCustomers.Name = "lblCustomers";
+			this.lblCustomers.Size = new System.Drawing.Size(53, 31);
+			this.lblCustomers.TabIndex = 1;
+			this.lblCustomers.Text = "000";
 			// 
 			// pnlCard6
 			// 
@@ -337,7 +369,7 @@
 			this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlMain.Location = new System.Drawing.Point(0, 163);
 			this.pnlMain.Name = "pnlMain";
-			this.pnlMain.Size = new System.Drawing.Size(1266, 672);
+			this.pnlMain.Size = new System.Drawing.Size(1279, 679);
 			this.pnlMain.TabIndex = 9;
 			// 
 			// tabRightFeed
@@ -348,7 +380,7 @@
 			this.tabRightFeed.Location = new System.Drawing.Point(662, 10);
 			this.tabRightFeed.Name = "tabRightFeed";
 			this.tabRightFeed.SelectedIndex = 0;
-			this.tabRightFeed.Size = new System.Drawing.Size(447, 596);
+			this.tabRightFeed.Size = new System.Drawing.Size(601, 615);
 			this.tabRightFeed.TabIndex = 9;
 			// 
 			// tabRecentSales
@@ -357,7 +389,7 @@
 			this.tabRecentSales.Location = new System.Drawing.Point(4, 30);
 			this.tabRecentSales.Name = "tabRecentSales";
 			this.tabRecentSales.Padding = new System.Windows.Forms.Padding(3);
-			this.tabRecentSales.Size = new System.Drawing.Size(439, 562);
+			this.tabRecentSales.Size = new System.Drawing.Size(593, 581);
 			this.tabRecentSales.TabIndex = 0;
 			this.tabRecentSales.Text = "Recent Sales";
 			this.tabRecentSales.UseVisualStyleBackColor = true;
@@ -377,7 +409,7 @@
 			this.dgvRecentSales.RowHeadersWidth = 51;
 			this.dgvRecentSales.RowTemplate.Height = 28;
 			this.dgvRecentSales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvRecentSales.Size = new System.Drawing.Size(433, 556);
+			this.dgvRecentSales.Size = new System.Drawing.Size(587, 575);
 			this.dgvRecentSales.TabIndex = 0;
 			// 
 			// tabLowStock
@@ -386,7 +418,7 @@
 			this.tabLowStock.Location = new System.Drawing.Point(4, 30);
 			this.tabLowStock.Name = "tabLowStock";
 			this.tabLowStock.Padding = new System.Windows.Forms.Padding(3);
-			this.tabLowStock.Size = new System.Drawing.Size(439, 562);
+			this.tabLowStock.Size = new System.Drawing.Size(593, 581);
 			this.tabLowStock.TabIndex = 1;
 			this.tabLowStock.Text = "⚠️ Low Stock Alerts";
 			this.tabLowStock.UseVisualStyleBackColor = true;
@@ -406,7 +438,7 @@
 			this.dgvLowStock.RowHeadersWidth = 51;
 			this.dgvLowStock.RowTemplate.Height = 28;
 			this.dgvLowStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvLowStock.Size = new System.Drawing.Size(433, 556);
+			this.dgvLowStock.Size = new System.Drawing.Size(587, 575);
 			this.dgvLowStock.TabIndex = 0;
 			// 
 			// tabAnalytics
@@ -418,7 +450,7 @@
 			this.tabAnalytics.Location = new System.Drawing.Point(12, 10);
 			this.tabAnalytics.Name = "tabAnalytics";
 			this.tabAnalytics.SelectedIndex = 0;
-			this.tabAnalytics.Size = new System.Drawing.Size(635, 596);
+			this.tabAnalytics.Size = new System.Drawing.Size(635, 615);
 			this.tabAnalytics.TabIndex = 8;
 			// 
 			// tabTopProducts
@@ -427,7 +459,7 @@
 			this.tabTopProducts.Location = new System.Drawing.Point(4, 30);
 			this.tabTopProducts.Name = "tabTopProducts";
 			this.tabTopProducts.Padding = new System.Windows.Forms.Padding(3);
-			this.tabTopProducts.Size = new System.Drawing.Size(627, 562);
+			this.tabTopProducts.Size = new System.Drawing.Size(627, 581);
 			this.tabTopProducts.TabIndex = 0;
 			this.tabTopProducts.Text = "⭐ Top Selling Products";
 			this.tabTopProducts.UseVisualStyleBackColor = true;
@@ -447,7 +479,7 @@
 			this.dgvTopProducts.RowHeadersWidth = 51;
 			this.dgvTopProducts.RowTemplate.Height = 28;
 			this.dgvTopProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvTopProducts.Size = new System.Drawing.Size(621, 556);
+			this.dgvTopProducts.Size = new System.Drawing.Size(621, 575);
 			this.dgvTopProducts.TabIndex = 0;
 			// 
 			// tabCategories
@@ -456,7 +488,7 @@
 			this.tabCategories.Location = new System.Drawing.Point(4, 30);
 			this.tabCategories.Name = "tabCategories";
 			this.tabCategories.Padding = new System.Windows.Forms.Padding(3);
-			this.tabCategories.Size = new System.Drawing.Size(627, 562);
+			this.tabCategories.Size = new System.Drawing.Size(627, 581);
 			this.tabCategories.TabIndex = 1;
 			this.tabCategories.Text = "📁 Category Revenue";
 			this.tabCategories.UseVisualStyleBackColor = true;
@@ -476,7 +508,7 @@
 			this.dgvCategorySales.RowHeadersWidth = 51;
 			this.dgvCategorySales.RowTemplate.Height = 28;
 			this.dgvCategorySales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.dgvCategorySales.Size = new System.Drawing.Size(621, 556);
+			this.dgvCategorySales.Size = new System.Drawing.Size(621, 575);
 			this.dgvCategorySales.TabIndex = 0;
 			// 
 			// tabFinancial
@@ -485,7 +517,7 @@
 			this.tabFinancial.Location = new System.Drawing.Point(4, 30);
 			this.tabFinancial.Name = "tabFinancial";
 			this.tabFinancial.Padding = new System.Windows.Forms.Padding(3);
-			this.tabFinancial.Size = new System.Drawing.Size(627, 562);
+			this.tabFinancial.Size = new System.Drawing.Size(627, 581);
 			this.tabFinancial.TabIndex = 2;
 			this.tabFinancial.Text = "💵 Financial Summary";
 			this.tabFinancial.UseVisualStyleBackColor = true;
@@ -513,17 +545,17 @@
 			this.pnlFinancialContainer.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlFinancialContainer.Location = new System.Drawing.Point(3, 3);
 			this.pnlFinancialContainer.Name = "pnlFinancialContainer";
-			this.pnlFinancialContainer.Size = new System.Drawing.Size(621, 556);
+			this.pnlFinancialContainer.Size = new System.Drawing.Size(621, 575);
 			this.pnlFinancialContainer.TabIndex = 0;
 			// 
 			// lblOtherVal
 			// 
 			this.lblOtherVal.AutoSize = true;
-			this.lblOtherVal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+			this.lblOtherVal.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
 			this.lblOtherVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-			this.lblOtherVal.Location = new System.Drawing.Point(320, 395);
+			this.lblOtherVal.Location = new System.Drawing.Point(319, 482);
 			this.lblOtherVal.Name = "lblOtherVal";
-			this.lblOtherVal.Size = new System.Drawing.Size(65, 28);
+			this.lblOtherVal.Size = new System.Drawing.Size(88, 37);
 			this.lblOtherVal.TabIndex = 15;
 			this.lblOtherVal.Text = "$0.00";
 			// 
@@ -532,7 +564,7 @@
 			this.lblOtherTitle.AutoSize = true;
 			this.lblOtherTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
 			this.lblOtherTitle.ForeColor = System.Drawing.Color.Gray;
-			this.lblOtherTitle.Location = new System.Drawing.Point(320, 365);
+			this.lblOtherTitle.Location = new System.Drawing.Point(322, 448);
 			this.lblOtherTitle.Name = "lblOtherTitle";
 			this.lblOtherTitle.Size = new System.Drawing.Size(136, 23);
 			this.lblOtherTitle.TabIndex = 14;
@@ -675,7 +707,7 @@
 			this.lblCashVal.AutoSize = true;
 			this.lblCashVal.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
 			this.lblCashVal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.lblCashVal.Location = new System.Drawing.Point(319, 479);
+			this.lblCashVal.Location = new System.Drawing.Point(319, 384);
 			this.lblCashVal.Name = "lblCashVal";
 			this.lblCashVal.Size = new System.Drawing.Size(88, 37);
 			this.lblCashVal.TabIndex = 1;
@@ -686,7 +718,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
 			this.label1.ForeColor = System.Drawing.Color.Gray;
-			this.label1.Location = new System.Drawing.Point(319, 449);
+			this.label1.Location = new System.Drawing.Point(319, 354);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(53, 25);
 			this.label1.TabIndex = 0;
@@ -714,38 +746,6 @@
 			this.lblGrossSalesTitle.TabIndex = 0;
 			this.lblGrossSalesTitle.Text = "Gross Sales (Subtotal):";
 			// 
-			// panel1
-			// 
-			this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.lbl);
-			this.panel1.Location = new System.Drawing.Point(999, 59);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(158, 90);
-			this.panel1.TabIndex = 12;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-			this.label2.ForeColor = System.Drawing.Color.White;
-			this.label2.Location = new System.Drawing.Point(10, 12);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(79, 20);
-			this.label2.TabIndex = 0;
-			this.label2.Text = "Low stock";
-			// 
-			// lbl
-			// 
-			this.lbl.AutoSize = true;
-			this.lbl.Font = new System.Drawing.Font("Segoe UI", 13.5F, System.Drawing.FontStyle.Bold);
-			this.lbl.ForeColor = System.Drawing.Color.White;
-			this.lbl.Location = new System.Drawing.Point(10, 42);
-			this.lbl.Name = "lbl";
-			this.lbl.Size = new System.Drawing.Size(53, 31);
-			this.lbl.TabIndex = 1;
-			this.lbl.Text = "000";
-			// 
 			// uHome
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -754,10 +754,12 @@
 			this.Controls.Add(this.pnlMain);
 			this.Controls.Add(this.pnlTop);
 			this.Name = "uHome";
-			this.Size = new System.Drawing.Size(1266, 835);
+			this.Size = new System.Drawing.Size(1279, 842);
 			this.Load += new System.EventHandler(this.uHome_Load);
 			this.pnlTop.ResumeLayout(false);
 			this.pnlTop.PerformLayout();
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.pnlCard6.ResumeLayout(false);
 			this.pnlCard6.PerformLayout();
 			this.pnlCard5.ResumeLayout(false);
@@ -784,8 +786,6 @@
 			this.tabFinancial.ResumeLayout(false);
 			this.pnlFinancialContainer.ResumeLayout(false);
 			this.pnlFinancialContainer.PerformLayout();
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -845,6 +845,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label lbl;
+		private System.Windows.Forms.Label lblCustomers;
 	}
 }

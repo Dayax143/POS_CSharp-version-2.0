@@ -34,5 +34,17 @@ namespace key_luxery1.Properties {
                 this["SqlConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string userRole {
+            get {
+                return ((string)(this["userRole"]));
+            }
+            set {
+                this["userRole"] = value;
+            }
+        }
     }
 }
