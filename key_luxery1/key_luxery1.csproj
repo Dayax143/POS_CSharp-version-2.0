@@ -115,6 +115,12 @@
     <Compile Include="frmExpense.Designer.cs">
       <DependentUpon>frmExpense.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmForgotPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmForgotPassword.Designer.cs">
+      <DependentUpon>frmForgotPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManageInvoice.cs">
       <SubType>Form</SubType>
     </Compile>

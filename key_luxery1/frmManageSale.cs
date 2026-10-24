@@ -268,100 +268,171 @@ namespace key_luxery1
 
 			this.Close();
 		}
+
+
 		// --- 4. PRINT INVOICE LAYOUT WITH LOGO ---
+		// --- GOLDEN LUXURY INVOICE PRINT LAYOUT ---
 		private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
 		{
 			Graphics g = e.Graphics;
-			Font boldFont = new Font("Segoe UI", 10, FontStyle.Bold);
-			Font regularFont = new Font("Segoe UI", 10, FontStyle.Regular);
-			Brush brush = Brushes.Black;
 
-			int startX = 50;
-			int startY = 50;
-			int offset = 0;
+			// Enable high-quality rendering
+			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+			g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-			try
+			// Define Color Palette (Golden Luxury Theme)
+			using (Brush goldBrush = new SolidBrush(Color.FromArgb(197, 160, 89)))       // Rich Gold
+			using (Brush darkGoldBrush = new SolidBrush(Color.FromArgb(150, 110, 40)))   // Deep Gold
+			using (Brush darkTextBrush = new SolidBrush(Color.FromArgb(40, 40, 40)))     // Charcoal Text
+			using (Brush whiteBrush = new SolidBrush(Color.White))
+			using (Brush creamBoxBrush = new SolidBrush(Color.FromArgb(250, 248, 242)))  // Light Ivory/Cream Box
+			using (Pen goldPen = new Pen(Color.FromArgb(197, 160, 89), 1))
+			using (Pen darkPen = new Pen(Color.FromArgb(80, 80, 80), 1))
+
+			// Define Fonts
+			using (Font brandFont = new Font("Segoe UI", 18, FontStyle.Bold))
+			using (Font invoiceTitleFont = new Font("Segoe UI", 22, FontStyle.Bold))
+			using (Font boldFont = new Font("Segoe UI", 9.5f, FontStyle.Bold))
+			using (Font regularFont = new Font("Segoe UI", 9.5f, FontStyle.Regular))
+			using (Font smallFont = new Font("Segoe UI", 8.5f, FontStyle.Regular))
 			{
-				// Option A: Load logo from Project Resources (Recommended)
-				// Replace 'Properties.Resources.logo' with your actual resource name if different
-				Image logo = Properties.Resources.logo_dahabi_png;
+				int startX = 40;
+				int startY = 40;
+				int printableWidth = 560;
+				int offset = 0;
 
-				// Option B: Load logo from a file path if you prefer
-				// Image logo = Image.FromFile(@"C:\PathToYourLogo\logo.png");
+				// --- 1. TOP GOLDEN BRAND BANNER ---
+				int bannerHeight = 70;
+				g.FillRectangle(goldBrush, startX, startY, printableWidth, bannerHeight);
 
-				// Draw the logo image (Width: 150, Height: 50 - adjust as needed to fit your receipt)
-				g.DrawImage(logo, startX, startY, 150, 50);
-				offset += 60; // Space after logo
+				// Brand Name (Left inside banner)
+				g.DrawString("Key Luxury Store", brandFont, whiteBrush, startX + 20, startY + 18);
+
+				// Invoice Meta inside banner or right side
+				string bannerMeta = $"Invoice No : {txtInvoiceNo.Text}\nDate         : {dtpSaleDate.Value.ToString("dd MMM yyyy")}";
+				g.DrawString(bannerMeta, smallFont, whiteBrush, startX + 370, startY + 16);
+
+				offset += bannerHeight + 25;
+
+				// --- 2. CUSTOMER & INVOICE TITLE SECTION ---
+				g.DrawString("INVOICE", invoiceTitleFont, darkTextBrush, startX + 360, startY + offset);
+
+				int customerInfoY = startY + offset;
+				g.DrawString("Invoice To:", boldFont, darkGoldBrush, startX, customerInfoY);
+				g.DrawString($"{txtCustomer_name.Text}\nPayment: {cmbPaymentMethod.Text}", regularFont, darkTextBrush, startX, customerInfoY + 20);
+
+				offset += 65;
+
+				// --- 3. TABLE HEADERS ---
+				int tableHeaderHeight = 28;
+				g.FillRectangle(goldBrush, startX, startY + offset, printableWidth, tableHeaderHeight);
+
+				int col1X = startX + 15;                  // Description
+				int col2X = startX + 280;                 // Price
+				int col3X = startX + 380;                 // Qty
+				int col4X = startX + printableWidth - 15; // Total (Right aligned)
+
+				StringFormat rightFormat = new StringFormat { Alignment = StringAlignment.Far };
+				StringFormat centerFormat = new StringFormat { Alignment = StringAlignment.Center };
+
+				g.DrawString("Description", boldFont, whiteBrush, col1X, startY + offset + 5);
+				g.DrawString("Price", boldFont, whiteBrush, col2X, startY + offset + 5, rightFormat);
+				g.DrawString("Qty", boldFont, whiteBrush, col3X, startY + offset + 5, centerFormat);
+				g.DrawString("Total", boldFont, whiteBrush, col4X, startY + offset + 5, rightFormat);
+
+				offset += tableHeaderHeight;
+
+				// --- 4. TABLE ROWS ---
+				decimal subtotalSum = 0;
+				int rowHeight = 26;
+
+				foreach (DataGridViewRow row in dgvCart.Rows)
+				{
+					if (row.IsNewRow) continue;
+
+					string pName = row.Cells["colProductName"].Value?.ToString() ?? "";
+					decimal priceVal = Convert.ToDecimal(row.Cells["colPrice"].Value ?? 0);
+					int qtyVal = Convert.ToInt32(row.Cells["colQuantity"].Value ?? 0);
+					decimal subTotalVal = Convert.ToDecimal(row.Cells["colSubtotal"].Value ?? 0);
+
+					subtotalSum += subTotalVal;
+
+					// Row outline border and background
+					g.DrawRectangle(goldPen, startX, startY + offset, printableWidth, rowHeight);
+
+					g.DrawString(pName, regularFont, darkTextBrush, col1X, startY + offset + 5);
+					g.DrawString(priceVal.ToString("N2"), regularFont, darkTextBrush, col2X, startY + offset + 5, rightFormat);
+					g.DrawString(qtyVal.ToString(), regularFont, darkTextBrush, col3X, startY + offset + 5, centerFormat);
+					g.DrawString(subTotalVal.ToString("N2"), regularFont, darkTextBrush, col4X, startY + offset + 5, rightFormat);
+
+					offset += rowHeight;
+				}
+
+				offset += 20;
+
+				// --- 5. THANK YOU BANNER ---
+				string thankYou = "THANK YOU FOR YOUR BUSINESS";
+				SizeF tySize = g.MeasureString(thankYou, boldFont);
+				int tyX = startX + (printableWidth - (int)tySize.Width) / 2;
+				g.DrawString(thankYou, boldFont, darkGoldBrush, tyX, startY + offset);
+
+				offset += 35;
+
+				// --- 6. BOTTOM SECTION: PAYMENT INFO & TOTALS BOX ---
+				int bottomSectionY = startY + offset;
+
+				// Left: Payment Info Box
+				int payBoxWidth = 250;
+				int payBoxHeight = 100;
+				g.FillRectangle(creamBoxBrush, startX, bottomSectionY, payBoxWidth, payBoxHeight);
+				g.DrawRectangle(goldPen, startX, bottomSectionY, payBoxWidth, payBoxHeight);
+
+				g.DrawString("Payment Info", boldFont, darkTextBrush, startX + 10, bottomSectionY + 10);
+				g.DrawString($"Account : {txtCustomer_name.Text}\nNumber : *******1234\nBank      : Luxury Bank", smallFont, darkTextBrush, startX + 10, bottomSectionY + 32);
+
+				// Right: Totals Box (Golden Header Box)
+				int totalsBoxX = startX + 280;
+				int totalsBoxWidth = 280;
+				int totalsBoxHeight = 100;
+
+				g.FillRectangle(creamBoxBrush, totalsBoxX, bottomSectionY, totalsBoxWidth, totalsBoxHeight);
+				g.DrawRectangle(goldPen, totalsBoxX, bottomSectionY, totalsBoxWidth, totalsBoxHeight);
+
+				decimal gstTax = subtotalSum * 0.025m;
+				decimal discount = 0;
+				decimal.TryParse(txtDiscount.Text.Trim(), out discount);
+				decimal grandTotal = (subtotalSum + gstTax) - discount;
+				if (grandTotal < 0) grandTotal = 0;
+
+				int tRowY = bottomSectionY + 8;
+				g.DrawString("Sub Total", regularFont, darkTextBrush, totalsBoxX + 15, tRowY);
+				g.DrawString($"${subtotalSum:N2}", regularFont, darkTextBrush, totalsBoxX + totalsBoxWidth - 15, tRowY, rightFormat);
+
+				tRowY += 22;
+				g.DrawString("Tax (2.5% GST)", regularFont, darkTextBrush, totalsBoxX + 15, tRowY);
+				g.DrawString($"${gstTax:N2}", regularFont, darkTextBrush, totalsBoxX + totalsBoxWidth - 15, tRowY, rightFormat);
+
+				tRowY += 25;
+				// Total Highlight Bar inside the box
+				g.FillRectangle(goldBrush, totalsBoxX, tRowY - 3, totalsBoxWidth, 26);
+				g.DrawString("TOTAL", boldFont, whiteBrush, totalsBoxX + 15, tRowY);
+				g.DrawString($"${grandTotal:N2}", boldFont, whiteBrush, totalsBoxX + totalsBoxWidth - 15, tRowY, rightFormat);
+
+				offset += 130;
+
+				// --- 7. TERMS & SIGNATURE SECTION ---
+				g.DrawString("Term & Conditions", boldFont, darkTextBrush, startX, startY + offset);
+				g.DrawString("Please inspect your items upon receipt. Returns are accepted \nwithin 7 days with original tag and receipt intact.", smallFont, darkTextBrush, startX, startY + offset + 20);
+
+				// Authorised Signature Line (Right Side)
+				int signX = startX + 340;
+				int signY = startY + offset + 45;
+				g.DrawLine(darkPen, signX, signY, startX + printableWidth, signY);
+
+				string signLabel = "Authorised Sign";
+				SizeF signSize = g.MeasureString(signLabel, smallFont);
+				g.DrawString(signLabel, smallFont, darkTextBrush, signX + (printableWidth - 340 - signSize.Width) / 2, signY + 4);
 			}
-			catch (Exception)
-			{
-				// Fallback text if logo image is missing or fails to load
-				Font titleFont = new Font("Segoe UI", 18, FontStyle.Bold);
-				g.DrawString("KEY LUXURY STORE", titleFont, brush, startX, startY);
-				offset += 40;
-			}
-
-			g.DrawString("Official Sales Invoice / Receipt", boldFont, brush, startX, startY + offset);
-			offset += 35;
-
-			g.DrawString($"Invoice No: {txtInvoiceNo.Text}", regularFont, brush, startX, startY + offset);
-			g.DrawString($"Date: {dtpSaleDate.Value.ToShortDateString()}", regularFont, brush, startX + 300, startY + offset);
-			offset += 25;
-			g.DrawString($"Customer: {txtCustomer_name.Text}", regularFont, brush, startX, startY + offset);
-			g.DrawString($"Payment: {cmbPaymentMethod.Text}", regularFont, brush, startX + 300, startY + offset);
-			offset += 30;
-
-			g.DrawLine(Pens.Black, startX, startY + offset, startX + 550, startY + offset);
-			offset += 10;
-			g.DrawString("Product Name", boldFont, brush, startX, startY + offset);
-			g.DrawString("Price", boldFont, brush, startX + 280, startY + offset);
-			g.DrawString("Qty", boldFont, brush, startX + 370, startY + offset);
-			g.DrawString("Subtotal", boldFont, brush, startX + 440, startY + offset);
-			offset += 20;
-			g.DrawLine(Pens.Black, startX, startY + offset, startX + 550, startY + offset);
-			offset += 15;
-
-			decimal subtotalSum = 0;
-			foreach (DataGridViewRow row in dgvCart.Rows)
-			{
-				string pName = row.Cells["colProductName"].Value.ToString();
-				string price = Convert.ToDecimal(row.Cells["colPrice"].Value).ToString("N2");
-				string qty = row.Cells["colQuantity"].Value.ToString();
-				string subtotal = Convert.ToDecimal(row.Cells["colSubtotal"].Value).ToString("N2");
-
-				subtotalSum += Convert.ToDecimal(row.Cells["colSubtotal"].Value);
-
-				g.DrawString(pName, regularFont, brush, startX, startY + offset);
-				g.DrawString(price, regularFont, brush, startX + 280, startY + offset);
-				g.DrawString(qty, regularFont, brush, startX + 370, startY + offset);
-				g.DrawString(subtotal, regularFont, brush, startX + 440, startY + offset);
-				offset += 25;
-			}
-
-			g.DrawLine(Pens.Black, startX, startY + offset, startX + 550, startY + offset);
-			offset += 20;
-
-			// Calculate 2.5% GST Tax dynamically from subtotalSum
-			decimal gstTax = subtotalSum * 0.025m;
-
-			decimal discount = 0;
-			decimal.TryParse(txtDiscount.Text.Trim(), out discount);
-
-			// Grand Total = Subtotal + Tax - Discount
-			decimal grandTotal = (subtotalSum + gstTax) - discount;
-			if (grandTotal < 0) grandTotal = 0;
-
-			// Draw Summary Totals aligned on the right
-			g.DrawString($"Subtotal: ${subtotalSum:N2}", regularFont, brush, startX + 330, startY + offset);
-			offset += 22;
-			g.DrawString($"GST Tax (2.5%): ${gstTax:N2}", regularFont, brush, startX + 300, startY + offset);
-			offset += 22;
-			g.DrawString($"Discount: ${discount:N2}", regularFont, brush, startX + 330, startY + offset);
-			offset += 25;
-			g.DrawString($"Grand Total: ${grandTotal:N2}", boldFont, brush, startX + 280, startY + offset);
-			offset += 50;
-
-			g.DrawString("Thank you for shopping with Key Luxury!", boldFont, brush, startX + 100, startY + offset);
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)

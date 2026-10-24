@@ -37,6 +37,7 @@
 			this.lblPass = new System.Windows.Forms.Label();
 			this.TxtPassword = new System.Windows.Forms.TextBox();
 			this.chkShowPassword = new System.Windows.Forms.CheckBox();
+			this.lnkForgotPassword = new System.Windows.Forms.LinkLabel();
 			this.btnLogin = new System.Windows.Forms.Button();
 			this.btnExit = new System.Windows.Forms.Button();
 			this.btnConfig = new System.Windows.Forms.Button();
@@ -126,7 +127,6 @@
 			this.TxtPassword.TabIndex = 4;
 			this.TxtPassword.UseSystemPasswordChar = true;
 			this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPassword_KeyDown);
-			//this.TxtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyDown);
 			// 
 			// chkShowPassword
 			// 
@@ -139,6 +139,19 @@
 			this.chkShowPassword.Text = "Show Password";
 			this.chkShowPassword.UseVisualStyleBackColor = true;
 			this.chkShowPassword.CheckedChanged += new System.EventHandler(this.chkShowPassword_CheckedChanged);
+			// 
+			// lnkForgotPassword
+			// 
+			this.lnkForgotPassword.AutoSize = true;
+			this.lnkForgotPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+			this.lnkForgotPassword.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			this.lnkForgotPassword.Location = new System.Drawing.Point(508, 236);
+			this.lnkForgotPassword.Name = "lnkForgotPassword";
+			this.lnkForgotPassword.Size = new System.Drawing.Size(127, 20);
+			this.lnkForgotPassword.TabIndex = 9;
+			this.lnkForgotPassword.TabStop = true;
+			this.lnkForgotPassword.Text = "Forgot Password?";
+			this.lnkForgotPassword.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkForgotPassword_LinkClicked);
 			// 
 			// btnLogin
 			// 
@@ -191,6 +204,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
 			this.ClientSize = new System.Drawing.Size(682, 420);
+			this.Controls.Add(this.lnkForgotPassword);
 			this.Controls.Add(this.btnConfig);
 			this.Controls.Add(this.btnExit);
 			this.Controls.Add(this.btnLogin);
@@ -227,5 +241,6 @@
 		public System.Windows.Forms.Button btnExit;
 		public System.Windows.Forms.Button btnConfig;
 		public System.Windows.Forms.CheckBox chkShowPassword;
+		public System.Windows.Forms.LinkLabel lnkForgotPassword;
 	}
 }

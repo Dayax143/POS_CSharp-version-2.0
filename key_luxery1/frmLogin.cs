@@ -13,7 +13,11 @@ namespace key_luxery1
 		private static readonly string SecretKey = "0123456789abcdef0123456789abcdef"; // 32 bytes AES-256
 
 		public frmLogin() => InitializeComponent();
-
+		private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			frmForgotPassword forgotForm = new frmForgotPassword();
+			forgotForm.ShowDialog();
+		}
 		public void loginFunction()
 		{
 			string username = TxtUser.Text.Trim();
@@ -68,7 +72,7 @@ namespace key_luxery1
 							dashboard.BtnSidebar.Visible = false;
 						}
 
-						MessageBox.Show($"Welcome back, {username}!\nRole: {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+						//MessageBox.Show($"Welcome back, {username}!\nRole: {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 						dashboard.lblUsername.Text = username;
 						dashboard.lblRole.Text = role;
