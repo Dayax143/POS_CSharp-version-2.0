@@ -3,20 +3,48 @@
   "WorkspaceRootPath": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 added features\\key_luxery1\\frmforgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmforgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 added features\\key_luxery1\\frmforgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmforgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 added features\\key_luxery1\\frmforgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmforgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmforgotpassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmforgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmforgotpassword.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,10 +55,6 @@
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmlogin.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,7 +63,7 @@
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanagesale.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 added features\\key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -63,32 +87,12 @@
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanageinvoice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmreport.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmreport.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmreport.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmstock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -137,10 +141,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\umanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\umanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\umanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -301,74 +301,123 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmForgotPassword.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmForgotPassword.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs",
-              "RelativeToolTip": "key_luxery1\\frmForgotPassword.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwDAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-24T08:06:06.051Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "frmForgotPassword.Designer.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.Designer.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmForgotPassword.Designer.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.Designer.cs",
-              "RelativeToolTip": "key_luxery1\\frmForgotPassword.Designer.cs",
-              "ViewState": "AgIAAKEAAAAAAAAAAAAQwLAAAAA4AAAAAAAAAA==",
+              "Title": "sharedClass.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\sharedClass.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\sharedClass.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\sharedClass.cs",
+              "RelativeToolTip": "key_luxery1\\sharedClass.cs",
+              "ViewState": "AgIAALIAAAAAAAAAAAAQwM4AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-24T08:04:53.486Z",
+              "WhenOpened": "2026-10-16T12:13:38.49Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmForgotPassword.cs [Design]",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmForgotPassword.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs [Design]",
-              "RelativeToolTip": "key_luxery1\\frmForgotPassword.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "frmManageInvoice.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmManageInvoice.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmManageInvoice.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-24T08:04:45.524Z",
+              "WhenOpened": "2026-10-16T18:29:11.18Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmManageInvoice.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmManageInvoice.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs",
+              "RelativeToolTip": "key_luxery1\\frmManageInvoice.cs",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAmwIkBAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T18:29:12.899Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "frmReport.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmReport.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmReport.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T19:05:03.699Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmReport.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmReport.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs",
+              "RelativeToolTip": "key_luxery1\\frmReport.cs",
+              "ViewState": "AgIAAFkCAAAAAAAAAAAmwFwCAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T19:05:05.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "frmManageSale.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageSale.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.cs",
               "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageSale.cs",
               "RelativeToolTip": "key_luxery1\\frmManageSale.cs",
-              "ViewState": "AgIAAFkCAAAAAAAAAAAUwOsCAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAI4BAAAAAAAAAAAAAJ8BAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-16T11:12:00.235Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmLogin.cs [Design]",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmLogin.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.cs [Design]",
-              "RelativeToolTip": "key_luxery1\\frmLogin.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T13:55:28.863Z",
-              "EditorCaption": " [Design]"
+              "DocumentIndex": 4,
+              "Title": "Settings.settings",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\Properties\\Settings.settings",
+              "RelativeDocumentMoniker": "key_luxery1\\Properties\\Settings.settings",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\Properties\\Settings.settings",
+              "RelativeToolTip": "key_luxery1\\Properties\\Settings.settings",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
+              "WhenOpened": "2026-10-23T20:12:54.943Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
+              "Title": "frmLogin.Designer.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.Designer.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmLogin.Designer.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.Designer.cs",
+              "RelativeToolTip": "key_luxery1\\frmLogin.Designer.cs",
+              "ViewState": "AgIAAIoAAAAAAAAAAAAQwJkAAACHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:35:28.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "frmDashboard.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.cs",
+              "RelativeToolTip": "key_luxery1\\frmDashboard.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAqwAoAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T13:56:35.095Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "frmManageSale.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageSale.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.cs",
@@ -380,33 +429,54 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "frmLogin.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmLogin.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmLogin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T13:55:28.863Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "frmDashboard.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.cs",
-              "RelativeToolTip": "key_luxery1\\frmDashboard.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAqwAoAAAAXAAAAAAAAAA==",
+              "Title": "frmForgotPassword.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmForgotPassword.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs",
+              "RelativeToolTip": "key_luxery1\\frmForgotPassword.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T13:56:35.095Z",
+              "WhenOpened": "2026-10-24T08:06:06.051Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "frmLogin.Designer.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.Designer.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmLogin.Designer.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.Designer.cs",
-              "RelativeToolTip": "key_luxery1\\frmLogin.Designer.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAQwJkAAACHAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "frmForgotPassword.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmForgotPassword.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmForgotPassword.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T20:35:28.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-24T08:04:45.524Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 9,
+              "Title": "frmForgotPassword.Designer.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.Designer.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmForgotPassword.Designer.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmForgotPassword.Designer.cs",
+              "RelativeToolTip": "key_luxery1\\frmForgotPassword.Designer.cs",
+              "ViewState": "AgIAAAQBAAAAAAAAAAAIwCIBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-24T08:04:53.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "frmLogin.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmLogin.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmLogin.cs",
@@ -414,24 +484,22 @@
               "RelativeToolTip": "key_luxery1\\frmLogin.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T13:09:14.824Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T13:09:14.824Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "frmDashboard.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
               "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.cs [Design]",
               "RelativeToolTip": "key_luxery1\\frmDashboard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T13:55:31.739Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-10-16T13:55:31.739Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 15,
               "Title": "uHome.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uHome.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uHome.cs",
@@ -439,24 +507,22 @@
               "RelativeToolTip": "key_luxery1\\uHome.cs",
               "ViewState": "AgIAADMAAAAAAAAAAIAwwEEAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T19:15:48.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T19:15:48.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 18,
               "Title": "uHome.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uHome.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uHome.cs",
               "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uHome.cs [Design]",
               "RelativeToolTip": "key_luxery1\\uHome.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T19:15:35.887Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2026-10-16T19:15:35.887Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 16,
               "Title": "frmDashboard.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmDashboard.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.Designer.cs",
@@ -464,12 +530,11 @@
               "RelativeToolTip": "key_luxery1\\frmDashboard.Designer.cs",
               "ViewState": "AgIAAJICAAAAAAAAAAApwKECAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T17:36:28.248Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-23T17:36:28.248Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 19,
               "Title": "frmManageSale.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageSale.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.Designer.cs",
@@ -482,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 20,
               "Title": "uInvoice.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uInvoice.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uInvoice.cs",
@@ -494,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "uInvoice.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uInvoice.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uInvoice.cs",
@@ -505,53 +570,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "frmManageInvoice.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmManageInvoice.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs",
-              "RelativeToolTip": "key_luxery1\\frmManageInvoice.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T18:29:12.899Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "frmManageInvoice.cs [Design]",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmManageInvoice.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageInvoice.cs [Design]",
-              "RelativeToolTip": "key_luxery1\\frmManageInvoice.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T18:29:11.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Settings.settings",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\Properties\\Settings.settings",
-              "RelativeDocumentMoniker": "key_luxery1\\Properties\\Settings.settings",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\Properties\\Settings.settings",
-              "RelativeToolTip": "key_luxery1\\Properties\\Settings.settings",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
-              "WhenOpened": "2026-10-23T20:12:54.943Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "frmReport.cs [Design]",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmReport.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs [Design]",
-              "RelativeToolTip": "key_luxery1\\frmReport.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T19:05:03.699Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "frmReport.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmReport.Designer.cs",
@@ -559,11 +578,12 @@
               "RelativeToolTip": "key_luxery1\\frmReport.Designer.cs",
               "ViewState": "AgIAAOEBAAAAAAAAAAAQwPABAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T20:20:46.634Z"
+              "WhenOpened": "2026-10-16T20:20:46.634Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "uHome.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uHome.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uHome.Designer.cs",
@@ -575,19 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "frmReport.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmReport.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmReport.cs",
-              "RelativeToolTip": "key_luxery1\\frmReport.cs",
-              "ViewState": "AgIAAFwCAAAAAAAAAAAmwHgCAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T19:05:05.697Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "frmCustomerHistory.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmCustomerHistory.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmCustomerHistory.cs",
@@ -599,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "frmStock.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmStock.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmStock.cs",
@@ -611,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "frmStock.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmStock.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmStock.cs",
@@ -622,7 +630,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "frmManageProduct.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmManageProduct.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageProduct.cs",
@@ -633,7 +641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "uProducts.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uProducts.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uProducts.cs",
@@ -645,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "frmCustomerHistory.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmCustomerHistory.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmCustomerHistory.cs",
@@ -656,7 +664,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "frmCustomerHistory.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\frmCustomerHistory.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmCustomerHistory.Designer.cs",
@@ -668,7 +676,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "uProducts.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uProducts.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uProducts.cs",
@@ -679,7 +687,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "uCustomer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uCustomer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uCustomer.cs",
@@ -702,7 +710,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "uPayments.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uPayments.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uPayments.cs",
@@ -711,18 +719,6 @@
               "ViewState": "AgIAABoAAAAAAAAAAAA3wCMAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-16T18:59:34.377Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "sharedClass.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\sharedClass.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\sharedClass.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\sharedClass.cs",
-              "RelativeToolTip": "key_luxery1\\sharedClass.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAADwv84AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T12:13:38.49Z"
             },
             {
               "$type": "Document",
@@ -749,7 +745,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "uManageUsers.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 added features\\key_luxery1\\uManageUsers.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uManageUsers.cs",

@@ -1,0 +1,188 @@
+// --- PROFESSIONAL BLACK SIDEBAR INVOICE PRINT LAYOUT ---
+private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+{
+    Graphics g = e.Graphics;
+
+    // Enable high-quality rendering
+    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+    g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+
+    // 1. DYNAMICALLY READ SELECTED PRINTER PAGE DIMENSIONS
+    int pageWidth = e.PageBounds.Width;
+    int pageHeight = e.PageBounds.Height;
+
+    // Proportional outer boundaries
+    int startX = (int)(pageWidth * 0.06f);
+    int startY = (int)(pageWidth * 0.06f);
+    int printableWidth = pageWidth - (startX * 2);
+
+    // Fluid scale factor based on active page width
+    float scale = (float)printableWidth / 550f;
+    if (scale < 0.65f) scale = 0.65f; 
+
+    // Define Color Palette matching your reference layout
+    using (Brush darkBlackBrush = new SolidBrush(Color.FromArgb(22, 22, 22)))       // Solid Black Sidebar & Footer
+    using (Brush royalBlueBrush = new SolidBrush(Color.FromArgb(43, 101, 209)))   // Royal Blue Headers
+    using (Brush darkTextBrush = new SolidBrush(Color.FromArgb(40, 40, 40)))     // Dark Charcoal Text
+    using (Brush lightGrayBrush = new SolidBrush(Color.FromArgb(242, 244, 247))) // Alternating Row Shading
+    using (Brush whiteBrush = new SolidBrush(Color.White))
+    using (Pen bluePen = new Pen(Color.FromArgb(43, 101, 209), 1))
+    using (Pen darkPen = new Pen(Color.FromArgb(80, 80, 80), 1))
+    
+    // Define Fluid Scaled Fonts
+    using (Font invoiceLabelFont = new Font("Segoe UI", 16f * scale, FontStyle.Bold))
+    using (Font brandFont = new Font("Segoe UI", 13f * scale, FontStyle.Bold))
+    using (Font boldFont = new Font("Segoe UI", 8.5f * scale, FontStyle.Bold))
+    using (Font regularFont = new Font("Segoe UI", 8.5f * scale, FontStyle.Regular))
+    using (Font smallFont = new Font("Segoe UI", 7.5f * scale, FontStyle.Regular))
+    {
+        int offset = 0;
+
+        // --- 2. TOP HEADER SECTION ---
+        int topHeaderY = startY + offset;
+        
+        // Left-side Black Brand Box[cite: 6]
+        int sidebarWidth = (int)(printableWidth * 0.38f);
+        g.FillRectangle(darkBlackBrush, startX, topHeaderY, sidebarWidth, (int)(40 * scale));
+        g.DrawString("Optimis", brandFont, whiteBrush, startX + (int)(12 * scale), topHeaderY + (int)(9 * scale));
+
+        // Right-side INVOICE Title & Invoice No[cite: 6]
+        g.DrawString("INVOICE", invoiceLabelFont, royalBlueBrush, startX + (int)(printableWidth * 0.60f), topHeaderY);
+        g.DrawString("No. 789456123", boldFont, darkTextBrush, startX + (int)(printableWidth * 0.60f), topHeaderY + (int)(28 * scale));
+
+        offset += (int)(55 * scale);
+
+        // --- 3. BILL TO & METADATA SECTION ---
+        int metaY = startY + offset;
+        g.DrawString("INVOICE TO:", boldFont, royalBlueBrush, startX, metaY);
+        
+        string customerDetails = $"{txtCustomer_name.Text}\nYour company name\nPhone: +01234567890\nAddress: 123, Street, New York, USA 45607";
+        g.DrawString(customerDetails, regularFont, darkTextBrush, startX, metaY + (int)(16 * scale));
+
+        // Right side Date info[cite: 6]
+        int metaRightX = startX + (int)(printableWidth * 0.60f);
+        g.DrawString($"Invoice Date: {dtpSaleDate.Value.ToString("dd-MM-yyyy")}", regularFont, darkTextBrush, metaRightX, metaY + (int)(16 * scale));
+
+        offset += (int)(80 * scale);
+
+        // --- 4. TABLE HEADERS (Royal Blue Bar) ---[cite: 6]
+        int tableHeaderHeight = (int)(26 * scale);
+        g.FillRectangle(royalBlueBrush, startX, startY + offset, printableWidth, tableHeaderHeight);
+
+        int colNoX = startX + (int)(10 * scale);
+        int colDescX = startX + (int)(45 * scale);
+        int colPriceX = startX + (int)(printableWidth * 0.50f);
+        int colUnitX = startX + (int)(printableWidth * 0.70f);
+        int colTotalX = startX + printableWidth - (int)(15 * scale);
+
+        StringFormat rightFormat = new StringFormat { Alignment = StringAlignment.Far };
+        StringFormat centerFormat = new StringFormat { Alignment = StringAlignment.Center };
+
+        g.DrawString("No.", boldFont, whiteBrush, colNoX, startY + offset + (int)(5 * scale));
+        g.DrawString("Descriptions", boldFont, whiteBrush, colDescX, startY + offset + (int)(5 * scale));
+        g.DrawString("Unit Price", boldFont, whiteBrush, colPriceX, startY + offset + (int)(5 * scale), rightFormat);
+        g.DrawString("Unit", boldFont, whiteBrush, colUnitX, startY + offset + (int)(5 * scale), centerFormat);
+        g.DrawString("Price", boldFont, whiteBrush, colTotalX, startY + offset + (int)(5 * scale), rightFormat);
+
+        offset += tableHeaderHeight;
+
+        // --- 5. TABLE ROWS WITH ALTERNATING SHADING ---[cite: 6]
+        decimal subtotalSum = 0;
+        int rowHeight = (int)(26 * scale);
+        int rowCounter = 1;
+
+        foreach (DataGridViewRow row in dgvCart.Rows)
+        {
+            if (row.IsNewRow) continue;
+
+            string pName = row.Cells["colProductName"].Value?.ToString() ?? "";
+            decimal priceVal = Convert.ToDecimal(row.Cells["colPrice"].Value ?? 0);
+            int qtyVal = Convert.ToInt32(row.Cells["colQuantity"].Value ?? 0);
+            decimal subTotalVal = Convert.ToDecimal(row.Cells["colSubtotal"].Value ?? 0);
+
+            subtotalSum += subTotalVal;
+
+            if (rowCounter % 2 == 0)
+            {
+                g.FillRectangle(lightGrayBrush, startX, startY + offset, printableWidth, rowHeight);
+            }
+            g.DrawRectangle(darkPen, startX, startY + offset, printableWidth, rowHeight);
+
+            g.DrawString(rowCounter.ToString("D2"), regularFont, darkTextBrush, colNoX, startY + offset + (int)(5 * scale));
+            g.DrawString(pName, regularFont, darkTextBrush, colDescX, startY + offset + (int)(5 * scale));
+            g.DrawString(priceVal.ToString("N2"), regularFont, darkTextBrush, colPriceX, startY + offset + (int)(5 * scale), rightFormat);
+            g.DrawString(qtyVal.ToString("D2"), regularFont, darkTextBrush, colUnitX, startY + offset + (int)(5 * scale), centerFormat);
+            g.DrawString(subTotalVal.ToString("N2"), regularFont, darkTextBrush, colTotalX, startY + offset + (int)(5 * scale), rightFormat);
+
+            offset += rowHeight;
+            rowCounter++;
+        }
+
+        offset += (int)(15 * scale);
+
+        // --- 6. SUB-TOTAL & TAX ROYAL BLUE BANNER ---[cite: 6]
+        int subtotalBarHeight = (int)(30 * scale);
+        g.FillRectangle(royalBlueBrush, startX, startY + offset, printableWidth, subtotalBarHeight);
+
+        decimal gstTax = subtotalSum * 0.025m; // 2.5% GST Tax
+        g.DrawString("Sub Total:", boldFont, whiteBrush, startX + (int)(10 * scale), startY + offset + (int)(7 * scale));
+        g.DrawString($"${subtotalSum:N2}", boldFont, whiteBrush, startX + printableWidth - (int)(15 * scale), startY + offset + (int)(7 * scale), rightFormat);
+
+        offset += subtotalBarHeight;
+        
+        g.DrawString("Country Tax 2.5%", regularFont, darkTextBrush, startX + (int)(10 * scale), startY + offset + (int)(4 * scale));
+        offset += (int)(25 * scale);
+
+        // --- 7. LOWER SECTION: LEFT BLACK SIDEBAR & RIGHT TOTALS ---[cite: 6]
+        int lowerSectionY = startY + offset;
+        int sidebarHeight = (int)(110 * scale);
+
+        // Solid Black Left Sidebar Column (Thank You & Payment Info)[cite: 6]
+        g.FillRectangle(darkBlackBrush, startX, lowerSectionY, sidebarWidth, sidebarHeight);
+        
+        g.DrawString("Thank you for your business", boldFont, whiteBrush, startX + (int)(10 * scale), lowerSectionY + (int)(10 * scale));
+        string paymentInfoText = "Payment Info:\nPayPal: free@psd.zone\nCheque: Johnson\nBank: Best Bank of USA";
+        g.DrawString(paymentInfoText, smallFont, whiteBrush, startX + (int)(10 * scale), lowerSectionY + (int)(32 * scale));
+
+        // Calculations & Conditional Discount Check
+        decimal discount = 0;
+        bool hasDiscount = decimal.TryParse(txtDiscount?.Text?.Trim(), out discount) && discount > 0;
+
+        decimal grandTotal = (subtotalSum + gstTax) - (hasDiscount ? discount : 0);
+        if (grandTotal < 0) grandTotal = 0;
+
+        // Right Side Totals Calculation block
+        int totalsX = startX + (int)(printableWidth * 0.55f);
+        int currentTotalY = lowerSectionY + (int)(10 * scale);
+
+        if (hasDiscount)
+        {
+            g.DrawString("Discount:", regularFont, darkTextBrush, totalsX, currentTotalY);
+            g.DrawString($"-${discount:N2}", regularFont, darkTextBrush, startX + printableWidth, currentTotalY, rightFormat);
+            currentTotalY += (int)(22 * scale);
+        }
+
+        g.DrawString("TOTAL :", invoiceLabelFont, royalBlueBrush, totalsX, currentTotalY);
+        g.DrawString($"${grandTotal:N2}", invoiceLabelFont, royalBlueBrush, startX + printableWidth, currentTotalY, rightFormat);
+
+        // Authorised Signature Line (Right Side below totals)[cite: 6]
+        int signWidth = (int)(180 * scale);
+        int signX = startX + printableWidth - signWidth;
+        int signY = lowerSectionY + (int)(75 * scale);
+        
+        g.DrawLine(darkPen, signX, signY, startX + printableWidth, signY);
+        g.DrawString("Johnson Doe\nYour company name", smallFont, darkTextBrush, signX, signY + (int)(4 * scale));
+
+        offset += sidebarHeight + (int)(15 * scale);
+
+        // --- 8. BOTTOM FOOTER BAR WITH CONTACT DETAILS ---[cite: 6]
+        int footerY = startY + offset;
+        int footerHeight = (int)(35 * scale);
+        
+        g.FillRectangle(darkBlackBrush, startX, footerY, printableWidth, footerHeight);
+        g.DrawString("Optimis", brandFont, whiteBrush, startX + (int)(10 * scale), footerY + (int)(8 * scale));
+        
+        string contactFooterText = "📞 +01234567890     ✉ free@psd.zone     📍 123, Street, New York, USA 45607";
+        g.DrawString(contactFooterText, smallFont, whiteBrush, startX + (int)(120 * scale), footerY + (int)(11 * scale));
+    }
+}

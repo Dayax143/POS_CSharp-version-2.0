@@ -262,6 +262,9 @@
     <EmbeddedResource Include="frmExpense.resx">
       <DependentUpon>frmExpense.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmForgotPassword.resx">
+      <DependentUpon>frmForgotPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmManageCustomer.resx">
       <DependentUpon>frmManageCustomer.cs</DependentUpon>
     </EmbeddedResource>
