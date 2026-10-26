@@ -74,6 +74,7 @@ namespace key_luxery1
 
 						//MessageBox.Show($"Welcome back, {username}!\nRole: {role}", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+						Properties.Settings.Default.username = TxtUser.Text;
 						dashboard.lblUsername.Text = username;
 						dashboard.lblRole.Text = role;
 						dashboard.Show();

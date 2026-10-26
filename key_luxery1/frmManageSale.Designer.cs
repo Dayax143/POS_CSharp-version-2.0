@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmManageSale));
 			this.lblTitle = new System.Windows.Forms.Label();
 			this.grpCustomerInfo = new System.Windows.Forms.GroupBox();
@@ -317,14 +317,14 @@
 			this.dgvCart.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvCart.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
 			this.dgvCart.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvCart.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvCart.ColumnHeadersHeight = 35;
 			this.dgvCart.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colProductID,
@@ -332,14 +332,14 @@
             this.colPrice,
             this.colQuantity,
             this.colSubtotal});
-			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dgvCart.DefaultCellStyle = dataGridViewCellStyle4;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvCart.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvCart.EnableHeadersVisualStyles = false;
 			this.dgvCart.Location = new System.Drawing.Point(475, 80);
 			this.dgvCart.Name = "dgvCart";
@@ -461,11 +461,10 @@
 			this.cmbPaymentMethod.Font = new System.Drawing.Font("Segoe UI", 9.5F);
 			this.cmbPaymentMethod.FormattingEnabled = true;
 			this.cmbPaymentMethod.Items.AddRange(new object[] {
-            "Cash",
             "Zaad",
-            "Edahab",
-            "Premiere Bank",
-            "Other"});
+            "Edahab ",
+            "Cash",
+            "Wallet bank "});
 			this.cmbPaymentMethod.Location = new System.Drawing.Point(151, 105);
 			this.cmbPaymentMethod.Name = "cmbPaymentMethod";
 			this.cmbPaymentMethod.Size = new System.Drawing.Size(249, 29);
@@ -613,6 +612,7 @@
 			this.lblExchangeRateTitle.Size = new System.Drawing.Size(199, 23);
 			this.lblExchangeRateTitle.TabIndex = 0;
 			this.lblExchangeRateTitle.Text = "1 Dollar / Shilling Rate:";
+			this.lblExchangeRateTitle.Visible = false;
 			// 
 			// lblExchangeRateDisplay
 			// 
@@ -621,24 +621,19 @@
 			this.lblExchangeRateDisplay.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
 			this.lblExchangeRateDisplay.Location = new System.Drawing.Point(651, 41);
 			this.lblExchangeRateDisplay.Name = "lblExchangeRateDisplay";
-			this.lblExchangeRateDisplay.Size = new System.Drawing.Size(268, 23);
+			this.lblExchangeRateDisplay.Size = new System.Drawing.Size(273, 23);
 			this.lblExchangeRateDisplay.TabIndex = 1;
-			this.lblExchangeRateDisplay.Text = "Current Rate: 1 USD = 8,500 SLSH";
+			this.lblExchangeRateDisplay.Text = "Current Rate: 1 USD = 11,500 SLSH";
+			this.lblExchangeRateDisplay.Visible = false;
 			// 
 			// cmbCurrencyMode
 			// 
 			this.cmbCurrencyMode.FormattingEnabled = true;
-			this.cmbCurrencyMode.Items.AddRange(new object[] {
-            "10000",
-            "10500",
-            "11000",
-            "11500",
-            "12000",
-            "13000"});
 			this.cmbCurrencyMode.Location = new System.Drawing.Point(851, 8);
 			this.cmbCurrencyMode.Name = "cmbCurrencyMode";
-			this.cmbCurrencyMode.Size = new System.Drawing.Size(216, 24);
+			this.cmbCurrencyMode.Size = new System.Drawing.Size(158, 24);
 			this.cmbCurrencyMode.TabIndex = 8;
+			this.cmbCurrencyMode.Visible = false;
 			// 
 			// frmManageSale
 			// 

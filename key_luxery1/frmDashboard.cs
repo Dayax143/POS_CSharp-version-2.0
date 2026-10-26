@@ -124,7 +124,7 @@ namespace key_luxery1
 
 		private void BtnSidebar_Click(object sender, EventArgs e)
 		{
-			PnlSidebar.Width = (PnlSidebar.Width == 203) ? 0 : 203;
+			PnlSidebar.Width = (PnlSidebar.Width >= 203) ? 0 : 203;
 		}
 
 		#endregion

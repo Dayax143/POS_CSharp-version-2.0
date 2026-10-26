@@ -215,8 +215,8 @@ namespace key_luxery1
 				// Context-Aware UI Summary Card Labels & Values
 				if (reportType == "Expense Summary Report")
 				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2");
-					lblTotalExpensesVal.Text = "N/A";
+					lblTotalSalesVal.Text = "N/A";
+					lblTotalExpensesVal.Text = sumCol1.ToString("C2");
 					lblTotalProfitVal.Text = "N/A";
 				}
 				else if (reportType == "Payment Report")
@@ -233,9 +233,10 @@ namespace key_luxery1
 				}
 				else if (reportType == "Product Stock Report")
 				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2"); // Total Inventory Valuation
-					lblTotalExpensesVal.Text = totalRows.ToString(); // Total Products Count
-					lblTotalProfitVal.Text = "-";
+					lblTotalSalesVal.Text = "-" ; // Total Inventory Valuation
+					lblTotalExpensesVal.Text = "-"; // Total Products Count
+					lblTotalProfitVal.Text = sumCol1.ToString("C2");
+					lblTotalProfitTitle.Text = "Net / Estimated Profit ";
 				}
 				else if (reportType == "Low Stock Inventory Report")
 				{

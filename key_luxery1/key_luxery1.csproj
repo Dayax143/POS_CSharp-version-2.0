@@ -195,6 +195,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="sharedClass.cs" />
     <Compile Include="uAbout.cs">
       <SubType>UserControl</SubType>
@@ -303,14 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="uAbout.resx">
       <DependentUpon>uAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -354,6 +354,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\key_luxery_logo.png" />
     <Content Include="Resources\logo_blue.png" />
     <Content Include="Resources\logo_dahabi.png" />
     <None Include="Resources\logo_dahabi.png.png" />

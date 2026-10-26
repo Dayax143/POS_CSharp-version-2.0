@@ -269,76 +269,135 @@ namespace key_luxery1
 			this.Close();
 		}
 
-
 		// --- KEY LUXURY: BLACK & GOLD LUXURY INVOICE (With Logo Placeholder & Summary Table) ---
 		// --- PROFESSIONAL BLACK & GOLD LUXURY INVOICE PRINT LAYOUT ---
+		// --- KEY LUXURY: BLACK & GOLD LUXURY INVOICE PRINT LAYOUT ---
 		private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
 		{
 			Graphics g = e.Graphics;
-
-			// Enable high-quality rendering
 			g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 			g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
 
-			// 1. DYNAMICALLY READ SELECTED PRINTER PAGE DIMENSIONS
 			int pageWidth = e.PageBounds.Width;
 			int pageHeight = e.PageBounds.Height;
 
-			// Proportional outer boundaries
-			int startX = (int)(pageWidth * 0.06f);
-			int startY = (int)(pageWidth * 0.06f);
+			int startX = (int)(pageWidth * 0.07f);
+			int startY = (int)(pageWidth * 0.07f);
 			int printableWidth = pageWidth - (startX * 2);
 
-			// Fluid scale factor based on active page width
 			float scale = (float)printableWidth / 550f;
 			if (scale < 0.65f) scale = 0.65f;
 
-			// Define Color Palette (Black & Rich Gold Luxury Theme)
-			using (Brush darkBlackBrush = new SolidBrush(Color.FromArgb(22, 22, 22)))       // Solid Black Sidebar & Footer
-			using (Brush goldBrush = new SolidBrush(Color.FromArgb(197, 160, 89)))        // Rich Gold Headers & Accents
-			using (Brush darkTextBrush = new SolidBrush(Color.FromArgb(40, 40, 40)))     // Dark Charcoal Text
-			using (Brush lightGrayBrush = new SolidBrush(Color.FromArgb(250, 248, 242))) // Soft Cream/Ivory Alternating Row Shading
-			using (Brush whiteBrush = new SolidBrush(Color.White))
-			using (Pen goldPen = new Pen(Color.FromArgb(197, 160, 89), 1))
-			using (Pen darkPen = new Pen(Color.FromArgb(80, 80, 80), 1))
+			Color gold = Color.FromArgb(197, 160, 89);
+			Color black = Color.FromArgb(22, 22, 22);
 
-			// Define Fluid Scaled Fonts
+			using (Brush darkBlackBrush = new SolidBrush(black))
+			using (Brush goldBrush = new SolidBrush(gold))
+			using (Brush darkTextBrush = new SolidBrush(Color.FromArgb(40, 40, 40)))
+			using (Brush lightGrayBrush = new SolidBrush(Color.FromArgb(250, 245, 232)))
+			using (Brush whiteBrush = new SolidBrush(Color.White))
+			using (Pen goldPen = new Pen(gold, 1))
+			using (Pen thinGoldPen = new Pen(Color.FromArgb(120, gold), 0.5f))
+			using (Pen darkPen = new Pen(Color.FromArgb(80, 80, 80), 1))
 			using (Font invoiceLabelFont = new Font("Segoe UI", 16f * scale, FontStyle.Bold))
-			using (Font brandFont = new Font("Segoe UI", 13f * scale, FontStyle.Bold))
+			using (Font logoFont = new Font("Georgia", 20f * scale, FontStyle.Bold))
 			using (Font boldFont = new Font("Segoe UI", 8.5f * scale, FontStyle.Bold))
 			using (Font regularFont = new Font("Segoe UI", 8.5f * scale, FontStyle.Regular))
 			using (Font smallFont = new Font("Segoe UI", 7.5f * scale, FontStyle.Regular))
+			using (Font stampFont = new Font("Segoe UI", 18f * scale, FontStyle.Bold))
+			using (Font grandFont = new Font("Segoe UI", 20f * scale, FontStyle.Bold))
+			using (StringFormat rightFormat = new StringFormat { Alignment = StringAlignment.Far })
+			using (StringFormat centerFormat = new StringFormat { Alignment = StringAlignment.Center })
 			{
+				int centerX = pageWidth / 2;
+
+				// ===== PAGE BORDER (double gold line + corner diamonds) =====
+				int m1 = (int)(startX * 0.45f);
+				int m2 = m1 + (int)(5 * scale);
+				g.DrawRectangle(goldPen, m1, m1, pageWidth - m1 * 2, pageHeight - m1 * 2);
+				g.DrawRectangle(thinGoldPen, m2, m2, pageWidth - m2 * 2, pageHeight - m2 * 2);
+				int d = (int)(5 * scale);
+				foreach (var p in new[] {
+			new Point(m1, m1), new Point(pageWidth - m1, m1),
+			new Point(m1, pageHeight - m1), new Point(pageWidth - m1, pageHeight - m1) })
+				{
+					g.FillPolygon(goldBrush, new[] {
+				new Point(p.X, p.Y - d), new Point(p.X + d, p.Y),
+				new Point(p.X, p.Y + d), new Point(p.X - d, p.Y) });
+				}
+
 				int offset = 0;
 
-				// --- 2. TOP HEADER SECTION ---
-				int topHeaderY = startY + offset;
+				// ===== LOGO (TOP CENTER) =====
+				int logoTop = startY + offset;
 
-				// Left-side Black Brand Box
-				int sidebarWidth = (int)(printableWidth * 0.38f);
-				g.FillRectangle(darkBlackBrush, startX, topHeaderY, sidebarWidth, (int)(40 * scale));
-				g.DrawString("Key Luxery Logo", brandFont, whiteBrush, startX + (int)(12 * scale), topHeaderY + (int)(9 * scale));
+				Image logoImg = null;
+				try { logoImg = Properties.Resources.key_luxery_logo; } catch { }
+				if (logoImg == null)
+				{
+					string logoPath = System.IO.Path.Combine(Application.StartupPath, "key_luxery_logo.png");
+					if (System.IO.File.Exists(logoPath)) logoImg = Image.FromFile(logoPath);
+				}
 
-				// Right-side INVOICE Title & Invoice No
-				g.DrawString("INVOICE", invoiceLabelFont, goldBrush, startX + (int)(printableWidth * 0.60f), topHeaderY);
-				g.DrawString("No. 789456123", boldFont, darkTextBrush, startX + (int)(printableWidth * 0.60f), topHeaderY + (int)(28 * scale));
+				if (logoImg != null)
+				{
+					g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+					g.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
 
-				offset += (int)(55 * scale);
+					// Crop the empty white margin at the top and bottom of the PNG
+					int srcY = (int)(logoImg.Height * 0.04f);
+					int srcH = (int)(logoImg.Height * 0.88f);
 
-				// --- 3. BILL TO & METADATA SECTION ---
+					int logoH = (int)(115 * scale);
+					int logoW = (int)(logoH * ((float)logoImg.Width / srcH));
+					Rectangle dest = new Rectangle(centerX - logoW / 2, logoTop, logoW, logoH);
+					g.DrawImage(logoImg, dest, 0, srcY, logoImg.Width, srcH, GraphicsUnit.Pixel);
+					offset += logoH + (int)(6 * scale);
+				}
+				else
+				{
+					DrawSpaced(g, "KEY LUXERY", logoFont, goldBrush, centerX, logoTop, 4f * scale);
+					offset += (int)(34 * scale);
+				}
+
+				// ===== INVOICE BAND =====
+				int bandH = (int)(32 * scale);
+				g.FillRectangle(darkBlackBrush, startX, startY + offset, printableWidth, bandH);
+				g.FillRectangle(goldBrush, startX, startY + offset, (int)(6 * scale), bandH);
+				g.DrawString("INVOICE", invoiceLabelFont, goldBrush, startX + (int)(16 * scale), startY + offset + (int)(3 * scale));
+				g.DrawString(txtInvoiceNo.Text, boldFont, whiteBrush, startX + printableWidth - (int)(12 * scale), startY + offset + (int)(9 * scale), rightFormat);
+				offset += bandH + (int)(10 * scale);
+
+				// ===== CUSTOMER DETAILS & DATE =====
 				int metaY = startY + offset;
-				g.DrawString("INVOICE TO:", boldFont, goldBrush, startX, metaY);
+				int step = (int)(18 * scale);
+				int labelW = (int)(60 * scale);
+				int halfW = (int)(printableWidth * 0.5f);
 
-				string customerDetails = $"{txtCustomer_name.Text}\nKey Luxery\nPhone: +01234567890\nAddress: abc, Road NO.1, Hargeisa, Somaliland";
-				g.DrawString(customerDetails, regularFont, darkTextBrush, startX, metaY + (int)(16 * scale));
+				// Left: invoice to
+				g.DrawString("INVOICE TO", boldFont, goldBrush, startX, metaY);
+				int lineY = metaY + (int)(17 * scale);
+				g.DrawLine(goldPen, startX, lineY, startX + halfW - (int)(15 * scale), lineY);
 
-				// Right side Date info
-				int metaRightX = startX + (int)(printableWidth * 0.60f);
-				g.DrawString($"Invoice Date: {dtpSaleDate.Value.ToString("dd-MM-yyyy")}", regularFont, darkTextBrush, metaRightX, metaY + (int)(16 * scale));
+				int row1 = lineY + (int)(5 * scale);
+				int row2 = row1 + step;
+				g.DrawString("Customer:", boldFont, darkTextBrush, startX, row1);
+				g.DrawString(txtCustomer_name.Text, regularFont, darkTextBrush, startX + labelW, row1);
+				g.DrawString("Phone:", boldFont, darkTextBrush, startX, row2);
+				g.DrawString(txtSearchCustomerPhone.Text, regularFont, darkTextBrush, startX + labelW, row2);
 
-				offset += (int)(80 * scale);
+				// Right: date
+				int rightX = startX + printableWidth;
+				g.DrawString("INVOICE DATE", boldFont, goldBrush, rightX, metaY, rightFormat);
+				g.DrawLine(goldPen, rightX - (int)(120 * scale), lineY, rightX, lineY);
+				g.DrawString(dtpSaleDate.Value.ToString("dd-MM-yyyy"), regularFont, darkTextBrush, rightX, row1, rightFormat);
 
-				// --- 4. TABLE HEADERS (Rich Gold Bar) ---
+				offset += (int)(72 * scale);
+
+				// ===== WATERMARK KEY (behind the table) =====
+				DrawKeyIcon(g, centerX, startY + offset + 90 * scale, 170f * scale, Color.FromArgb(18, gold));
+
+				// ===== TABLE HEADER =====
 				int tableHeaderHeight = (int)(26 * scale);
 				g.FillRectangle(goldBrush, startX, startY + offset, printableWidth, tableHeaderHeight);
 
@@ -347,19 +406,17 @@ namespace key_luxery1
 				int colPriceX = startX + (int)(printableWidth * 0.50f);
 				int colUnitX = startX + (int)(printableWidth * 0.70f);
 				int colTotalX = startX + printableWidth - (int)(15 * scale);
+				int textPad = (int)(5 * scale);
 
-				StringFormat rightFormat = new StringFormat { Alignment = StringAlignment.Far };
-				StringFormat centerFormat = new StringFormat { Alignment = StringAlignment.Center };
-
-				g.DrawString("No.", boldFont, whiteBrush, colNoX, startY + offset + (int)(5 * scale));
-				g.DrawString("Descriptions", boldFont, whiteBrush, colDescX, startY + offset + (int)(5 * scale));
-				g.DrawString("Unit Price", boldFont, whiteBrush, colPriceX, startY + offset + (int)(5 * scale), rightFormat);
-				g.DrawString("Unit", boldFont, whiteBrush, colUnitX, startY + offset + (int)(5 * scale), centerFormat);
-				g.DrawString("Price", boldFont, whiteBrush, colTotalX, startY + offset + (int)(5 * scale), rightFormat);
+				g.DrawString("No.", boldFont, whiteBrush, colNoX, startY + offset + textPad);
+				g.DrawString("Descriptions", boldFont, whiteBrush, colDescX, startY + offset + textPad);
+				g.DrawString("Unit Price", boldFont, whiteBrush, colPriceX, startY + offset + textPad, rightFormat);
+				g.DrawString("Unit", boldFont, whiteBrush, colUnitX, startY + offset + textPad, centerFormat);
+				g.DrawString("Price", boldFont, whiteBrush, colTotalX, startY + offset + textPad, rightFormat);
 
 				offset += tableHeaderHeight;
 
-				// --- 5. TABLE ROWS WITH ALTERNATING SHADING ---
+				// ===== TABLE ROWS =====
 				decimal subtotalSum = 0;
 				int rowHeight = (int)(26 * scale);
 				int rowCounter = 1;
@@ -372,92 +429,189 @@ namespace key_luxery1
 					decimal priceVal = Convert.ToDecimal(row.Cells["colPrice"].Value ?? 0);
 					int qtyVal = Convert.ToInt32(row.Cells["colQuantity"].Value ?? 0);
 					decimal subTotalVal = Convert.ToDecimal(row.Cells["colSubtotal"].Value ?? 0);
-
 					subtotalSum += subTotalVal;
 
+					int rowY = startY + offset;
 					if (rowCounter % 2 == 0)
-					{
-						g.FillRectangle(lightGrayBrush, startX, startY + offset, printableWidth, rowHeight);
-					}
-					g.DrawRectangle(goldPen, startX, startY + offset, printableWidth, rowHeight);
+						g.FillRectangle(lightGrayBrush, startX, rowY, printableWidth, rowHeight);
 
-					g.DrawString(rowCounter.ToString("D2"), regularFont, darkTextBrush, colNoX, startY + offset + (int)(5 * scale));
-					g.DrawString(pName, regularFont, darkTextBrush, colDescX, startY + offset + (int)(5 * scale));
-					g.DrawString(priceVal.ToString("N2"), regularFont, darkTextBrush, colPriceX, startY + offset + (int)(5 * scale), rightFormat);
-					g.DrawString(qtyVal.ToString("D2"), regularFont, darkTextBrush, colUnitX, startY + offset + (int)(5 * scale), centerFormat);
-					g.DrawString(subTotalVal.ToString("N2"), regularFont, darkTextBrush, colTotalX, startY + offset + (int)(5 * scale), rightFormat);
+					// light gold line under each row + side accent
+					g.DrawLine(thinGoldPen, startX, rowY + rowHeight, startX + printableWidth, rowY + rowHeight);
+					g.FillRectangle(goldBrush, startX, rowY, (int)(3 * scale), rowHeight);
+
+					g.DrawString(rowCounter.ToString("D2"), regularFont, darkTextBrush, colNoX, rowY + textPad);
+					g.DrawString(pName, regularFont, darkTextBrush, colDescX, rowY + textPad);
+					g.DrawString(priceVal.ToString("N2"), regularFont, darkTextBrush, colPriceX, rowY + textPad, rightFormat);
+					g.DrawString(qtyVal.ToString("D2"), regularFont, darkTextBrush, colUnitX, rowY + textPad, centerFormat);
+					g.DrawString(subTotalVal.ToString("N2"), regularFont, darkTextBrush, colTotalX, rowY + textPad, rightFormat);
 
 					offset += rowHeight;
 					rowCounter++;
 				}
 
-				offset += (int)(15 * scale);
+				// ===== CALCULATIONS =====
+				offset += (int)(12 * scale);   // small gap after the last row
 
-				// --- 6. SUB-TOTAL & TAX GOLD BANNER ---
-				int subtotalBarHeight = (int)(30 * scale);
-				g.FillRectangle(goldBrush, startX, startY + offset, printableWidth, subtotalBarHeight);
-
-				decimal gstTax = subtotalSum * 0.025m; // 2.5% GST Tax
-				g.DrawString("Sub Total:", boldFont, whiteBrush, startX + (int)(10 * scale), startY + offset + (int)(7 * scale));
-				g.DrawString($"${subtotalSum:N2}", boldFont, whiteBrush, startX + printableWidth - (int)(15 * scale), startY + offset + (int)(7 * scale), rightFormat);
-
-				offset += subtotalBarHeight;
-
-				g.DrawString("Country Tax 2.5%", regularFont, darkTextBrush, startX + (int)(10 * scale), startY + offset + (int)(4 * scale));
-				offset += (int)(25 * scale);
-
-				// --- 7. LOWER SECTION: LEFT BLACK SIDEBAR & RIGHT TOTALS ---
-				int lowerSectionY = startY + offset;
-				int sidebarHeight = (int)(110 * scale);
-
-				// Solid Black Left Sidebar Column (Thank You & Payment Info)
-				g.FillRectangle(darkBlackBrush, startX, lowerSectionY, sidebarWidth, sidebarHeight);
-
-				g.DrawString("Thank you for your payment", boldFont, whiteBrush, startX + (int)(10 * scale), lowerSectionY + (int)(10 * scale));
-				string paymentInfoText = $"Payment Info:\nZaad: free@psd.zone\nStatus: Paid\nUser:{Properties.Settings.Default.username}";
-				g.DrawString(paymentInfoText, smallFont, whiteBrush, startX + (int)(10 * scale), lowerSectionY + (int)(32 * scale));
-
-				// Calculations & Conditional Discount Check
+				decimal gstTax = subtotalSum * 0.025m;
 				decimal discount = 0;
 				bool hasDiscount = decimal.TryParse(txtDiscount?.Text?.Trim(), out discount) && discount > 0;
-
-				decimal grandTotal = (subtotalSum + gstTax) - (hasDiscount ? discount : 0);
+				if (!hasDiscount) discount = 0;
+				decimal grandTotal = (subtotalSum + gstTax) - discount;
 				if (grandTotal < 0) grandTotal = 0;
 
-				// Right Side Totals Calculation block
-				int totalsX = startX + (int)(printableWidth * 0.55f);
-				int currentTotalY = lowerSectionY + (int)(10 * scale);
+				// ===== LOWER SECTION: PAYMENT INFO (left) + TOTALS TABLE (right) =====
+				int blockY = startY + offset;
+				int sidebarWidth = (int)(printableWidth * 0.38f);
 
-				if (hasDiscount)
+				int tableW = (int)(printableWidth * 0.48f);
+				int tableX = startX + printableWidth - tableW;
+				int smallRowH = (int)(22 * scale);
+				int grandH = (int)(44 * scale);
+				int pad = (int)(10 * scale);
+
+				int ty = blockY;
+				ty = DrawTotalRow(g, "Sub Total", $"${subtotalSum:N2}", tableX, ty, tableW, smallRowH, regularFont, darkTextBrush, goldPen, lightGrayBrush, pad);
+				ty = DrawTotalRow(g, "GST Tax (2.5%)", $"${gstTax:N2}", tableX, ty, tableW, smallRowH, regularFont, darkTextBrush, goldPen, null, pad);
+				ty = DrawTotalRow(g, "Discount", (discount > 0 ? "-" : "") + $"${discount:N2}", tableX, ty, tableW, smallRowH, regularFont, darkTextBrush, goldPen, lightGrayBrush, pad);
+
+				// Grand total (bigger, black bar with gold text)
+				g.FillRectangle(darkBlackBrush, tableX, ty, tableW, grandH);
+				g.FillRectangle(goldBrush, tableX, ty, tableW, (int)(3 * scale));
+				using (StringFormat midLeft = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center })
+				using (StringFormat midRight = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center })
 				{
-					g.DrawString("Discount:", regularFont, darkTextBrush, totalsX, currentTotalY);
-					g.DrawString($"-${discount:N2}", regularFont, darkTextBrush, startX + printableWidth, currentTotalY, rightFormat);
-					currentTotalY += (int)(22 * scale);
+					RectangleF gr = new RectangleF(tableX + pad, ty + (int)(3 * scale), tableW - pad * 2, grandH - (int)(3 * scale));
+					g.DrawString("GRAND TOTAL", boldFont, whiteBrush, gr, midLeft);
+					g.DrawString($"${grandTotal:N2}", grandFont, goldBrush, gr, midRight);
 				}
+				ty += grandH;
 
-				g.DrawString("TOTAL :", invoiceLabelFont, goldBrush, totalsX, currentTotalY);
-				g.DrawString($"${grandTotal:N2}", invoiceLabelFont, goldBrush, startX + printableWidth, currentTotalY, rightFormat);
+				// Left black sidebar, same height as the totals table
+				int blockH = Math.Max(ty - blockY, (int)(95 * scale));
+				g.FillRectangle(darkBlackBrush, startX, blockY, sidebarWidth, blockH);
+				g.FillRectangle(goldBrush, startX, blockY, sidebarWidth, (int)(3 * scale));
+				g.DrawString("Thank you for your payment", boldFont, goldBrush, startX + pad, blockY + (int)(9 * scale));
+				string paymentInfoText = $"Payment Info:\nMethod: {cmbPaymentMethod.Text}\nStatus: Paid\nUser: {Properties.Settings.Default.username}";
+				g.DrawString(paymentInfoText, smallFont, whiteBrush, startX + pad, blockY + (int)(30 * scale));
 
-				// Authorised Signature Line (Right Side below totals)
-				int signWidth = (int)(180 * scale);
+				// PAID stamp (between sidebar and totals table)
+				var state = g.Save();
+				g.TranslateTransform(startX + sidebarWidth + (tableX - (startX + sidebarWidth)) / 2f, blockY + blockH / 2f);
+				g.RotateTransform(-14);
+				using (Pen stampPen = new Pen(Color.FromArgb(150, gold), 2f * scale))
+				using (Brush stampBrush = new SolidBrush(Color.FromArgb(150, gold)))
+				{
+					SizeF sz = g.MeasureString("PAID", stampFont);
+					g.DrawRectangle(stampPen, -sz.Width / 2 - 4, -sz.Height / 2 - 2, sz.Width + 8, sz.Height + 4);
+					g.DrawString("PAID", stampFont, stampBrush, -sz.Width / 2, -sz.Height / 2);
+				}
+				g.Restore(state);
+
+				// Signature (right, under the totals table)
+				int signWidth = (int)(150 * scale);
 				int signX = startX + printableWidth - signWidth;
-				int signY = lowerSectionY + (int)(75 * scale);
-
+				int signY = blockY + blockH + (int)(28 * scale);
 				g.DrawLine(darkPen, signX, signY, startX + printableWidth, signY);
-				g.DrawString("Manager name\nKey Luxery", smallFont, darkTextBrush, signX, signY + (int)(4 * scale));
+				g.DrawString("Manager signature", smallFont, darkTextBrush, signX, signY + (int)(3 * scale));
 
-				offset += sidebarHeight + (int)(15 * scale);
+				offset = (signY - startY) + (int)(24 * scale);
 
-				// --- 8. BOTTOM FOOTER BAR WITH CONTACT DETAILS ---
-				int footerY = startY + offset;
-				int footerHeight = (int)(35 * scale);
+				// ===== FOOTER (ANCHORED TO PAGE BOTTOM) =====
+				int footerHeight = (int)(38 * scale);
+				int footerY = pageHeight - startY - footerHeight;
+
+				// Safety: if a long invoice reaches the footer area, push the footer below the content
+				int contentBottom = startY + offset;
+				if (footerY < contentBottom) footerY = contentBottom;
 
 				g.FillRectangle(darkBlackBrush, startX, footerY, printableWidth, footerHeight);
-				g.DrawString("Key Luxery", brandFont, whiteBrush, startX + (int)(10 * scale), footerY + (int)(8 * scale));
+				g.FillRectangle(goldBrush, startX, footerY, printableWidth, (int)(3 * scale));
 
-				string contactFooterText = "📞 +01234567890     ✉ keyluxery@gmail.com     📍 123, Street 1, Hargeisa, Somaliland";
-				g.DrawString(contactFooterText, smallFont, whiteBrush, startX + (int)(120 * scale), footerY + (int)(11 * scale));
+				string contactFooterText = "Tel: +01234567890   |   Email: keyluxery@gmail.com   |   Jigjigayar, Road NO.1, Hargeisa, Somaliland";
+
+				// Area available for text (small padding left and right)
+				float padX = 10f * scale;
+				RectangleF footerTextRect = new RectangleF(
+					startX + padX,
+					footerY + (int)(3 * scale),                 // below the gold line
+					printableWidth - padX * 2,
+					footerHeight - (int)(3 * scale));
+
+				// Shrink the font until the text fits on one line
+				float fontSize = 7.5f * scale;
+				Font footerFont = new Font("Segoe UI", fontSize, FontStyle.Regular);
+				while (g.MeasureString(contactFooterText, footerFont).Width > footerTextRect.Width && fontSize > 4f)
+				{
+					footerFont.Dispose();
+					fontSize -= 0.25f;
+					footerFont = new Font("Segoe UI", fontSize, FontStyle.Regular);
+				}
+
+				using (footerFont)
+				using (StringFormat footerFormat = new StringFormat
+				{
+					Alignment = StringAlignment.Center,         // centered horizontally
+					LineAlignment = StringAlignment.Center,     // centered vertically
+					FormatFlags = StringFormatFlags.NoWrap
+				})
+				{
+					g.DrawString(contactFooterText, footerFont, whiteBrush, footerTextRect, footerFormat);
+				}
 			}
+		}
+
+		// ---------- HELPERS (put these inside the same class) ----------
+
+		// Draws a gold key rotated 45° centered at (cx, cy)
+		private void DrawKeyIcon(Graphics g, float cx, float cy, float size, Color color)
+		{
+			float r = size / 2f;
+			var state = g.Save();
+			g.TranslateTransform(cx, cy);
+			g.RotateTransform(-45);
+			using (Pen ringPen = new Pen(color, r * 0.13f))
+			using (Pen shaftPen = new Pen(color, r * 0.10f) { StartCap = System.Drawing.Drawing2D.LineCap.Round, EndCap = System.Drawing.Drawing2D.LineCap.Round })
+			using (Brush b = new SolidBrush(color))
+			{
+				g.DrawEllipse(ringPen, -r * 0.85f, -r * 0.28f, r * 0.56f, r * 0.56f); // bow
+				g.DrawLine(shaftPen, -r * 0.29f, 0, r * 0.85f, 0);                      // shaft
+				g.FillRectangle(b, r * 0.50f, 0, r * 0.12f, r * 0.30f);                 // tooth 1
+				g.FillRectangle(b, r * 0.70f, 0, r * 0.12f, r * 0.22f);                 // tooth 2
+			}
+			g.Restore(state);
+		}
+
+		// Draws centered text with extra letter spacing
+		private void DrawSpaced(Graphics g, string text, Font font, Brush brush, float centerX, float y, float spacing)
+		{
+			var fmt = StringFormat.GenericTypographic;
+			float total = 0;
+			foreach (char c in text) total += g.MeasureString(c.ToString(), font, 1000, fmt).Width + spacing;
+			total -= spacing;
+
+			float x = centerX - total / 2f;
+			foreach (char c in text)
+			{
+				g.DrawString(c.ToString(), font, brush, x, y, fmt);
+				x += g.MeasureString(c.ToString(), font, 1000, fmt).Width + spacing;
+			}
+		}
+
+		// Draws one boxed row of the totals table: label on the left, value on the right. Returns the next row's Y.
+		private int DrawTotalRow(Graphics g, string label, string value, int x, int y, int w, int h,
+			Font font, Brush textBrush, Pen linePen, Brush shadeBrush, int pad)
+		{
+			if (shadeBrush != null) g.FillRectangle(shadeBrush, x, y, w, h);
+			g.DrawRectangle(linePen, x, y, w, h);
+
+			RectangleF r = new RectangleF(x + pad, y, w - pad * 2, h);
+			using (StringFormat left = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Center })
+			using (StringFormat right = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center })
+			{
+				g.DrawString(label, font, textBrush, r, left);
+				g.DrawString(value, font, textBrush, r, right);
+			}
+			return y + h;
 		}
 
 		private void btnCancel_Click(object sender, EventArgs e)
@@ -752,7 +906,7 @@ namespace key_luxery1
 			CalculateGrandTotal();
 		}
 
-		private decimal exchangeRate = 8500m; // Example exchange rate
+		private decimal exchangeRate = 11500m; // Example exchange rate
 
 		private void cmbCurrencyMode_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -769,6 +923,11 @@ namespace key_luxery1
 		private void cmbCurrencyMode_TextChanged(object sender, EventArgs e)
 		{
 			cmbCurrencyMode_SelectedIndexChanged(sender , e);
+		}
+
+		private void cmbCurrencyMode_SelectedIndexChanged_1(object sender, EventArgs e)
+		{
+
 		}
 	}
 }
