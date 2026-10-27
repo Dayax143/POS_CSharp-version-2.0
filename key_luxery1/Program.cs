@@ -11,8 +11,9 @@ namespace key_luxery1
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new frmSplash());
+			Application.Run(new frmLogin());
 
+			//
 		//	// Check if connection works
 		//	if (IsConnectionValid())
 		//	{
