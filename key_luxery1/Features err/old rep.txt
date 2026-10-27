@@ -1,0 +1,634 @@
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
+
+namespace key_luxery1
+{
+	public partial class frmReport : Form
+	{
+		private DataTable reportTable;
+		private readonly sharedClass db = new sharedClass();
+
+		// Printing Fields
+		private readonly PrintDocument printDoc = new PrintDocument();
+		private readonly PrintPreviewDialog printPreviewDlg = new PrintPreviewDialog();
+		private int currentPrintRow = 0;
+		private int pageNumber = 0;
+
+		public frmReport()
+		{
+			InitializeComponent();
+
+			// Configure Print Document
+			printDoc.DefaultPageSettings.Landscape = true;
+			printDoc.BeginPrint += new PrintEventHandler(PrintDocument_BeginPrint);
+			printDoc.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
+		}
+
+		private void frmReport_Load(object sender, EventArgs e)
+		{
+			dtpStartDate.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+			dtpEndDate.Value = DateTime.Now;
+
+			if (cmbReportType.Items.Count == 0)
+			{
+				cmbReportType.Items.AddRange(new string[] {
+					"Sales Report",
+					"Expense Summary Report",
+					"Profit & Loss Report",
+					"Payment Report",
+					"Product Stock Report",
+					"Customer Purchase History",
+					"Daily Sales & Expense Breakdown",
+					"Low Stock Inventory Report"
+				});
+			}
+
+			if (cmbReportType.SelectedIndex == -1 && cmbReportType.Items.Count > 0)
+			{
+				cmbReportType.SelectedIndex = 0;
+			}
+
+			LoadSelectedReport();
+		}
+
+		private void btnSearch_Click(object sender, EventArgs e)
+		{
+			LoadSelectedReport();
+		}
+
+		private void LoadSelectedReport()
+		{
+			string startDate = dtpStartDate.Value.ToString("yyyy-MM-dd 00:00:00");
+			string endDate = dtpEndDate.Value.ToString("yyyy-MM-dd 23:59:59");
+			string reportType = cmbReportType.SelectedItem?.ToString() ?? "Sales Report";
+
+			string query = "";
+
+			switch (reportType)
+			{
+				case "Expense Summary Report":
+					query = string.Format(
+						"SELECT Id, Category, Amount, ExpenseDate AS Date, Description " +
+						"FROM tblExpenses " +
+						"WHERE ExpenseDate BETWEEN '{0}' AND '{1}' AND ISNULL(deleted, 0) = 0 " +
+						"ORDER BY ExpenseDate DESC",
+						startDate, endDate);
+					break;
+
+				case "Profit & Loss Report":
+					query = string.Format(
+						"SELECT 'Sales Revenue' AS [Category/Type], ISNULL(SUM(total_price), 0) AS [Amount ($)] " +
+						"FROM tblSale WHERE ISNULL(deleted, 0) = 0 AND ISNULL(returned, 0) = 0 AND date BETWEEN '{0}' AND '{1}' " +
+						"UNION ALL " +
+						"SELECT 'Operating Expenses' AS [Category/Type], ISNULL(SUM(Amount), 0) AS [Amount ($)] " +
+						"FROM tblExpenses WHERE ISNULL(deleted, 0) = 0 AND ExpenseDate BETWEEN '{0}' AND '{1}' " +
+						"UNION ALL " +
+						"SELECT 'Payment Method: ' + payment_Method AS [Category/Type], ISNULL(SUM(amount_paid), 0) AS [Amount ($)] " +
+						"FROM tblPayment WHERE payment_Date BETWEEN '{0}' AND '{1}' GROUP BY payment_Method",
+						startDate, endDate);
+					break;
+
+				case "Payment Report":
+					query = string.Format(
+						"SELECT p.reference_No AS [Reference No], p.payment_Date AS [Payment Date], " +
+						"p.payment_Method AS [Method], p.amount_paid AS [Amount Paid ($)], " +
+						"i.invoice_no AS [Invoice No], c.customer_name AS [Customer Name] " +
+						"FROM tblPayment p " +
+						"LEFT JOIN tblInvoice i ON p.invoice_id = i.invoice_id " +
+						"LEFT JOIN tblCustomer c ON i.customer_id = c.customer_id " +
+						"WHERE p.payment_Date BETWEEN '{0}' AND '{1}' " +
+						"ORDER BY p.payment_Date DESC",
+						startDate, endDate);
+					break;
+
+				case "Product Stock Report":
+					query = "SELECT Product_ID AS [Product ID], Product_Name AS [Product Name], Category AS [Category], " +
+							"Quantity AS [Stock In Hand], Price AS [Unit Price], (Quantity * Price) AS [Total Inventory Value ($)] " +
+							"FROM tblProduct WHERE ISNULL(deleted, 0) = 0 ORDER BY Quantity DESC";
+					break;
+
+				case "Customer Purchase History":
+					query = string.Format(
+						"SELECT c.customer_name AS [Customer Name], c.customer_phone AS [Phone Number], " +
+						"CAST(COUNT(DISTINCT i.invoice_id) AS VARCHAR) AS [Total Invoices], " +
+						"ISNULL(SUM(i.grand_total), 0) AS [Total Sales Amount ($)], " +
+						"c.status AS [Status], c.date AS [Registration Date] " +
+						"FROM tblCustomer c " +
+						"LEFT JOIN tblInvoice i ON c.customer_id = i.customer_id AND ISNULL(i.deleted, 0) = 0 AND i.invoice_date BETWEEN '{0}' AND '{1}' " +
+						"WHERE ISNULL(c.deleted, 0) = 0 " +
+						"GROUP BY c.customer_id, c.customer_name, c.customer_phone, c.status, c.date " +
+						"ORDER BY [Total Sales Amount ($)] DESC",
+						startDate, endDate);
+					break;
+
+				case "Daily Sales & Expense Breakdown":
+					query = string.Format(
+						"SELECT ISNULL(CAST(s.date AS DATE), CAST(e.ExpenseDate AS DATE)) AS Date, " +
+						"ISNULL(SUM(s.total_price), 0) AS TotalSales, " +
+						"ISNULL(SUM(e.Amount), 0) AS TotalExpenses, " +
+						"(ISNULL(SUM(s.total_price), 0) - ISNULL(SUM(e.Amount), 0)) AS NetProfit " +
+						"FROM tblSale s " +
+						"FULL OUTER JOIN tblExpenses e ON CAST(s.date AS DATE) = CAST(e.ExpenseDate AS DATE) " +
+						"WHERE (ISNULL(s.deleted, 0) = 0) " +
+						"AND ((s.date BETWEEN '{0}' AND '{1}' AND ISNULL(e.deleted, 0) = 0) OR (e.ExpenseDate BETWEEN '{0}' AND '{1}')) " +
+						"GROUP BY ISNULL(CAST(s.date AS DATE), CAST(e.ExpenseDate AS DATE)) " +
+						"ORDER BY Date DESC",
+						startDate, endDate);
+					break;
+
+				case "Low Stock Inventory Report":
+					query = "SELECT Product_ID AS [Product ID], Product_Name AS [Product Name], Category AS [Category], " +
+							"Quantity AS [Stock In Hand], Price AS [Unit Price], (Quantity * Price) AS [Total Inventory Value ($)] " +
+							"FROM tblProduct WHERE ISNULL(deleted, 0) = 0 AND Quantity <= 5 " +
+							"ORDER BY Quantity ASC";
+					break;
+
+				case "Sales Report":
+				default:
+					query = string.Format(
+						"SELECT sale_id AS [Sale ID], invoice_id AS [Invoice ID], product_id AS [Product ID], " +
+						"product_name AS [Product], quantity AS [Qty], unit_price AS [Unit Price], " +
+						"total_price AS [Total], date AS [Date] " +
+						"FROM tblSale " +
+						"WHERE ISNULL(deleted, 0) = 0 AND ISNULL(returned, 0) = 0 AND date BETWEEN '{0}' AND '{1}' " +
+						"ORDER BY date DESC",
+						startDate, endDate);
+					break;
+			}
+
+			reportTable = sharedClass.GetData(query);
+			dgvReports.DataSource = reportTable;
+
+			FormatGridColumns();
+			CalculateReportSummary(reportType, startDate, endDate);
+		}
+
+		private void CalculateReportSummary(string reportType, string startDate, string endDate)
+		{
+			try
+			{
+				decimal sumCol1 = 0m, sumCol2 = 0m, sumCol3 = 0m;
+				int totalRows = dgvReports.Rows.Count;
+
+				foreach (DataGridViewRow row in dgvReports.Rows)
+				{
+					if (row.IsNewRow) continue;
+
+					if (reportType == "Expense Summary Report")
+					{
+						if (decimal.TryParse(row.Cells["Amount"]?.Value?.ToString(), out decimal val)) sumCol1 += val;
+					}
+					else if (reportType == "Payment Report")
+					{
+						if (decimal.TryParse(row.Cells["Amount Paid ($)"]?.Value?.ToString(), out decimal val)) sumCol1 += val;
+					}
+					else if (reportType == "Profit & Loss Report")
+					{
+						if (decimal.TryParse(row.Cells["Amount ($)"]?.Value?.ToString(), out decimal val)) sumCol1 += val;
+					}
+					else if (reportType == "Product Stock Report" || reportType == "Low Stock Inventory Report")
+					{
+						if (decimal.TryParse(row.Cells["Total Inventory Value ($)"]?.Value?.ToString(), out decimal invVal)) sumCol1 += invVal;
+					}
+					else if (reportType == "Customer Purchase History")
+					{
+						if (decimal.TryParse(row.Cells["Total Sales Amount ($)"]?.Value?.ToString(), out decimal salesVal)) sumCol1 += salesVal;
+					}
+					else if (reportType == "Daily Sales & Expense Breakdown")
+					{
+						if (decimal.TryParse(row.Cells["TotalSales"]?.Value?.ToString(), out decimal sVal)) sumCol1 += sVal;
+						if (decimal.TryParse(row.Cells["TotalExpenses"]?.Value?.ToString(), out decimal eVal)) sumCol2 += eVal;
+						if (decimal.TryParse(row.Cells["NetProfit"]?.Value?.ToString(), out decimal nVal)) sumCol3 += nVal;
+					}
+					else if (reportType == "Sales Report")
+					{
+						if (decimal.TryParse(row.Cells["Total"]?.Value?.ToString(), out decimal tVal)) sumCol1 += tVal;
+					}
+				}
+
+				// Context-Aware UI Summary Card Labels & Values
+				if (reportType == "Expense Summary Report")
+				{
+					lblTotalSalesVal.Text = "N/A";
+					lblTotalExpensesVal.Text = sumCol1.ToString("C2");
+					lblTotalProfitVal.Text = "N/A";
+				}
+				else if (reportType == "Payment Report")
+				{
+					lblTotalSalesVal.Text = sumCol1.ToString("C2");
+					lblTotalExpensesVal.Text = "N/A";
+					lblTotalProfitVal.Text = "N/A";
+				}
+				else if (reportType == "Profit & Loss Report")
+				{
+					lblTotalSalesVal.Text = sumCol1.ToString("C2");
+					lblTotalExpensesVal.Text = "-";
+					lblTotalProfitVal.Text = "-";
+				}
+				else if (reportType == "Product Stock Report")
+				{
+					lblTotalSalesVal.Text = "-" ; // Total Inventory Valuation
+					lblTotalExpensesVal.Text = "-"; // Total Products Count
+					lblTotalProfitVal.Text = sumCol1.ToString("C2");
+					lblTotalProfitTitle.Text = "Net / Estimated Profit ";
+				}
+				else if (reportType == "Low Stock Inventory Report")
+				{
+					lblTotalSalesVal.Text = sumCol1.ToString("C2"); // Low Stock Valuation
+					lblTotalExpensesVal.Text = totalRows.ToString(); // Low Stock Item Count
+					lblTotalProfitVal.Text = "-";
+				}
+				else if (reportType == "Customer Purchase History")
+				{
+					lblTotalSalesVal.Text = sumCol1.ToString("C2");
+					lblTotalExpensesVal.Text = totalRows.ToString();
+					lblTotalProfitVal.Text = "-";
+				}
+				else if (reportType == "Daily Sales & Expense Breakdown")
+				{
+					lblTotalSalesVal.Text = sumCol1.ToString("C2");
+					lblTotalExpensesVal.Text = sumCol2.ToString("C2");
+					lblTotalProfitVal.Text = sumCol3.ToString("C2");
+					lblTotalProfitVal.ForeColor = sumCol3 < 0 ? Color.Red : Color.ForestGreen;
+				}
+				else
+				{
+					lblTotalSalesVal.Text = sumCol1.ToString("C2");
+					lblTotalExpensesVal.Text = "-";
+					lblTotalProfitVal.Text = "-";
+				}
+
+				lblTotalTransactionsVal.Text = totalRows.ToString();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error calculating summary: " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+		}
+
+		private void FormatGridColumns()
+		{
+			foreach (DataGridViewColumn col in dgvReports.Columns)
+			{
+				if (col.Name.Contains("Price") || col.Name.Contains("Total") || col.Name.Contains("Amount") ||
+					col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") ||
+					col.Name.Contains("Value"))
+				{
+					col.DefaultCellStyle.Format = "C2";
+				}
+				if (col.Name.Contains("Date") || col.Name.Contains("Registration"))
+				{
+					col.DefaultCellStyle.Format = "yyyy-MM-dd HH:mm";
+				}
+				if (col.Name.Equals("Id", StringComparison.OrdinalIgnoreCase) || col.Name.Equals("Sale ID", StringComparison.OrdinalIgnoreCase))
+				{
+					col.Visible = false;
+				}
+			}
+		}
+
+		private void txtSearchKeyword_TextChanged(object sender, EventArgs e)
+		{
+			if (reportTable == null) return;
+
+			string filter = txtSearchKeyword.Text.Trim().Replace("'", "''");
+
+			if (string.IsNullOrEmpty(filter))
+			{
+				reportTable.DefaultView.RowFilter = string.Empty;
+			}
+			else
+			{
+				StringBuilder sb = new StringBuilder();
+				for (int i = 0; i < reportTable.Columns.Count; i++)
+				{
+					if (i > 0) sb.Append(" OR ");
+					sb.AppendFormat("CONVERT([{0}], 'System.String') LIKE '%{1}%'", reportTable.Columns[i].ColumnName, filter);
+				}
+				reportTable.DefaultView.RowFilter = sb.ToString();
+			}
+
+			lblTotalTransactionsVal.Text = dgvReports.Rows.Count.ToString();
+		}
+
+		private void btnExportExcel_Click(object sender, EventArgs e)
+		{
+			if (dgvReports.Rows.Count == 0)
+			{
+				MessageBox.Show("No data available to export.", "Export Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			SaveFileDialog sfd = new SaveFileDialog
+			{
+				Filter = "CSV File (*.csv)|*.csv",
+				FileName = (cmbReportType.SelectedItem?.ToString().Replace(" ", "_") ?? "Report") + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".csv"
+			};
+
+			if (sfd.ShowDialog() == DialogResult.OK)
+			{
+				try
+				{
+					StringBuilder csv = new StringBuilder();
+					for (int i = 0; i < dgvReports.Columns.Count; i++)
+					{
+						if (dgvReports.Columns[i].Visible)
+						{
+							csv.Append(dgvReports.Columns[i].HeaderText + (i == dgvReports.Columns.Count - 1 ? "" : ","));
+						}
+					}
+					csv.AppendLine();
+
+					foreach (DataGridViewRow row in dgvReports.Rows)
+					{
+						if (row.IsNewRow) continue;
+						for (int i = 0; i < dgvReports.Columns.Count; i++)
+						{
+							if (dgvReports.Columns[i].Visible)
+							{
+								string val = row.Cells[i].Value?.ToString().Replace(",", " ") ?? "";
+								csv.Append(val + (i == dgvReports.Columns.Count - 1 ? "" : ","));
+							}
+						}
+						csv.AppendLine();
+					}
+
+					File.WriteAllText(sfd.FileName, csv.ToString(), Encoding.UTF8);
+					MessageBox.Show("Report exported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Error exporting CSV: " + ex.Message, "Export Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+			}
+		}
+
+		// ----------------------------------------------------
+		// STANDARDIZED PRINT & PRINT PREVIEW (FILTERED ONLY)
+		// ----------------------------------------------------
+		private void btnPrint_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				if (dgvReports.Rows.Count == 0)
+				{
+					MessageBox.Show("No data available to print.", "Print Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+					return;
+				}
+
+				printPreviewDlg.Document = printDoc;
+				printPreviewDlg.Size = new Size(1100, 800);
+				printPreviewDlg.StartPosition = FormStartPosition.CenterScreen;
+				printPreviewDlg.ShowDialog();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Print Error: " + ex.Message, "Printing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void PrintDocument_BeginPrint(object sender, PrintEventArgs e)
+		{
+			currentPrintRow = 0;
+			pageNumber = 0;
+		}
+
+		private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
+		{
+			try
+			{
+				pageNumber++;
+				Graphics g = e.Graphics;
+
+				Font titleFont = new Font("Segoe UI", 16, FontStyle.Bold);
+				Font subTitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
+				Font metaFont = new Font("Segoe UI", 8.5f, FontStyle.Regular);
+				Font headerFont = new Font("Segoe UI", 9, FontStyle.Bold);
+				Font bodyFont = new Font("Segoe UI", 8.5f, FontStyle.Regular);
+				Font summaryFont = new Font("Segoe UI", 9.5f, FontStyle.Bold);
+				Font sigFont = new Font("Segoe UI", 9, FontStyle.Bold);
+
+				int margin = 40;
+				int printWidth = Math.Max(400, e.PageBounds.Width - (margin * 2));
+				int printBottom = e.PageBounds.Height - margin;
+				int startX = margin;
+				int currentY = margin;
+
+				StringFormat cellFormatLeft = new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.NoWrap,
+					LineAlignment = StringAlignment.Center,
+					Alignment = StringAlignment.Near
+				};
+
+				StringFormat cellFormatRight = new StringFormat
+				{
+					Trimming = StringTrimming.EllipsisCharacter,
+					FormatFlags = StringFormatFlags.NoWrap,
+					LineAlignment = StringAlignment.Center,
+					Alignment = StringAlignment.Far
+				};
+
+				// 1. HEADER SECTION
+				g.DrawString("KEY LUXURY STORE", titleFont, Brushes.Navy, startX, currentY);
+				currentY += 30;
+
+				string reportTitle = "Official Report: " + (cmbReportType.SelectedItem?.ToString() ?? "Report");
+				g.DrawString(reportTitle, subTitleFont, Brushes.DarkSlateGray, startX, currentY);
+
+				string pageStr = "Page " + pageNumber;
+				float pageStrWidth = g.MeasureString(pageStr, metaFont).Width;
+				g.DrawString(pageStr, metaFont, Brushes.Gray, startX + printWidth - Math.Max(50, (int)pageStrWidth), currentY);
+				currentY += 20;
+
+				string dateRangeStr = "Period: " + dtpStartDate.Value.ToString("yyyy-MM-dd") + " to " + dtpEndDate.Value.ToString("yyyy-MM-dd");
+				g.DrawString(dateRangeStr, metaFont, Brushes.DimGray, startX, currentY);
+
+				string genDateStr = "Printed On: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+				float genDateWidth = g.MeasureString(genDateStr, metaFont).Width;
+				g.DrawString(genDateStr, metaFont, Brushes.DimGray, startX + printWidth - Math.Max(120, (int)genDateWidth), currentY);
+				currentY += 22;
+
+				g.DrawLine(new Pen(Color.Navy, 2), startX, currentY, startX + printWidth, currentY);
+				currentY += 15;
+
+				// 2. COLUMNS SETUP
+				List<DataGridViewColumn> visibleCols = new List<DataGridViewColumn>();
+				foreach (DataGridViewColumn col in dgvReports.Columns)
+				{
+					if (col.Visible) visibleCols.Add(col);
+				}
+
+				if (visibleCols.Count == 0)
+				{
+					e.HasMorePages = false;
+					return;
+				}
+
+				Dictionary<int, int> colWidths = new Dictionary<int, int>();
+				float totalWeight = 0;
+
+				foreach (var col in visibleCols)
+				{
+					float weight = 1.0f;
+					if (col.Name.Contains("Product") || col.Name.Contains("Description") || col.Name.Contains("Customer") || col.Name.Contains("Category")) weight = 2.4f;
+					else if (col.Name.Contains("Date")) weight = 1.6f;
+					else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Value")) weight = 1.4f;
+					else if (col.Name.Contains("Qty") || col.Name.Contains("Returned") || col.Name.Contains("Invoices")) weight = 0.8f;
+
+					totalWeight += weight;
+				}
+
+				foreach (var col in visibleCols)
+				{
+					float weight = 1.0f;
+					if (col.Name.Contains("Product") || col.Name.Contains("Description") || col.Name.Contains("Customer") || col.Name.Contains("Category")) weight = 2.4f;
+					else if (col.Name.Contains("Date")) weight = 1.6f;
+					else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Value")) weight = 1.4f;
+					else if (col.Name.Contains("Qty") || col.Name.Contains("Returned") || col.Name.Contains("Invoices")) weight = 0.8f;
+
+					int calculatedWidth = (int)((weight / totalWeight) * printWidth);
+					colWidths[col.Index] = Math.Max(50, calculatedWidth);
+				}
+
+				// 3. DRAW HEADERS
+				g.FillRectangle(new SolidBrush(Color.FromArgb(41, 128, 185)), startX, currentY, printWidth, 26);
+
+				int currentHeaderX = startX;
+				foreach (var col in visibleCols)
+				{
+					int w = colWidths[col.Index];
+					Rectangle headerRect = new Rectangle(currentHeaderX + 2, currentY, Math.Max(10, w - 4), 26);
+
+					bool isNumeric = col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Qty") || col.Name.Contains("Value");
+					g.DrawString(col.HeaderText, headerFont, Brushes.White, headerRect, isNumeric ? cellFormatRight : cellFormatLeft);
+
+					currentHeaderX += w;
+				}
+
+				currentY += 26;
+
+				// 4. DRAW ROWS (ONLY FILTERED / SEARCHED VISIBLE ROWS)
+				int rowHeight = 24;
+				while (currentPrintRow < dgvReports.Rows.Count)
+				{
+					DataGridViewRow row = dgvReports.Rows[currentPrintRow];
+					if (row.IsNewRow || !row.Visible)
+					{
+						currentPrintRow++;
+						continue;
+					}
+
+					if (currentY + rowHeight > printBottom - 160)
+					{
+						e.HasMorePages = true;
+						return;
+					}
+
+					if (currentPrintRow % 2 == 0)
+					{
+						g.FillRectangle(new SolidBrush(Color.FromArgb(245, 247, 250)), startX, currentY, printWidth, rowHeight);
+					}
+
+					int cellX = startX;
+					foreach (var col in visibleCols)
+					{
+						int w = colWidths[col.Index];
+						string val = row.Cells[col.Index].FormattedValue?.ToString() ?? "";
+
+						Rectangle cellRect = new Rectangle(cellX + 2, currentY, Math.Max(10, w - 4), rowHeight);
+						bool isNumeric = col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Qty") || col.Name.Contains("Value");
+
+						g.DrawString(val, bodyFont, Brushes.Black, cellRect, isNumeric ? cellFormatRight : cellFormatLeft);
+						cellX += w;
+					}
+
+					g.DrawLine(Pens.LightGray, startX, currentY + rowHeight, startX + printWidth, currentY + rowHeight);
+					currentY += rowHeight;
+					currentPrintRow++;
+				}
+
+				// 5. CONTEXT-AWARE PRINT SUMMARY BLOCK
+				currentY += 15;
+				Rectangle summaryBox = new Rectangle(startX, currentY, printWidth, 42);
+				g.FillRectangle(new SolidBrush(Color.FromArgb(236, 240, 241)), summaryBox);
+				g.DrawRectangle(new Pen(Color.FromArgb(189, 195, 199), 1), summaryBox);
+
+				string activeReport = cmbReportType.SelectedItem?.ToString() ?? "";
+				string summary1 = "", summary2 = "", summary3 = "";
+
+				if (activeReport == "Product Stock Report" || activeReport == "Low Stock Inventory Report")
+				{
+					summary1 = "Total Stock Valuation: " + lblTotalSalesVal.Text;
+					summary2 = "Total Items Listed: " + lblTotalExpensesVal.Text;
+					summary3 = "Stock Audit: Verified";
+				}
+				else if (activeReport == "Expense Summary Report")
+				{
+					summary1 = "Total Expenses: " + lblTotalSalesVal.Text;
+					summary2 = "Category Range: Active";
+					summary3 = "Status: Verified";
+				}
+				else if (activeReport == "Payment Report")
+				{
+					summary1 = "Total Payments Collected: " + lblTotalSalesVal.Text;
+					summary2 = "Payment Channels: Verified";
+					summary3 = "Audit Status: Secure";
+				}
+				else if (activeReport == "Daily Sales & Expense Breakdown")
+				{
+					summary1 = "Period Sales: " + lblTotalSalesVal.Text;
+					summary2 = "Period Expenses: " + lblTotalExpensesVal.Text;
+					summary3 = "Net Profit Balance: " + lblTotalProfitVal.Text;
+				}
+				else
+				{
+					summary1 = "Total Revenue / Volume: " + lblTotalSalesVal.Text;
+					summary2 = "Operational Filter: Applied";
+					summary3 = "Audit Status: Checked";
+				}
+
+				string textRecords = "Filtered Records: " + lblTotalTransactionsVal.Text;
+
+				int spacing = printWidth / 4;
+				g.DrawString(summary1, summaryFont, Brushes.Navy, startX + 10, currentY + 11);
+				g.DrawString(summary2, summaryFont, Brushes.DarkGreen, startX + spacing + 5, currentY + 11);
+				g.DrawString(summary3, summaryFont, Brushes.DarkSlateGray, startX + (spacing * 2) + 5, currentY + 11);
+				g.DrawString(textRecords, summaryFont, Brushes.DimGray, startX + (spacing * 3) + 5, currentY + 11);
+
+				currentY += 65;
+
+				// 6. WIDER SIGNATURE BLOCKS
+				int sigWidth = 260;
+				int prepX = startX + 50;
+				int apprX = startX + printWidth - sigWidth - 50;
+
+				g.DrawLine(new Pen(Color.Black, 1.5f), prepX, currentY, prepX + sigWidth, currentY);
+				g.DrawString("PREPARED BY (Key Luxury Staff)", sigFont, Brushes.Black, prepX + 25, currentY + 6);
+
+				g.DrawLine(new Pen(Color.Black, 1.5f), apprX, currentY, apprX + sigWidth, currentY);
+				g.DrawString("APPROVED BY (Management)", sigFont, Brushes.Black, apprX + 35, currentY + 6);
+
+				currentY += 35;
+				string footerMsg = "KEY LUXURY STORE • OFFICIAL CONFIDENTIAL REPORT";
+				Font footerFont = new Font("Segoe UI", 8, FontStyle.Bold);
+				float footerWidth = g.MeasureString(footerMsg, footerFont).Width;
+				float footerX = startX + Math.Max(0, (printWidth - (int)footerWidth) / 2);
+				g.DrawString(footerMsg, footerFont, Brushes.Gray, footerX, currentY);
+
+				e.HasMorePages = false;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Printing layout error: " + ex.Message, "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+	}
+}

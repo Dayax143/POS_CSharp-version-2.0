@@ -108,7 +108,7 @@ namespace key_luxery1
 				//5. Low Stock Items Count
 				object lowStockObj = db.ExecuteScalar($"SELECT COUNT(product_id) FROM tblProduct WHERE deleted = 0 AND quantity <= {LOW_STOCK_THRESHOLD}");
 				int lowStockCount = (lowStockObj != null && lowStockObj != DBNull.Value) ? Convert.ToInt32(lowStockObj) : 0;
-				lblCard5Value.Text = lowStockCount.ToString("N0");
+				//lblCard5Value.Text = lowStockCount.ToString("N0");
 			}
 			catch (Exception ex)
 			{

@@ -20,11 +20,21 @@ namespace key_luxery1
 		private int currentPrintRow = 0;
 		private int pageNumber = 0;
 
+		// Summary shared by the screen cards AND the printed/previewed page
+		private readonly List<string> printSummary = new List<string>();
+		private Color defaultProfitColor;
+		private bool formReady = false; // blocks events that fire before the form is fully built
+
+		// Period figures used by Profit & Loss / Net Profit reports
+		private decimal periodRevenue = 0m;
+		private decimal periodCogs = 0m;
+		private decimal periodExpenses = 0m;
+
 		public frmReport()
 		{
 			InitializeComponent();
+			defaultProfitColor = lblTotalProfitVal.ForeColor;
 
-			// Configure Print Document
 			printDoc.DefaultPageSettings.Landscape = true;
 			printDoc.BeginPrint += new PrintEventHandler(PrintDocument_BeginPrint);
 			printDoc.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
@@ -49,11 +59,13 @@ namespace key_luxery1
 				});
 			}
 
-			if (cmbReportType.SelectedIndex == -1 && cmbReportType.Items.Count > 0)
-			{
-				cmbReportType.SelectedIndex = 0;
-			}
+			if (!cmbReportType.Items.Contains("Net Profit Report"))
+				cmbReportType.Items.Add("Net Profit Report");
 
+			if (cmbReportType.SelectedIndex == -1 && cmbReportType.Items.Count > 0)
+				cmbReportType.SelectedIndex = 0;
+
+			formReady = true;
 			LoadSelectedReport();
 		}
 
@@ -62,13 +74,67 @@ namespace key_luxery1
 			LoadSelectedReport();
 		}
 
+		// ----------------------------------------------------
+		// HELPERS
+		// ----------------------------------------------------
+		private decimal ScalarDecimal(string query, string column)
+		{
+			DataTable dt = sharedClass.GetData(query);
+			if (dt == null || dt.Rows.Count == 0 || dt.Rows[0][column] == DBNull.Value) return 0m;
+			return Convert.ToDecimal(dt.Rows[0][column]);
+		}
+
+		private decimal GetPeriodExpenses(string startDate, string endDate)
+		{
+			return ScalarDecimal(string.Format(
+				"SELECT ISNULL(SUM(Amount), 0) AS V FROM tblExpenses " +
+				"WHERE ISNULL(deleted, 0) = 0 AND ExpenseDate BETWEEN '{0}' AND '{1}'",
+				startDate, endDate), "V");
+		}
+
+		private decimal GetCellDecimal(DataGridViewRow row, string colName)
+		{
+			if (!dgvReports.Columns.Contains(colName)) return 0m;
+			object v = row.Cells[colName].Value;
+			if (v == null || v == DBNull.Value) return 0m;
+			decimal d;
+			return decimal.TryParse(Convert.ToString(v), out d) ? d : 0m;
+		}
+
+		private void SetTitle(string controlName, string text)
+		{
+			Control[] found = this.Controls.Find(controlName, true);
+			if (found.Length > 0) found[0].Text = text;
+		}
+
+		private static bool IsNumericCol(string n)
+		{
+			return n.Contains("Price") || n.Contains("Amount") || n.Contains("Total") || n.Contains("Sales") ||
+				   n.Contains("Expenses") || n.Contains("Profit") || n.Contains("Qty") || n.Contains("Value") ||
+				   n.Contains("Tax") || n.Contains("unitcost") || n.Contains("Revenue") || n.Contains("Stock In Hand");
+		}
+
+		private static float GetColWeight(string n)
+		{
+			if (n.Contains("Product") || n.Contains("Description") || n.Contains("Customer") || n.Contains("Category")) return 2.4f;
+			if (n.Contains("Date")) return 1.6f;
+			if (IsNumericCol(n)) return 1.4f;
+			return 1.0f;
+		}
+
+		// ----------------------------------------------------
+		// LOAD REPORT
+		// ----------------------------------------------------
 		private void LoadSelectedReport()
 		{
+			if (!formReady) return;
+
 			string startDate = dtpStartDate.Value.ToString("yyyy-MM-dd 00:00:00");
 			string endDate = dtpEndDate.Value.ToString("yyyy-MM-dd 23:59:59");
 			string reportType = cmbReportType.SelectedItem?.ToString() ?? "Sales Report";
 
 			string query = "";
+			periodRevenue = periodCogs = periodExpenses = 0m;
 
 			switch (reportType)
 			{
@@ -82,15 +148,20 @@ namespace key_luxery1
 					break;
 
 				case "Profit & Loss Report":
+					// Built in code below (calculation rows)
+					break;
+
+				case "Net Profit Report":
+					// (price - unitcost) * qty per product, all expenses are deducted in the summary
 					query = string.Format(
-						"SELECT 'Sales Revenue' AS [Category/Type], ISNULL(SUM(total_price), 0) AS [Amount ($)] " +
-						"FROM tblSale WHERE ISNULL(deleted, 0) = 0 AND ISNULL(returned, 0) = 0 AND date BETWEEN '{0}' AND '{1}' " +
-						"UNION ALL " +
-						"SELECT 'Operating Expenses' AS [Category/Type], ISNULL(SUM(Amount), 0) AS [Amount ($)] " +
-						"FROM tblExpenses WHERE ISNULL(deleted, 0) = 0 AND ExpenseDate BETWEEN '{0}' AND '{1}' " +
-						"UNION ALL " +
-						"SELECT 'Payment Method: ' + payment_Method AS [Category/Type], ISNULL(SUM(amount_paid), 0) AS [Amount ($)] " +
-						"FROM tblPayment WHERE payment_Date BETWEEN '{0}' AND '{1}' GROUP BY payment_Method",
+						"SELECT s.product_name AS [Product], SUM(s.quantity) AS [Qty Sold], " +
+						"SUM(s.total_price) AS [Revenue ($)], " +
+						"SUM(s.quantity * ISNULL(p.unitcost, 0)) AS [Total unitcost ($)], " +
+						"SUM((s.unit_price - ISNULL(p.unitcost, 0)) * s.quantity) AS [Gross Profit ($)] " +
+						"FROM tblSale s LEFT JOIN tblProduct p ON s.product_id = p.Product_ID " +
+						"WHERE ISNULL(s.deleted, 0) = 0 AND ISNULL(s.returned, 0) = 0 AND s.date BETWEEN '{0}' AND '{1}' " +
+						"GROUP BY s.product_id, s.product_name " +
+						"ORDER BY [Gross Profit ($)] DESC",
 						startDate, endDate);
 					break;
 
@@ -108,44 +179,63 @@ namespace key_luxery1
 					break;
 
 				case "Product Stock Report":
+					// Estimated profit = (price - unitcost) * quantity, totalized in the summary
 					query = "SELECT Product_ID AS [Product ID], Product_Name AS [Product Name], Category AS [Category], " +
-							"Quantity AS [Stock In Hand], Price AS [Unit Price], (Quantity * Price) AS [Total Inventory Value ($)] " +
+							"Quantity AS [Stock In Hand], ISNULL(unitcost, 0) AS [Unit unitcost], Price AS [Unit Price], " +
+							"(Quantity * Price) AS [Total Inventory Value ($)], " +
+							"((Price - ISNULL(unitcost, 0)) * Quantity) AS [Estimated Profit ($)] " +
 							"FROM tblProduct WHERE ISNULL(deleted, 0) = 0 ORDER BY Quantity DESC";
 					break;
 
 				case "Customer Purchase History":
+					// One row per invoice so the tax of each invoice is visible
 					query = string.Format(
 						"SELECT c.customer_name AS [Customer Name], c.customer_phone AS [Phone Number], " +
-						"CAST(COUNT(DISTINCT i.invoice_id) AS VARCHAR) AS [Total Invoices], " +
-						"ISNULL(SUM(i.grand_total), 0) AS [Total Sales Amount ($)], " +
-						"c.status AS [Status], c.date AS [Registration Date] " +
-						"FROM tblCustomer c " +
-						"LEFT JOIN tblInvoice i ON c.customer_id = i.customer_id AND ISNULL(i.deleted, 0) = 0 AND i.invoice_date BETWEEN '{0}' AND '{1}' " +
-						"WHERE ISNULL(c.deleted, 0) = 0 " +
-						"GROUP BY c.customer_id, c.customer_name, c.customer_phone, c.status, c.date " +
-						"ORDER BY [Total Sales Amount ($)] DESC",
+						"i.invoice_no AS [Invoice No], i.invoice_date AS [Invoice Date], " +
+						"ISNULL(i.tax, 0) AS [Tax ($)], ISNULL(i.grand_total, 0) AS [Grand Total ($)] " +
+						"FROM tblInvoice i " +
+						"INNER JOIN tblCustomer c ON i.customer_id = c.customer_id " +
+						"WHERE ISNULL(i.deleted, 0) = 0 AND ISNULL(c.deleted, 0) = 0 " +
+						"AND i.invoice_date BETWEEN '{0}' AND '{1}' " +
+						"ORDER BY c.customer_name, i.invoice_date DESC",
 						startDate, endDate);
 					break;
 
 				case "Daily Sales & Expense Breakdown":
 					query = string.Format(
-						"SELECT ISNULL(CAST(s.date AS DATE), CAST(e.ExpenseDate AS DATE)) AS Date, " +
-						"ISNULL(SUM(s.total_price), 0) AS TotalSales, " +
-						"ISNULL(SUM(e.Amount), 0) AS TotalExpenses, " +
-						"(ISNULL(SUM(s.total_price), 0) - ISNULL(SUM(e.Amount), 0)) AS NetProfit " +
-						"FROM tblSale s " +
-						"FULL OUTER JOIN tblExpenses e ON CAST(s.date AS DATE) = CAST(e.ExpenseDate AS DATE) " +
-						"WHERE (ISNULL(s.deleted, 0) = 0) " +
-						"AND ((s.date BETWEEN '{0}' AND '{1}' AND ISNULL(e.deleted, 0) = 0) OR (e.ExpenseDate BETWEEN '{0}' AND '{1}')) " +
-						"GROUP BY ISNULL(CAST(s.date AS DATE), CAST(e.ExpenseDate AS DATE)) " +
-						"ORDER BY Date DESC",
+						"WITH DailyTransactions AS (" +
+						"    SELECT CAST(s.date AS DATE) AS TransDate, " +
+						"           s.total_price AS TotalSales, " +
+						"           (ISNULL(s.Quantity, 1) * ISNULL(p.UnitCost, 0)) AS TotalCost, " +
+						"           0 AS TotalExpenses " +
+						"    FROM tblSale s " +
+						"    LEFT JOIN tblProduct p ON s.product_id = p.product_id " +
+						"    WHERE s.date >= '{0}' AND s.date < DATEADD(day, 1, CAST('{1}' AS DATE)) AND ISNULL(s.deleted, 0) = 0 " +
+						"    UNION ALL " +
+						"    SELECT CAST(e.ExpenseDate AS DATE) AS TransDate, " +
+						"           0 AS TotalSales, " +
+						"           0 AS TotalCost, " +
+						"           e.Amount AS TotalExpenses " +
+						"    FROM tblExpenses e " +
+						"    WHERE e.ExpenseDate >= '{0}' AND e.ExpenseDate < DATEADD(day, 1, CAST('{1}' AS DATE)) AND ISNULL(e.deleted, 0) = 0" +
+						") " +
+						"SELECT " +
+						"    TransDate AS Date, " +
+						"    SUM(TotalSales) AS TotalSales, " +
+						"    SUM(TotalCost) AS TotalCost, " +
+						"    SUM(TotalExpenses) AS TotalExpenses, " +
+						"    (SUM(TotalSales) - SUM(TotalCost) - SUM(TotalExpenses)) AS NetProfit " +
+						"FROM DailyTransactions " +
+						"GROUP BY TransDate " +
+						"ORDER BY TransDate DESC;",
 						startDate, endDate);
 					break;
 
 				case "Low Stock Inventory Report":
+					// Items with quantity LESS THAN 10
 					query = "SELECT Product_ID AS [Product ID], Product_Name AS [Product Name], Category AS [Category], " +
 							"Quantity AS [Stock In Hand], Price AS [Unit Price], (Quantity * Price) AS [Total Inventory Value ($)] " +
-							"FROM tblProduct WHERE ISNULL(deleted, 0) = 0 AND Quantity <= 5 " +
+							"FROM tblProduct WHERE ISNULL(deleted, 0) = 0 AND Quantity < 10 " +
 							"ORDER BY Quantity ASC";
 					break;
 
@@ -162,109 +252,179 @@ namespace key_luxery1
 					break;
 			}
 
-			reportTable = sharedClass.GetData(query);
+			if (reportType == "Profit & Loss Report")
+			{
+				reportTable = BuildProfitLossTable(startDate, endDate);
+			}
+			else
+			{
+				reportTable = sharedClass.GetData(query);
+				if (reportType == "Net Profit Report")
+					periodExpenses = GetPeriodExpenses(startDate, endDate);
+			}
+
 			dgvReports.DataSource = reportTable;
 
 			FormatGridColumns();
-			CalculateReportSummary(reportType, startDate, endDate);
+			CalculateReportSummary();
 		}
 
-		private void CalculateReportSummary(string reportType, string startDate, string endDate)
+		private DataTable BuildProfitLossTable(string startDate, string endDate)
 		{
+			DataTable dt = sharedClass.GetData(string.Format(
+				"SELECT ISNULL(SUM(s.total_price), 0) AS Revenue, " +
+				"ISNULL(SUM(s.quantity * ISNULL(p.unitcost, 0)), 0) AS Cogs " +
+				"FROM tblSale s LEFT JOIN tblProduct p ON s.product_id = p.Product_ID " +
+				"WHERE ISNULL(s.deleted, 0) = 0 AND ISNULL(s.returned, 0) = 0 AND s.date BETWEEN '{0}' AND '{1}'",
+				startDate, endDate));
+
+			periodRevenue = 0m;
+			periodCogs = 0m;
+			if (dt != null && dt.Rows.Count > 0)
+			{
+				periodRevenue = dt.Rows[0]["Revenue"] == DBNull.Value ? 0m : Convert.ToDecimal(dt.Rows[0]["Revenue"]);
+				periodCogs = dt.Rows[0]["Cogs"] == DBNull.Value ? 0m : Convert.ToDecimal(dt.Rows[0]["Cogs"]);
+			}
+			periodExpenses = GetPeriodExpenses(startDate, endDate);
+
+			decimal gross = periodRevenue - periodCogs;
+			decimal net = gross - periodExpenses;
+
+			DataTable pl = new DataTable();
+			pl.Columns.Add("Description", typeof(string));
+			pl.Columns.Add("Amount ($)", typeof(decimal));
+			pl.Rows.Add("Sales Revenue", periodRevenue);
+			pl.Rows.Add("Less: unitcost of Goods Sold", periodCogs);
+			pl.Rows.Add("Gross Profit", gross);
+			pl.Rows.Add("Less: Operating Expenses", periodExpenses);
+			pl.Rows.Add(net >= 0 ? "NET PROFIT" : "NET LOSS", net);
+			return pl;
+		}
+
+		// ----------------------------------------------------
+		// SUMMARY (cards on screen + the same numbers in print/preview)
+		// ----------------------------------------------------
+		private void CalculateReportSummary()
+		{
+			if (!formReady || dgvReports == null || cmbReportType == null ||
+				lblTotalSalesVal == null || lblTotalExpensesVal == null ||
+				lblTotalProfitVal == null || lblTotalTransactionsVal == null)
+				return;
+
 			try
 			{
-				decimal sumCol1 = 0m, sumCol2 = 0m, sumCol3 = 0m;
-				int totalRows = dgvReports.Rows.Count;
+				string t = cmbReportType.SelectedItem?.ToString() ?? "Sales Report";
+				decimal a = 0m, b = 0m, c = 0m;
+				int count = 0;
 
 				foreach (DataGridViewRow row in dgvReports.Rows)
 				{
-					if (row.IsNewRow) continue;
+					if (row.IsNewRow || !row.Visible) continue;
+					count++;
 
-					if (reportType == "Expense Summary Report")
+					switch (t)
 					{
-						if (decimal.TryParse(row.Cells["Amount"]?.Value?.ToString(), out decimal val)) sumCol1 += val;
-					}
-					else if (reportType == "Payment Report")
-					{
-						if (decimal.TryParse(row.Cells["Amount Paid ($)"]?.Value?.ToString(), out decimal val)) sumCol1 += val;
-					}
-					else if (reportType == "Profit & Loss Report")
-					{
-						if (decimal.TryParse(row.Cells["Amount ($)"]?.Value?.ToString(), out decimal val)) sumCol1 += val;
-					}
-					else if (reportType == "Product Stock Report" || reportType == "Low Stock Inventory Report")
-					{
-						if (decimal.TryParse(row.Cells["Total Inventory Value ($)"]?.Value?.ToString(), out decimal invVal)) sumCol1 += invVal;
-					}
-					else if (reportType == "Customer Purchase History")
-					{
-						if (decimal.TryParse(row.Cells["Total Sales Amount ($)"]?.Value?.ToString(), out decimal salesVal)) sumCol1 += salesVal;
-					}
-					else if (reportType == "Daily Sales & Expense Breakdown")
-					{
-						if (decimal.TryParse(row.Cells["TotalSales"]?.Value?.ToString(), out decimal sVal)) sumCol1 += sVal;
-						if (decimal.TryParse(row.Cells["TotalExpenses"]?.Value?.ToString(), out decimal eVal)) sumCol2 += eVal;
-						if (decimal.TryParse(row.Cells["NetProfit"]?.Value?.ToString(), out decimal nVal)) sumCol3 += nVal;
-					}
-					else if (reportType == "Sales Report")
-					{
-						if (decimal.TryParse(row.Cells["Total"]?.Value?.ToString(), out decimal tVal)) sumCol1 += tVal;
+						case "Expense Summary Report": a += GetCellDecimal(row, "Amount"); break;
+						case "Payment Report": a += GetCellDecimal(row, "Amount Paid ($)"); break;
+						case "Product Stock Report":
+							a += GetCellDecimal(row, "Total Inventory Value ($)");
+							b += GetCellDecimal(row, "Estimated Profit ($)");
+							c += GetCellDecimal(row, "Stock In Hand");
+							break;
+						case "Low Stock Inventory Report":
+							a += GetCellDecimal(row, "Total Inventory Value ($)");
+							c += GetCellDecimal(row, "Stock In Hand");
+							break;
+						case "Customer Purchase History":
+							a += GetCellDecimal(row, "Grand Total ($)");
+							b += GetCellDecimal(row, "Tax ($)");
+							break;
+						case "Daily Sales & Expense Breakdown":
+							a += GetCellDecimal(row, "TotalSales");
+							b += GetCellDecimal(row, "TotalExpenses");
+							c += GetCellDecimal(row, "NetProfit");
+							break;
+						case "Net Profit Report": a += GetCellDecimal(row, "Gross Profit ($)"); break;
+						case "Sales Report":
+						default: a += GetCellDecimal(row, "Total"); break;
 					}
 				}
 
-				// Context-Aware UI Summary Card Labels & Values
-				if (reportType == "Expense Summary Report")
+				printSummary.Clear();
+				lblTotalProfitVal.ForeColor = defaultProfitColor;
+				string na = "-";
+
+				switch (t)
 				{
-					lblTotalSalesVal.Text = "N/A";
-					lblTotalExpensesVal.Text = sumCol1.ToString("C2");
-					lblTotalProfitVal.Text = "N/A";
-				}
-				else if (reportType == "Payment Report")
-				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2");
-					lblTotalExpensesVal.Text = "N/A";
-					lblTotalProfitVal.Text = "N/A";
-				}
-				else if (reportType == "Profit & Loss Report")
-				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2");
-					lblTotalExpensesVal.Text = "-";
-					lblTotalProfitVal.Text = "-";
-				}
-				else if (reportType == "Product Stock Report")
-				{
-					lblTotalSalesVal.Text = "-" ; // Total Inventory Valuation
-					lblTotalExpensesVal.Text = "-"; // Total Products Count
-					lblTotalProfitVal.Text = sumCol1.ToString("C2");
-					lblTotalProfitTitle.Text = "Net / Estimated Profit ";
-				}
-				else if (reportType == "Low Stock Inventory Report")
-				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2"); // Low Stock Valuation
-					lblTotalExpensesVal.Text = totalRows.ToString(); // Low Stock Item Count
-					lblTotalProfitVal.Text = "-";
-				}
-				else if (reportType == "Customer Purchase History")
-				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2");
-					lblTotalExpensesVal.Text = totalRows.ToString();
-					lblTotalProfitVal.Text = "-";
-				}
-				else if (reportType == "Daily Sales & Expense Breakdown")
-				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2");
-					lblTotalExpensesVal.Text = sumCol2.ToString("C2");
-					lblTotalProfitVal.Text = sumCol3.ToString("C2");
-					lblTotalProfitVal.ForeColor = sumCol3 < 0 ? Color.Red : Color.ForestGreen;
-				}
-				else
-				{
-					lblTotalSalesVal.Text = sumCol1.ToString("C2");
-					lblTotalExpensesVal.Text = "-";
-					lblTotalProfitVal.Text = "-";
+					case "Expense Summary Report":
+						SetCards("Total Sales", na, "Total Expenses", a.ToString("C2"), "Net Profit", na);
+						printSummary.Add("Total Expenses: " + a.ToString("C2"));
+						break;
+
+					case "Profit & Loss Report":
+						{
+							decimal gross = periodRevenue - periodCogs;
+							decimal net = gross - periodExpenses;
+							SetCards("Total Revenue", periodRevenue.ToString("C2"), "Total Expenses", periodExpenses.ToString("C2"), "Net Profit / (Loss)", net.ToString("C2"));
+							lblTotalProfitVal.ForeColor = net < 0 ? Color.Red : Color.ForestGreen;
+							printSummary.Add("Gross Profit: " + gross.ToString("C2"));
+							printSummary.Add("Total Expenses: " + periodExpenses.ToString("C2"));
+							printSummary.Add("Net Profit / (Loss): " + net.ToString("C2"));
+							break;
+						}
+
+					case "Net Profit Report":
+						{
+							decimal net = a - periodExpenses;
+							SetCards("Gross Profit", a.ToString("C2"), "Total Expenses", periodExpenses.ToString("C2"), "Net Profit / (Loss)", net.ToString("C2"));
+							lblTotalProfitVal.ForeColor = net < 0 ? Color.Red : Color.ForestGreen;
+							printSummary.Add("Gross Profit: " + a.ToString("C2"));
+							printSummary.Add("Total Expenses: " + periodExpenses.ToString("C2"));
+							printSummary.Add("Net Profit / (Loss): " + net.ToString("C2"));
+							break;
+						}
+
+					case "Payment Report":
+						SetCards("Total Payments", a.ToString("C2"), "Total Expenses", na, "Net Profit", na);
+						printSummary.Add("Total Payments: " + a.ToString("C2"));
+						break;
+
+					case "Product Stock Report":
+						SetCards("Inventory Value", a.ToString("C2"), "Units In Stock", c.ToString("N0"), "Estimated Profit", b.ToString("C2"));
+						lblTotalProfitVal.ForeColor = b < 0 ? Color.Red : Color.ForestGreen;
+						printSummary.Add("Inventory Value: " + a.ToString("C2"));
+						printSummary.Add("Units In Stock: " + c.ToString("N0"));
+						printSummary.Add("Estimated Profit: " + b.ToString("C2"));
+						break;
+
+					case "Low Stock Inventory Report":
+						SetCards("Low Stock Value", a.ToString("C2"), "Units Left", c.ToString("N0"), "Net Profit", na);
+						printSummary.Add("Low Stock Value: " + a.ToString("C2"));
+						printSummary.Add("Units Left: " + c.ToString("N0"));
+						break;
+
+					case "Customer Purchase History":
+						SetCards("Total Sales", a.ToString("C2"), "Total Tax", b.ToString("C2"), "Net Profit", na);
+						printSummary.Add("Total Sales: " + a.ToString("C2"));
+						printSummary.Add("Total Tax: " + b.ToString("C2"));
+						break;
+
+					case "Daily Sales & Expense Breakdown":
+						SetCards("Total Sales", a.ToString("C2"), "Total Expenses", b.ToString("C2"), "Net Profit", c.ToString("C2"));
+						lblTotalProfitVal.ForeColor = c < 0 ? Color.Red : Color.ForestGreen;
+						printSummary.Add("Period Sales: " + a.ToString("C2"));
+						printSummary.Add("Period Expenses: " + b.ToString("C2"));
+						printSummary.Add("Net Profit Balance: " + c.ToString("C2"));
+						break;
+
+					case "Sales Report":
+					default:
+						SetCards("Total Revenue", a.ToString("C2"), "Total Expenses", na, "Net Profit", na);
+						printSummary.Add("Total Revenue: " + a.ToString("C2"));
+						break;
 				}
 
-				lblTotalTransactionsVal.Text = totalRows.ToString();
+				lblTotalTransactionsVal.Text = count.ToString();
 			}
 			catch (Exception ex)
 			{
@@ -272,13 +432,24 @@ namespace key_luxery1
 			}
 		}
 
+		private void SetCards(string t1, string v1, string t2, string v2, string t3, string v3)
+		{
+			SetTitle("lblTotalSalesTitle", t1);
+			SetTitle("lblTotalExpensesTitle", t2);
+			SetTitle("lblTotalProfitTitle", t3);
+			lblTotalSalesVal.Text = v1;
+			lblTotalExpensesVal.Text = v2;
+			lblTotalProfitVal.Text = v3;
+		}
+
 		private void FormatGridColumns()
 		{
 			foreach (DataGridViewColumn col in dgvReports.Columns)
 			{
 				if (col.Name.Contains("Price") || col.Name.Contains("Total") || col.Name.Contains("Amount") ||
-					col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") ||
-					col.Name.Contains("Value"))
+					col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("Profit") ||
+					col.Name.Contains("Value") || col.Name.Contains("Tax") || col.Name.Contains("unitcost") ||
+					col.Name.Contains("Revenue"))
 				{
 					col.DefaultCellStyle.Format = "C2";
 				}
@@ -314,7 +485,8 @@ namespace key_luxery1
 				reportTable.DefaultView.RowFilter = sb.ToString();
 			}
 
-			lblTotalTransactionsVal.Text = dgvReports.Rows.Count.ToString();
+			// totals follow the filtered rows
+			CalculateReportSummary();
 		}
 
 		private void btnExportExcel_Click(object sender, EventArgs e)
@@ -370,7 +542,7 @@ namespace key_luxery1
 		}
 
 		// ----------------------------------------------------
-		// STANDARDIZED PRINT & PRINT PREVIEW (FILTERED ONLY)
+		// PRINT & PRINT PREVIEW (FILTERED ONLY)
 		// ----------------------------------------------------
 		private void btnPrint_Click(object sender, EventArgs e)
 		{
@@ -381,6 +553,8 @@ namespace key_luxery1
 					MessageBox.Show("No data available to print.", "Print Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 					return;
 				}
+
+				CalculateReportSummary(); // make sure the summary matches what is on screen
 
 				printPreviewDlg.Document = printDoc;
 				printPreviewDlg.Size = new Size(1100, 800);
@@ -474,27 +648,11 @@ namespace key_luxery1
 
 				Dictionary<int, int> colWidths = new Dictionary<int, int>();
 				float totalWeight = 0;
+				foreach (var col in visibleCols) totalWeight += GetColWeight(col.Name);
 
 				foreach (var col in visibleCols)
 				{
-					float weight = 1.0f;
-					if (col.Name.Contains("Product") || col.Name.Contains("Description") || col.Name.Contains("Customer") || col.Name.Contains("Category")) weight = 2.4f;
-					else if (col.Name.Contains("Date")) weight = 1.6f;
-					else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Value")) weight = 1.4f;
-					else if (col.Name.Contains("Qty") || col.Name.Contains("Returned") || col.Name.Contains("Invoices")) weight = 0.8f;
-
-					totalWeight += weight;
-				}
-
-				foreach (var col in visibleCols)
-				{
-					float weight = 1.0f;
-					if (col.Name.Contains("Product") || col.Name.Contains("Description") || col.Name.Contains("Customer") || col.Name.Contains("Category")) weight = 2.4f;
-					else if (col.Name.Contains("Date")) weight = 1.6f;
-					else if (col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Value")) weight = 1.4f;
-					else if (col.Name.Contains("Qty") || col.Name.Contains("Returned") || col.Name.Contains("Invoices")) weight = 0.8f;
-
-					int calculatedWidth = (int)((weight / totalWeight) * printWidth);
+					int calculatedWidth = (int)((GetColWeight(col.Name) / totalWeight) * printWidth);
 					colWidths[col.Index] = Math.Max(50, calculatedWidth);
 				}
 
@@ -506,10 +664,7 @@ namespace key_luxery1
 				{
 					int w = colWidths[col.Index];
 					Rectangle headerRect = new Rectangle(currentHeaderX + 2, currentY, Math.Max(10, w - 4), 26);
-
-					bool isNumeric = col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Qty") || col.Name.Contains("Value");
-					g.DrawString(col.HeaderText, headerFont, Brushes.White, headerRect, isNumeric ? cellFormatRight : cellFormatLeft);
-
+					g.DrawString(col.HeaderText, headerFont, Brushes.White, headerRect, IsNumericCol(col.Name) ? cellFormatRight : cellFormatLeft);
 					currentHeaderX += w;
 				}
 
@@ -544,9 +699,7 @@ namespace key_luxery1
 						string val = row.Cells[col.Index].FormattedValue?.ToString() ?? "";
 
 						Rectangle cellRect = new Rectangle(cellX + 2, currentY, Math.Max(10, w - 4), rowHeight);
-						bool isNumeric = col.Name.Contains("Price") || col.Name.Contains("Amount") || col.Name.Contains("Total") || col.Name.Contains("Sales") || col.Name.Contains("Expenses") || col.Name.Contains("NetProfit") || col.Name.Contains("Qty") || col.Name.Contains("Value");
-
-						g.DrawString(val, bodyFont, Brushes.Black, cellRect, isNumeric ? cellFormatRight : cellFormatLeft);
+						g.DrawString(val, bodyFont, Brushes.Black, cellRect, IsNumericCol(col.Name) ? cellFormatRight : cellFormatLeft);
 						cellX += w;
 					}
 
@@ -555,57 +708,26 @@ namespace key_luxery1
 					currentPrintRow++;
 				}
 
-				// 5. CONTEXT-AWARE PRINT SUMMARY BLOCK
+				// 5. SUMMARY BLOCK (same numbers as the screen cards, built in CalculateReportSummary)
 				currentY += 15;
 				Rectangle summaryBox = new Rectangle(startX, currentY, printWidth, 42);
 				g.FillRectangle(new SolidBrush(Color.FromArgb(236, 240, 241)), summaryBox);
 				g.DrawRectangle(new Pen(Color.FromArgb(189, 195, 199), 1), summaryBox);
 
-				string activeReport = cmbReportType.SelectedItem?.ToString() ?? "";
-				string summary1 = "", summary2 = "", summary3 = "";
+				List<string> items = new List<string>(printSummary);
+				items.Add("Filtered Records: " + lblTotalTransactionsVal.Text);
 
-				if (activeReport == "Product Stock Report" || activeReport == "Low Stock Inventory Report")
+				Brush[] brushes = { Brushes.Navy, Brushes.DarkGreen, Brushes.DarkSlateGray, Brushes.DimGray };
+				int spacing = printWidth / Math.Max(1, items.Count);
+				for (int i = 0; i < items.Count; i++)
 				{
-					summary1 = "Total Stock Valuation: " + lblTotalSalesVal.Text;
-					summary2 = "Total Items Listed: " + lblTotalExpensesVal.Text;
-					summary3 = "Stock Audit: Verified";
+					Brush br = (i == items.Count - 1) ? Brushes.DimGray : brushes[Math.Min(i, brushes.Length - 1)];
+					g.DrawString(items[i], summaryFont, br, startX + (spacing * i) + 10, currentY + 11);
 				}
-				else if (activeReport == "Expense Summary Report")
-				{
-					summary1 = "Total Expenses: " + lblTotalSalesVal.Text;
-					summary2 = "Category Range: Active";
-					summary3 = "Status: Verified";
-				}
-				else if (activeReport == "Payment Report")
-				{
-					summary1 = "Total Payments Collected: " + lblTotalSalesVal.Text;
-					summary2 = "Payment Channels: Verified";
-					summary3 = "Audit Status: Secure";
-				}
-				else if (activeReport == "Daily Sales & Expense Breakdown")
-				{
-					summary1 = "Period Sales: " + lblTotalSalesVal.Text;
-					summary2 = "Period Expenses: " + lblTotalExpensesVal.Text;
-					summary3 = "Net Profit Balance: " + lblTotalProfitVal.Text;
-				}
-				else
-				{
-					summary1 = "Total Revenue / Volume: " + lblTotalSalesVal.Text;
-					summary2 = "Operational Filter: Applied";
-					summary3 = "Audit Status: Checked";
-				}
-
-				string textRecords = "Filtered Records: " + lblTotalTransactionsVal.Text;
-
-				int spacing = printWidth / 4;
-				g.DrawString(summary1, summaryFont, Brushes.Navy, startX + 10, currentY + 11);
-				g.DrawString(summary2, summaryFont, Brushes.DarkGreen, startX + spacing + 5, currentY + 11);
-				g.DrawString(summary3, summaryFont, Brushes.DarkSlateGray, startX + (spacing * 2) + 5, currentY + 11);
-				g.DrawString(textRecords, summaryFont, Brushes.DimGray, startX + (spacing * 3) + 5, currentY + 11);
 
 				currentY += 65;
 
-				// 6. WIDER SIGNATURE BLOCKS
+				// 6. SIGNATURE BLOCKS
 				int sigWidth = 260;
 				int prepX = startX + 50;
 				int apprX = startX + printWidth - sigWidth - 50;

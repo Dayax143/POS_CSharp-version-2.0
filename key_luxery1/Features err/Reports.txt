@@ -1,0 +1,52 @@
+> sale report
+preview
+
+printing
+sum the total revenue of the sales
+
+> expense report
+printing 
+- total expenses at the bottom
+
+
+> profit / loss report (calculations)
+preview
+
+printing
+
+
+> payment report
+preview 
+
+printing 
+- total payments 
+
+
+> PRODUCT stock report
+preview
+- estimated profit = (price-cost) * quantity of each then totalize
+printing
+sum of the estimated profit view
+
+
+> customer purchase history report
+preview 
+- view the expense the tax of each invoice
+printing
+
+
+> daily sales expense report
+preview 
+ok
+printing
+ok
+
+> low stock report (list the items that their quantity is less than 10
+preview
+ok
+printing ok
+
+
+net profit report
+> (price - cost) * qty - all expenses
+
