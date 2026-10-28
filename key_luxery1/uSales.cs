@@ -148,7 +148,7 @@ namespace key_luxery1
 		{
 			txtFilterInput.Clear();
 			LoadSalesData();
-			MessageBox.Show("Sales table refreshed successfully.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//MessageBox.Show("Sales table refreshed successfully.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void txtFilterInput_TextChanged(object sender, EventArgs e)

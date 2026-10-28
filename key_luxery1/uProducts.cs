@@ -173,7 +173,7 @@ namespace key_luxery1
 			txtSearchFilter.Clear();
 			currentPage = 1;
 			LoadProductsData();
-			MessageBox.Show("Inventory product list refreshed.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//MessageBox.Show("Inventory product list refreshed.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void btnExport_Click(object sender, EventArgs e)

@@ -17,13 +17,22 @@ namespace key_luxery1
 		// Printing Fields
 		private readonly PrintDocument printDoc = new PrintDocument();
 		private readonly PrintPreviewDialog printPreviewDlg = new PrintPreviewDialog();
-		private int currentPrintRow = 0;
 		private int pageNumber = 0;
 
 		// Summary shared by the screen cards AND the printed/previewed page
 		private readonly List<string> printSummary = new List<string>();
 		private Color defaultProfitColor;
 		private bool formReady = false; // blocks events that fire before the form is fully built
+
+		// Print dialog / page setup / selections
+		private readonly PrintDialog printDlg = new PrintDialog();
+		private readonly PageSetupDialog pageSetupDlg = new PageSetupDialog();
+		private readonly List<DataGridViewRow> printRows = new List<DataGridViewRow>();
+		private HashSet<int> printSelection = null; // null = all (filtered) rows, otherwise only these row indexes
+		private int printIdx = 0;
+		private int rowsPerPage = 0;
+		private int printFromPage = 1;
+		private int printToPage = 0; // 0 = until the last page
 
 		// Period figures used by Profit & Loss / Net Profit reports
 		private decimal periodRevenue = 0m;
@@ -36,6 +45,9 @@ namespace key_luxery1
 			defaultProfitColor = lblTotalProfitVal.ForeColor;
 
 			printDoc.DefaultPageSettings.Landscape = true;
+			printDlg.Document = printDoc;
+			printDlg.AllowSomePages = true;
+			pageSetupDlg.Document = printDoc;
 			printDoc.BeginPrint += new PrintEventHandler(PrintDocument_BeginPrint);
 			printDoc.PrintPage += new PrintPageEventHandler(PrintDocument_PrintPage);
 		}
@@ -203,32 +215,43 @@ namespace key_luxery1
 
 				case "Daily Sales & Expense Breakdown":
 					query = string.Format(
-						"WITH DailyTransactions AS (" +
-						"    SELECT CAST(s.date AS DATE) AS TransDate, " +
-						"           s.total_price AS TotalSales, " +
-						"           (ISNULL(s.Quantity, 1) * ISNULL(p.UnitCost, 0)) AS TotalCost, " +
-						"           0 AS TotalExpenses " +
-						"    FROM tblSale s " +
-						"    LEFT JOIN tblProduct p ON s.product_id = p.product_id " +
-						"    WHERE s.date >= '{0}' AND s.date < DATEADD(day, 1, CAST('{1}' AS DATE)) AND ISNULL(s.deleted, 0) = 0 " +
-						"    UNION ALL " +
-						"    SELECT CAST(e.ExpenseDate AS DATE) AS TransDate, " +
-						"           0 AS TotalSales, " +
-						"           0 AS TotalCost, " +
-						"           e.Amount AS TotalExpenses " +
-						"    FROM tblExpenses e " +
-						"    WHERE e.ExpenseDate >= '{0}' AND e.ExpenseDate < DATEADD(day, 1, CAST('{1}' AS DATE)) AND ISNULL(e.deleted, 0) = 0" +
-						") " +
-						"SELECT " +
-						"    TransDate AS Date, " +
-						"    SUM(TotalSales) AS TotalSales, " +
-						"    SUM(TotalCost) AS TotalCost, " +
-						"    SUM(TotalExpenses) AS TotalExpenses, " +
-						"    (SUM(TotalSales) - SUM(TotalCost) - SUM(TotalExpenses)) AS NetProfit " +
-						"FROM DailyTransactions " +
-						"GROUP BY TransDate " +
-						"ORDER BY TransDate DESC;",
-						startDate, endDate);
+	"WITH DailyTransactions AS (" +
+	"    SELECT " +
+	"        TRY_CAST(s.date AS DATE) AS TransDate, " +
+	"        CAST(ISNULL(s.total_price, 0) AS DECIMAL(18,2)) AS TotalSales, " +
+	"        CAST((ISNULL(s.Quantity, 1) * ISNULL(p.UnitCost, 0)) AS DECIMAL(18,2)) AS TotalCost, " +
+	"        CAST(0 AS DECIMAL(18,2)) AS TotalExpenses, " +
+	"        CAST(ISNULL(i.Discount, 0) AS DECIMAL(18,2)) AS TotalDiscount " +
+	"    FROM tblSale s " +
+	"    LEFT JOIN tblProduct p ON s.product_id = p.product_id " +
+	"    LEFT JOIN tblInvoice i ON s.invoice_id = i.invoice_id " +
+	"    WHERE TRY_CAST(s.date AS DATE) >= '{0}' " +
+	"      AND TRY_CAST(s.date AS DATE) < DATEADD(day, 1, CAST('{1}' AS DATE)) " +
+	"      AND ISNULL(s.deleted, 0) = 0 " +
+	"    UNION ALL " +
+	"    SELECT " +
+	"        TRY_CAST(e.ExpenseDate AS DATE) AS TransDate, " +
+	"        CAST(0 AS DECIMAL(18,2)) AS TotalSales, " +
+	"        CAST(0 AS DECIMAL(18,2)) AS TotalCost, " +
+	"        CAST(ISNULL(e.Amount, 0) AS DECIMAL(18,2)) AS TotalExpenses, " +
+	"        CAST(0 AS DECIMAL(18,2)) AS TotalDiscount " +
+	"    FROM tblExpenses e " +
+	"    WHERE TRY_CAST(e.ExpenseDate AS DATE) >= '{0}' " +
+	"      AND TRY_CAST(e.ExpenseDate AS DATE) < DATEADD(day, 1, CAST('{1}' AS DATE)) " +
+	"      AND ISNULL(e.deleted, 0) = 0" +
+	") " +
+	"SELECT " +
+	"    TransDate AS Date, " +
+	"    SUM(TotalSales) AS TotalSales, " +
+	"    SUM(TotalCost) AS TotalCost, " +
+	"    SUM(TotalExpenses) AS TotalExpenses, " +
+	"    SUM(TotalDiscount) AS TotalDiscount, " +
+	"    (SUM(TotalSales) - SUM(TotalCost) - SUM(TotalExpenses) - SUM(TotalDiscount)) AS NetProfit " +
+	"FROM DailyTransactions " +
+	"WHERE TransDate IS NOT NULL " +
+	"GROUP BY TransDate " +
+	"ORDER BY TransDate DESC;",
+	startDate, endDate);
 					break;
 
 				case "Low Stock Inventory Report":
@@ -294,7 +317,7 @@ namespace key_luxery1
 			pl.Columns.Add("Description", typeof(string));
 			pl.Columns.Add("Amount ($)", typeof(decimal));
 			pl.Rows.Add("Sales Revenue", periodRevenue);
-			pl.Rows.Add("Less: unitcost of Goods Sold", periodCogs);
+			pl.Rows.Add("Less: Cost of Goods Sold", periodCogs);
 			pl.Rows.Add("Gross Profit", gross);
 			pl.Rows.Add("Less: Operating Expenses", periodExpenses);
 			pl.Rows.Add(net >= 0 ? "NET PROFIT" : "NET LOSS", net);
@@ -320,6 +343,7 @@ namespace key_luxery1
 				foreach (DataGridViewRow row in dgvReports.Rows)
 				{
 					if (row.IsNewRow || !row.Visible) continue;
+					if (printSelection != null && !printSelection.Contains(row.Index)) continue;
 					count++;
 
 					switch (t)
@@ -554,7 +578,29 @@ namespace key_luxery1
 					return;
 				}
 
-				CalculateReportSummary(); // make sure the summary matches what is on screen
+				// rows the user has highlighted in the grid (enables the "Selection" option)
+				HashSet<int> selectedRows = new HashSet<int>();
+				foreach (DataGridViewCell cell in dgvReports.SelectedCells)
+					selectedRows.Add(cell.RowIndex);
+
+				// Print dialog: printer, Properties/Preferences, copies, All / Selection / Pages
+				printDlg.Document = printDoc;
+				printDlg.AllowSomePages = true;
+				printDlg.AllowSelection = selectedRows.Count > 0;
+				printDoc.PrinterSettings.MinimumPage = 1;
+				printDoc.PrinterSettings.MaximumPage = 9999;
+				printDoc.PrinterSettings.FromPage = 1;
+				printDoc.PrinterSettings.ToPage = 1;
+				printDoc.PrinterSettings.PrintRange = PrintRange.AllPages;
+
+				if (printDlg.ShowDialog(this) != DialogResult.OK) return;
+
+				PrinterSettings ps = printDoc.PrinterSettings;
+				printSelection = (ps.PrintRange == PrintRange.Selection) ? selectedRows : null;
+				printFromPage = (ps.PrintRange == PrintRange.SomePages) ? Math.Max(1, ps.FromPage) : 1;
+				printToPage = (ps.PrintRange == PrintRange.SomePages) ? ps.ToPage : 0;
+
+				CalculateReportSummary(); // totals of the rows that will actually be printed
 
 				printPreviewDlg.Document = printDoc;
 				printPreviewDlg.Size = new Size(1100, 800);
@@ -565,20 +611,64 @@ namespace key_luxery1
 			{
 				MessageBox.Show("Print Error: " + ex.Message, "Printing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+			finally
+			{
+				printSelection = null;
+				printFromPage = 1;
+				printToPage = 0;
+				CalculateReportSummary(); // back to the full on-screen totals
+			}
+		}
+
+		// Paper size, orientation and margins (wire this to an optional "Page Setup" button)
+		private void btnPageSetup_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				pageSetupDlg.Document = printDoc;
+				pageSetupDlg.ShowDialog(this);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Page setup error: " + ex.Message, "Page Setup", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
 		}
 
 		private void PrintDocument_BeginPrint(object sender, PrintEventArgs e)
 		{
-			currentPrintRow = 0;
 			pageNumber = 0;
+			printIdx = 0;
+			rowsPerPage = 0;
+
+			// build the list of rows to print: filtered rows only, or only the selected ones
+			printRows.Clear();
+			foreach (DataGridViewRow row in dgvReports.Rows)
+			{
+				if (row.IsNewRow || !row.Visible) continue;
+				if (printSelection != null && !printSelection.Contains(row.Index)) continue;
+				printRows.Add(row);
+			}
 		}
 
 		private void PrintDocument_PrintPage(object sender, PrintPageEventArgs e)
 		{
 			try
 			{
-				pageNumber++;
 				Graphics g = e.Graphics;
+
+				// first page: work out how many rows fit on a page so a page range can skip ahead
+				if (pageNumber == 0)
+				{
+					int rowsStartY = 40 + 113; // margin + header block height
+					rowsPerPage = Math.Max(1, (e.PageBounds.Height - 40 - 160 - rowsStartY) / 24);
+					if (printFromPage > 1)
+					{
+						pageNumber = printFromPage;
+						printIdx = Math.Min(printRows.Count, (printFromPage - 1) * rowsPerPage);
+					}
+					else pageNumber = 1;
+				}
+				else pageNumber++;
 
 				Font titleFont = new Font("Segoe UI", 16, FontStyle.Bold);
 				Font subTitleFont = new Font("Segoe UI", 10, FontStyle.Bold);
@@ -672,22 +762,18 @@ namespace key_luxery1
 
 				// 4. DRAW ROWS (ONLY FILTERED / SEARCHED VISIBLE ROWS)
 				int rowHeight = 24;
-				while (currentPrintRow < dgvReports.Rows.Count)
+				while (printIdx < printRows.Count)
 				{
-					DataGridViewRow row = dgvReports.Rows[currentPrintRow];
-					if (row.IsNewRow || !row.Visible)
-					{
-						currentPrintRow++;
-						continue;
-					}
+					DataGridViewRow row = printRows[printIdx];
 
 					if (currentY + rowHeight > printBottom - 160)
 					{
-						e.HasMorePages = true;
+						// stop here if the chosen page range ends on this page
+						e.HasMorePages = !(printToPage > 0 && pageNumber >= printToPage);
 						return;
 					}
 
-					if (currentPrintRow % 2 == 0)
+					if (printIdx % 2 == 0)
 					{
 						g.FillRectangle(new SolidBrush(Color.FromArgb(245, 247, 250)), startX, currentY, printWidth, rowHeight);
 					}
@@ -705,7 +791,7 @@ namespace key_luxery1
 
 					g.DrawLine(Pens.LightGray, startX, currentY + rowHeight, startX + printWidth, currentY + rowHeight);
 					currentY += rowHeight;
-					currentPrintRow++;
+					printIdx++;
 				}
 
 				// 5. SUMMARY BLOCK (same numbers as the screen cards, built in CalculateReportSummary)

@@ -85,7 +85,7 @@ namespace key_luxery1
 			txtSearchFilter.Clear();
 			currentPage = 1;
 			LoadUsersData();
-			MessageBox.Show("User list refreshed.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//MessageBox.Show("User list refreshed.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void btnFirst_Click(object sender, EventArgs e)

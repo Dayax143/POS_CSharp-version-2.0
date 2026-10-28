@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
 			this.BtnSetting = new System.Windows.Forms.Button();
 			this.PnlSetting = new System.Windows.Forms.Panel();
 			this.BtnAbout = new System.Windows.Forms.Button();
@@ -655,6 +656,7 @@
 			this.Controls.Add(this.uProducts1);
 			this.Controls.Add(this.PnlSidebar);
 			this.Controls.Add(this.pnlTopNav);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "frmDashboard";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -116,7 +116,7 @@ namespace key_luxery1
 		{
 			txtSearchFilter.Clear();
 			LoadCustomersData();
-			MessageBox.Show("Customer list refreshed.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//MessageBox.Show("Customer list refreshed.", "Refreshed", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		private void btnExport_Click(object sender, EventArgs e)
