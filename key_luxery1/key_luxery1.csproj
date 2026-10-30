@@ -84,6 +84,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appsettings.cs" />
     <Compile Include="ConnectionClass.cs" />
     <Compile Include="frmChangePassword.cs">
       <SubType>Form</SubType>
@@ -201,6 +202,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="sharedClass.cs" />
+    <Compile Include="Thememanager.cs" />
     <Compile Include="uAbout.cs">
       <SubType>UserControl</SubType>
     </Compile>

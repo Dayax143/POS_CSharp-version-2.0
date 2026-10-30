@@ -78,26 +78,29 @@
 			// BtnSetting
 			// 
 			this.BtnSetting.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.BtnSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.BtnSetting.FlatAppearance.BorderSize = 0;
+			this.BtnSetting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.BtnSetting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.BtnSetting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnSetting.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.BtnSetting.ForeColor = System.Drawing.Color.White;
+			this.BtnSetting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.BtnSetting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BtnSetting.Location = new System.Drawing.Point(19, 108);
+			this.BtnSetting.Location = new System.Drawing.Point(19, 304);
 			this.BtnSetting.Margin = new System.Windows.Forms.Padding(4);
 			this.BtnSetting.Name = "BtnSetting";
 			this.BtnSetting.Size = new System.Drawing.Size(181, 41);
 			this.BtnSetting.TabIndex = 0;
 			this.BtnSetting.Text = "  ⚙  Settings";
 			this.BtnSetting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BtnSetting.UseVisualStyleBackColor = true;
+			this.BtnSetting.UseVisualStyleBackColor = false;
 			this.BtnSetting.Click += new System.EventHandler(this.BtnSetting_Click);
 			// 
 			// PnlSetting
 			// 
 			this.PnlSetting.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.PnlSetting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.PnlSetting.Location = new System.Drawing.Point(3, 108);
+			this.PnlSetting.Location = new System.Drawing.Point(3, 304);
 			this.PnlSetting.Margin = new System.Windows.Forms.Padding(4);
 			this.PnlSetting.Name = "PnlSetting";
 			this.PnlSetting.Size = new System.Drawing.Size(10, 41);
@@ -107,10 +110,13 @@
 			// BtnAbout
 			// 
 			this.BtnAbout.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.BtnAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.BtnAbout.FlatAppearance.BorderSize = 0;
+			this.BtnAbout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.BtnAbout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.BtnAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnAbout.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.BtnAbout.ForeColor = System.Drawing.Color.White;
+			this.BtnAbout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.BtnAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.BtnAbout.Location = new System.Drawing.Point(678, 43);
 			this.BtnAbout.Margin = new System.Windows.Forms.Padding(4);
@@ -118,7 +124,7 @@
 			this.BtnAbout.Size = new System.Drawing.Size(120, 40);
 			this.BtnAbout.TabIndex = 0;
 			this.BtnAbout.Text = " About";
-			this.BtnAbout.UseVisualStyleBackColor = true;
+			this.BtnAbout.UseVisualStyleBackColor = false;
 			this.BtnAbout.Click += new System.EventHandler(this.BtnAbout_Click);
 			// 
 			// PnlAbout
@@ -135,26 +141,29 @@
 			// BtnUsers
 			// 
 			this.BtnUsers.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.BtnUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.BtnUsers.FlatAppearance.BorderSize = 0;
+			this.BtnUsers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.BtnUsers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.BtnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnUsers.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.BtnUsers.ForeColor = System.Drawing.Color.White;
+			this.BtnUsers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.BtnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BtnUsers.Location = new System.Drawing.Point(14, 346);
+			this.BtnUsers.Location = new System.Drawing.Point(17, 358);
 			this.BtnUsers.Margin = new System.Windows.Forms.Padding(4);
 			this.BtnUsers.Name = "BtnUsers";
 			this.BtnUsers.Size = new System.Drawing.Size(181, 41);
 			this.BtnUsers.TabIndex = 0;
 			this.BtnUsers.Text = "  👥  Users";
 			this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BtnUsers.UseVisualStyleBackColor = true;
+			this.BtnUsers.UseVisualStyleBackColor = false;
 			this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
 			// 
 			// PnlUsers
 			// 
 			this.PnlUsers.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.PnlUsers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.PnlUsers.Location = new System.Drawing.Point(0, 346);
+			this.PnlUsers.Location = new System.Drawing.Point(3, 358);
 			this.PnlUsers.Margin = new System.Windows.Forms.Padding(4);
 			this.PnlUsers.Name = "PnlUsers";
 			this.PnlUsers.Size = new System.Drawing.Size(10, 41);
@@ -164,10 +173,13 @@
 			// BtnDashboard
 			// 
 			this.BtnDashboard.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.BtnDashboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.BtnDashboard.FlatAppearance.BorderSize = 0;
+			this.BtnDashboard.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.BtnDashboard.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.BtnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnDashboard.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.BtnDashboard.ForeColor = System.Drawing.Color.White;
+			this.BtnDashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.BtnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			this.BtnDashboard.Location = new System.Drawing.Point(19, 10);
 			this.BtnDashboard.Margin = new System.Windows.Forms.Padding(4);
@@ -176,7 +188,7 @@
 			this.BtnDashboard.TabIndex = 0;
 			this.BtnDashboard.Text = "  🏠  Dashboard";
 			this.BtnDashboard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.BtnDashboard.UseVisualStyleBackColor = true;
+			this.BtnDashboard.UseVisualStyleBackColor = false;
 			this.BtnDashboard.Click += new System.EventHandler(this.BtnDashboard_Click);
 			// 
 			// PnlDashboard
@@ -191,7 +203,7 @@
 			// 
 			// PnlSidebar
 			// 
-			this.PnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+			this.PnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.PnlSidebar.Controls.Add(this.btnExpense);
 			this.PnlSidebar.Controls.Add(this.pnlExpense);
 			this.PnlSidebar.Controls.Add(this.pnlCustomer);
@@ -209,6 +221,7 @@
 			this.PnlSidebar.Controls.Add(this.BtnDashboard);
 			this.PnlSidebar.Controls.Add(this.PnlDashboard);
 			this.PnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+			this.PnlSidebar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.PnlSidebar.Location = new System.Drawing.Point(0, 100);
 			this.PnlSidebar.Margin = new System.Windows.Forms.Padding(4);
 			this.PnlSidebar.Name = "PnlSidebar";
@@ -218,26 +231,29 @@
 			// btnExpense
 			// 
 			this.btnExpense.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnExpense.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnExpense.FlatAppearance.BorderSize = 0;
+			this.btnExpense.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnExpense.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnExpense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnExpense.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnExpense.ForeColor = System.Drawing.Color.White;
+			this.btnExpense.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.btnExpense.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExpense.Location = new System.Drawing.Point(19, 59);
+			this.btnExpense.Location = new System.Drawing.Point(18, 206);
 			this.btnExpense.Margin = new System.Windows.Forms.Padding(4);
 			this.btnExpense.Name = "btnExpense";
 			this.btnExpense.Size = new System.Drawing.Size(181, 41);
 			this.btnExpense.TabIndex = 0;
 			this.btnExpense.Text = "  💳  Expenses";
 			this.btnExpense.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnExpense.UseVisualStyleBackColor = true;
+			this.btnExpense.UseVisualStyleBackColor = false;
 			this.btnExpense.Click += new System.EventHandler(this.btnExpense_Click);
 			// 
 			// pnlExpense
 			// 
 			this.pnlExpense.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlExpense.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlExpense.Location = new System.Drawing.Point(3, 59);
+			this.pnlExpense.Location = new System.Drawing.Point(2, 206);
 			this.pnlExpense.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlExpense.Name = "pnlExpense";
 			this.pnlExpense.Size = new System.Drawing.Size(10, 41);
@@ -248,7 +264,7 @@
 			// 
 			this.pnlCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlCustomer.Location = new System.Drawing.Point(3, 248);
+			this.pnlCustomer.Location = new System.Drawing.Point(4, 59);
 			this.pnlCustomer.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlCustomer.Name = "pnlCustomer";
 			this.pnlCustomer.Size = new System.Drawing.Size(10, 41);
@@ -259,7 +275,7 @@
 			// 
 			this.pnlPayment.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlPayment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlPayment.Location = new System.Drawing.Point(2, 199);
+			this.pnlPayment.Location = new System.Drawing.Point(3, 157);
 			this.pnlPayment.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlPayment.Name = "pnlPayment";
 			this.pnlPayment.Size = new System.Drawing.Size(10, 41);
@@ -270,7 +286,7 @@
 			// 
 			this.pnlProducts.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlProducts.Location = new System.Drawing.Point(3, 297);
+			this.pnlProducts.Location = new System.Drawing.Point(3, 108);
 			this.pnlProducts.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlProducts.Name = "pnlProducts";
 			this.pnlProducts.Size = new System.Drawing.Size(10, 41);
@@ -280,26 +296,29 @@
 			// btnReport
 			// 
 			this.btnReport.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnReport.FlatAppearance.BorderSize = 0;
+			this.btnReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnReport.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnReport.ForeColor = System.Drawing.Color.White;
+			this.btnReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnReport.Location = new System.Drawing.Point(19, 152);
+			this.btnReport.Location = new System.Drawing.Point(19, 255);
 			this.btnReport.Margin = new System.Windows.Forms.Padding(4);
 			this.btnReport.Name = "btnReport";
 			this.btnReport.Size = new System.Drawing.Size(181, 41);
 			this.btnReport.TabIndex = 0;
 			this.btnReport.Text = "  📊  Reports";
 			this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnReport.UseVisualStyleBackColor = true;
+			this.btnReport.UseVisualStyleBackColor = false;
 			this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
 			// 
 			// pnlReport
 			// 
 			this.pnlReport.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.pnlReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.pnlReport.Location = new System.Drawing.Point(3, 152);
+			this.pnlReport.Location = new System.Drawing.Point(3, 255);
 			this.pnlReport.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlReport.Name = "pnlReport";
 			this.pnlReport.Size = new System.Drawing.Size(10, 41);
@@ -309,67 +328,79 @@
 			// btnProducts
 			// 
 			this.btnProducts.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnProducts.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnProducts.FlatAppearance.BorderSize = 0;
+			this.btnProducts.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnProducts.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnProducts.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnProducts.ForeColor = System.Drawing.Color.White;
-			this.btnProducts.Location = new System.Drawing.Point(18, 297);
+			this.btnProducts.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
+			this.btnProducts.Location = new System.Drawing.Point(18, 108);
 			this.btnProducts.Margin = new System.Windows.Forms.Padding(4);
 			this.btnProducts.Name = "btnProducts";
 			this.btnProducts.Size = new System.Drawing.Size(181, 41);
 			this.btnProducts.TabIndex = 0;
 			this.btnProducts.Text = "  🛍️  Products";
 			this.btnProducts.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnProducts.UseVisualStyleBackColor = true;
+			this.btnProducts.UseVisualStyleBackColor = false;
 			this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
 			// 
 			// btnCustomer
 			// 
 			this.btnCustomer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnCustomer.FlatAppearance.BorderSize = 0;
+			this.btnCustomer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnCustomer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnCustomer.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnCustomer.ForeColor = System.Drawing.Color.White;
-			this.btnCustomer.Location = new System.Drawing.Point(21, 248);
+			this.btnCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
+			this.btnCustomer.Location = new System.Drawing.Point(22, 59);
 			this.btnCustomer.Margin = new System.Windows.Forms.Padding(4);
 			this.btnCustomer.Name = "btnCustomer";
 			this.btnCustomer.Size = new System.Drawing.Size(181, 41);
 			this.btnCustomer.TabIndex = 0;
 			this.btnCustomer.Text = "  👤 Customers";
 			this.btnCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnCustomer.UseVisualStyleBackColor = true;
+			this.btnCustomer.UseVisualStyleBackColor = false;
 			this.btnCustomer.Click += new System.EventHandler(this.btnCustomer_Click);
 			// 
 			// btnPayments
 			// 
 			this.btnPayments.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnPayments.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnPayments.FlatAppearance.BorderSize = 0;
+			this.btnPayments.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnPayments.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnPayments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPayments.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnPayments.ForeColor = System.Drawing.Color.White;
-			this.btnPayments.Location = new System.Drawing.Point(18, 199);
+			this.btnPayments.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
+			this.btnPayments.Location = new System.Drawing.Point(19, 157);
 			this.btnPayments.Margin = new System.Windows.Forms.Padding(4);
 			this.btnPayments.Name = "btnPayments";
 			this.btnPayments.Size = new System.Drawing.Size(181, 41);
 			this.btnPayments.TabIndex = 0;
 			this.btnPayments.Text = "  💵  Payments";
 			this.btnPayments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnPayments.UseVisualStyleBackColor = true;
+			this.btnPayments.UseVisualStyleBackColor = false;
 			this.btnPayments.Click += new System.EventHandler(this.btnPayments_Click);
 			// 
 			// BtnSidebar
 			// 
+			this.BtnSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.BtnSidebar.FlatAppearance.BorderSize = 0;
+			this.BtnSidebar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.BtnSidebar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.BtnSidebar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnSidebar.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.BtnSidebar.ForeColor = System.Drawing.Color.White;
+			this.BtnSidebar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.BtnSidebar.Location = new System.Drawing.Point(10, 10);
 			this.BtnSidebar.Margin = new System.Windows.Forms.Padding(4);
 			this.BtnSidebar.Name = "BtnSidebar";
 			this.BtnSidebar.Size = new System.Drawing.Size(40, 35);
 			this.BtnSidebar.TabIndex = 4;
 			this.BtnSidebar.Text = "☰";
-			this.BtnSidebar.UseVisualStyleBackColor = true;
+			this.BtnSidebar.UseVisualStyleBackColor = false;
 			this.BtnSidebar.Click += new System.EventHandler(this.BtnSidebar_Click);
 			// 
 			// pnlSale
@@ -386,11 +417,13 @@
 			// btnLogout
 			// 
 			this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+			this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnLogout.FlatAppearance.BorderSize = 0;
+			this.btnLogout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnLogout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnLogout.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.btnLogout.ForeColor = System.Drawing.Color.White;
+			this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.btnLogout.Location = new System.Drawing.Point(1170, 15);
 			this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
 			this.btnLogout.Name = "btnLogout";
@@ -404,7 +437,7 @@
 			// 
 			this.lblUsername.AutoSize = true;
 			this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 10F);
-			this.lblUsername.ForeColor = System.Drawing.Color.White;
+			this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.lblUsername.Location = new System.Drawing.Point(180, 15);
 			this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblUsername.Name = "lblUsername";
@@ -416,7 +449,7 @@
 			// 
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
-			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.label1.Location = new System.Drawing.Point(90, 15);
 			this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.label1.Name = "label1";
@@ -429,7 +462,7 @@
 			this.lblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblDate.AutoSize = true;
 			this.lblDate.Font = new System.Drawing.Font("Segoe UI", 10F);
-			this.lblDate.ForeColor = System.Drawing.Color.White;
+			this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.lblDate.Location = new System.Drawing.Point(1010, 60);
 			this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblDate.Name = "lblDate";
@@ -442,7 +475,7 @@
 			this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.lblTitle.AutoSize = true;
 			this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
-			this.lblTitle.ForeColor = System.Drawing.Color.White;
+			this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.lblTitle.Location = new System.Drawing.Point(500, 9);
 			this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblTitle.Name = "lblTitle";
@@ -453,22 +486,25 @@
 			// btnSales
 			// 
 			this.btnSales.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnSales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnSales.FlatAppearance.BorderSize = 0;
+			this.btnSales.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnSales.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSales.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnSales.ForeColor = System.Drawing.Color.White;
+			this.btnSales.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.btnSales.Location = new System.Drawing.Point(422, 43);
 			this.btnSales.Margin = new System.Windows.Forms.Padding(4);
 			this.btnSales.Name = "btnSales";
 			this.btnSales.Size = new System.Drawing.Size(120, 40);
 			this.btnSales.TabIndex = 0;
 			this.btnSales.Text = "Sales";
-			this.btnSales.UseVisualStyleBackColor = true;
+			this.btnSales.UseVisualStyleBackColor = false;
 			this.btnSales.Click += new System.EventHandler(this.btnSales_Click);
 			// 
 			// pnlTopNav
 			// 
-			this.pnlTopNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
+			this.pnlTopNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pnlTopNav.Controls.Add(this.BtnSidebar);
 			this.pnlTopNav.Controls.Add(this.pnlInvoice);
 			this.pnlTopNav.Controls.Add(this.pnlSale);
@@ -484,6 +520,7 @@
 			this.pnlTopNav.Controls.Add(this.PnlAbout);
 			this.pnlTopNav.Controls.Add(this.btnSales);
 			this.pnlTopNav.Dock = System.Windows.Forms.DockStyle.Top;
+			this.pnlTopNav.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.pnlTopNav.Location = new System.Drawing.Point(0, 0);
 			this.pnlTopNav.Margin = new System.Windows.Forms.Padding(4);
 			this.pnlTopNav.Name = "pnlTopNav";
@@ -504,11 +541,13 @@
 			// btnChangePassword
 			// 
 			this.btnChangePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+			this.btnChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnChangePassword.FlatAppearance.BorderSize = 0;
+			this.btnChangePassword.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnChangePassword.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnChangePassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnChangePassword.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.btnChangePassword.ForeColor = System.Drawing.Color.White;
+			this.btnChangePassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.btnChangePassword.Location = new System.Drawing.Point(959, 15);
 			this.btnChangePassword.Margin = new System.Windows.Forms.Padding(4);
 			this.btnChangePassword.Name = "btnChangePassword";
@@ -521,24 +560,27 @@
 			// btnInvoice
 			// 
 			this.btnInvoice.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.btnInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.btnInvoice.FlatAppearance.BorderSize = 0;
+			this.btnInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(104)))), ((int)(((byte)(58)))));
+			this.btnInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(78)))), ((int)(((byte)(24)))));
 			this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnInvoice.Font = new System.Drawing.Font("Segoe UI", 11F);
-			this.btnInvoice.ForeColor = System.Drawing.Color.White;
+			this.btnInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.btnInvoice.Location = new System.Drawing.Point(550, 43);
 			this.btnInvoice.Margin = new System.Windows.Forms.Padding(4);
 			this.btnInvoice.Name = "btnInvoice";
 			this.btnInvoice.Size = new System.Drawing.Size(120, 40);
 			this.btnInvoice.TabIndex = 0;
 			this.btnInvoice.Text = "Invoices";
-			this.btnInvoice.UseVisualStyleBackColor = true;
+			this.btnInvoice.UseVisualStyleBackColor = false;
 			this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
 			// 
 			// lblRole
 			// 
 			this.lblRole.AutoSize = true;
 			this.lblRole.Font = new System.Drawing.Font("Segoe UI", 10F);
-			this.lblRole.ForeColor = System.Drawing.Color.White;
+			this.lblRole.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.lblRole.Location = new System.Drawing.Point(376, 15);
 			this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblRole.Name = "lblRole";
@@ -549,8 +591,9 @@
 			// 
 			// uInvoice1
 			// 
-			this.uInvoice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uInvoice1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uInvoice1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uInvoice1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uInvoice1.Location = new System.Drawing.Point(203, 100);
 			this.uInvoice1.Name = "uInvoice1";
 			this.uInvoice1.Size = new System.Drawing.Size(1090, 694);
@@ -559,8 +602,9 @@
 			// 
 			// uCustomer1
 			// 
-			this.uCustomer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uCustomer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uCustomer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uCustomer1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uCustomer1.Location = new System.Drawing.Point(203, 100);
 			this.uCustomer1.Name = "uCustomer1";
 			this.uCustomer1.Size = new System.Drawing.Size(1090, 694);
@@ -568,8 +612,9 @@
 			// 
 			// uPayments1
 			// 
-			this.uPayments1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uPayments1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uPayments1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uPayments1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uPayments1.Location = new System.Drawing.Point(203, 100);
 			this.uPayments1.Name = "uPayments1";
 			this.uPayments1.Size = new System.Drawing.Size(1090, 694);
@@ -577,8 +622,9 @@
 			// 
 			// uSettings1
 			// 
-			this.uSettings1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uSettings1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uSettings1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uSettings1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uSettings1.Location = new System.Drawing.Point(203, 100);
 			this.uSettings1.Name = "uSettings1";
 			this.uSettings1.Size = new System.Drawing.Size(1090, 694);
@@ -586,8 +632,9 @@
 			// 
 			// uAbout1
 			// 
-			this.uAbout1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uAbout1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uAbout1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uAbout1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uAbout1.Location = new System.Drawing.Point(203, 100);
 			this.uAbout1.Name = "uAbout1";
 			this.uAbout1.Size = new System.Drawing.Size(1090, 694);
@@ -595,8 +642,9 @@
 			// 
 			// uManageUsers1
 			// 
-			this.uManageUsers1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uManageUsers1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uManageUsers1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uManageUsers1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uManageUsers1.Location = new System.Drawing.Point(203, 100);
 			this.uManageUsers1.Name = "uManageUsers1";
 			this.uManageUsers1.Size = new System.Drawing.Size(1090, 694);
@@ -604,8 +652,9 @@
 			// 
 			// uHome1
 			// 
-			this.uHome1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uHome1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uHome1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uHome1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uHome1.Location = new System.Drawing.Point(203, 100);
 			this.uHome1.Name = "uHome1";
 			this.uHome1.Size = new System.Drawing.Size(1090, 694);
@@ -613,8 +662,9 @@
 			// 
 			// uSales1
 			// 
-			this.uSales1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uSales1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uSales1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uSales1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uSales1.Location = new System.Drawing.Point(203, 100);
 			this.uSales1.Margin = new System.Windows.Forms.Padding(4);
 			this.uSales1.Name = "uSales1";
@@ -623,8 +673,9 @@
 			// 
 			// uProducts1
 			// 
-			this.uProducts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(246)))), ((int)(((byte)(250)))));
+			this.uProducts1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.uProducts1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.uProducts1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.uProducts1.Location = new System.Drawing.Point(203, 100);
 			this.uProducts1.Name = "uProducts1";
 			this.uProducts1.Size = new System.Drawing.Size(1090, 694);
@@ -632,7 +683,9 @@
 			// 
 			// pnlMainContent
 			// 
+			this.pnlMainContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
 			this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pnlMainContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.pnlMainContent.Location = new System.Drawing.Point(203, 100);
 			this.pnlMainContent.Name = "pnlMainContent";
 			this.pnlMainContent.Size = new System.Drawing.Size(1090, 694);
@@ -642,7 +695,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(18)))));
 			this.ClientSize = new System.Drawing.Size(1293, 794);
 			this.Controls.Add(this.pnlMainContent);
 			this.Controls.Add(this.uInvoice1);
@@ -656,6 +709,7 @@
 			this.Controls.Add(this.uProducts1);
 			this.Controls.Add(this.PnlSidebar);
 			this.Controls.Add(this.pnlTopNav);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Margin = new System.Windows.Forms.Padding(4);
 			this.Name = "frmDashboard";
