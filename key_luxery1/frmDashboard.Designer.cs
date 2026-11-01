@@ -683,9 +683,9 @@
 			// 
 			// pnlMainContent
 			// 
-			this.pnlMainContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+			this.pnlMainContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
 			this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pnlMainContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(230)))), ((int)(((byte)(200)))));
+			this.pnlMainContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(175)))), ((int)(((byte)(55)))));
 			this.pnlMainContent.Location = new System.Drawing.Point(203, 100);
 			this.pnlMainContent.Name = "pnlMainContent";
 			this.pnlMainContent.Size = new System.Drawing.Size(1090, 694);
@@ -704,7 +704,6 @@
 			this.Controls.Add(this.uSettings1);
 			this.Controls.Add(this.uAbout1);
 			this.Controls.Add(this.uManageUsers1);
-			this.Controls.Add(this.uHome1);
 			this.Controls.Add(this.uSales1);
 			this.Controls.Add(this.uProducts1);
 			this.Controls.Add(this.PnlSidebar);

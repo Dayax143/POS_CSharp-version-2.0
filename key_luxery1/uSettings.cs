@@ -132,7 +132,7 @@ namespace key_luxery1
 				s.ReceiptFooter = txtReceiptFooter.Text.Trim();
 				s.Save();
 
-				ThemeManager.SetTheme(_edit, true);       // saves + restyles the whole application
+				ThemeManager.SetTheme(_edit, true);        // saves + restyles the whole application
 				RefreshPreview();
 
 				string msg = "System preferences and database configuration updated successfully!";
@@ -455,6 +455,7 @@ namespace key_luxery1
 			else MessageBox.Show("That folder does not exist yet. It is created when the first backup runs.", "Backup Folder", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
+
 		// ---------- Appearance tab ----------
 		private void BuildAppearanceTab()
 		{
@@ -483,7 +484,7 @@ namespace key_luxery1
 			{
 				AddLabel(p, slot.Caption + " :", 20, y + 5);
 				var sw = new Button();
-				sw.Tag = "keep";                       // the theme engine must not recolor the swatches
+				sw.Tag = "keep";                    // the theme engine must not recolor the swatches
 				sw.FlatStyle = FlatStyle.Flat;
 				sw.FlatAppearance.BorderColor = Color.Gray;
 				sw.UseVisualStyleBackColor = false;
@@ -708,8 +709,145 @@ namespace key_luxery1
 
 		private void btnApplyTheme_Click(object sender, EventArgs e)
 		{
-			ThemeManager.SetTheme(_edit, true);
-			RefreshPreview();
+			try
+			{
+				// 1. Save and apply theme globally via ThemeManager
+				ThemeManager.SetTheme(_edit, true);
+
+				// 2. Recursively traverse and restyle all currently open forms and user controls
+				foreach (Form form in Application.OpenForms)
+				{
+					ApplyThemeRecursive(form, _edit);
+					form.Invalidate(true); // Force redraw
+				}
+
+				RefreshPreview();
+				MessageBox.Show("Theme applied successfully to the entire application!", "Theme Applied", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error applying theme: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		// ---------- Recursive Theme Application Engine ----------
+		private void ApplyThemeRecursive(Control ctrl, AppTheme theme)
+		{
+			if (ctrl == null) return;
+
+			// Skip controls tagged to keep their custom styling (e.g., swatches, specific action buttons)
+			if (ctrl.Tag is string tagStr && tagStr.Contains("keep"))
+				return;
+
+			// 1. Apply Typography (Font Name & Scale)
+			if (!string.IsNullOrEmpty(theme.FontName))
+			{
+				try
+				{
+					float currentSize = ctrl.Font.Size;
+					float newSize = currentSize * theme.FontScale;
+					ctrl.Font = new Font(theme.FontName, Math.Max(6f, newSize), ctrl.Font.Style);
+				}
+				catch { /* Fallback if font isn't installed */ }
+			}
+			else if (theme.FontScale != 1.0f)
+			{
+				try
+				{
+					float baseSize = ctrl.Font.Size / ((float)numFontScale.Value / 100f);
+					float newSize = baseSize * theme.FontScale;
+					ctrl.Font = new Font(ctrl.Font.FontFamily, Math.Max(6f, newSize), ctrl.Font.Style);
+				}
+				catch { }
+			}
+
+			// 2. Apply Colors & Styles based on Control Type
+			if (ctrl is Form form)
+			{
+				form.BackColor = theme.Background;
+				form.ForeColor = theme.Text;
+
+				if (!string.IsNullOrEmpty(theme.BackgroundImage) && File.Exists(theme.BackgroundImage))
+				{
+					try { form.BackgroundImage = Image.FromFile(theme.BackgroundImage); } catch { }
+					form.BackgroundImageLayout = theme.BackgroundLayout;
+				}
+				else
+				{
+					form.BackgroundImage = null;
+				}
+			}
+			else if (ctrl is Panel panel)
+			{
+				bool isColoredTile = panel.Tag != null && panel.Tag.ToString().Contains("colored");
+				if (!(theme.PreserveColoredPanels && isColoredTile))
+				{
+					panel.BackColor = theme.Surface;
+				}
+				panel.ForeColor = theme.Text;
+			}
+			else if (ctrl is Button btn)
+			{
+				if (theme.RecolorButtons)
+				{
+					btn.BackColor = theme.Accent;
+					btn.ForeColor = theme.AccentText;
+				}
+				else
+				{
+					btn.BackColor = theme.Surface;
+					btn.ForeColor = theme.Text;
+				}
+
+				if (theme.FlatButtons)
+				{
+					btn.FlatStyle = FlatStyle.Flat;
+					btn.FlatAppearance.BorderSize = 1;
+					btn.FlatAppearance.BorderColor = Color.FromArgb(100, theme.Accent);
+				}
+				else
+				{
+					btn.FlatStyle = FlatStyle.Standard;
+				}
+			}
+			else if (ctrl is TextBox || ctrl is ComboBox || ctrl is NumericUpDown)
+			{
+				ctrl.BackColor = theme.InputBack;
+				ctrl.ForeColor = theme.Text;
+			}
+			else if (ctrl is Label lbl)
+			{
+				if (lbl.Tag != null && lbl.Tag.ToString().Contains("sidebar"))
+				{
+					lbl.ForeColor = theme.SidebarText;
+				}
+				else
+				{
+					lbl.ForeColor = theme.Text;
+				}
+			}
+			else if (ctrl is DataGridView grid)
+			{
+				grid.BackgroundColor = theme.Background;
+				grid.GridColor = theme.Surface;
+				grid.DefaultCellStyle.BackColor = theme.Surface;
+				grid.DefaultCellStyle.ForeColor = theme.Text;
+				grid.AlternatingRowsDefaultCellStyle.BackColor = theme.TransparentPanels ? Color.FromArgb(20, theme.Accent) : theme.InputBack;
+			}
+			else
+			{
+				if (ctrl.BackColor != Color.Transparent)
+				{
+					ctrl.BackColor = theme.Surface;
+				}
+				ctrl.ForeColor = theme.Text;
+			}
+
+			// 3. Recurse through all child controls
+			foreach (Control child in ctrl.Controls)
+			{
+				ApplyThemeRecursive(child, theme);
+			}
 		}
 
 		private void btnResetTheme_Click(object sender, EventArgs e)

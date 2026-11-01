@@ -44,7 +44,7 @@ namespace key_luxery1
 		}
 
 		public static string Get(Dictionary<string, string> d, string key, string def)
-		{
+		{ 
 			string v;
 			return d.TryGetValue(key, out v) ? v : def;
 		}

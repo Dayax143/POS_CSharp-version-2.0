@@ -57,9 +57,9 @@
 			// 
 			// panelCard
 			// 
-			this.panelCard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.panelCard.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelCard.BackColor = System.Drawing.Color.White;
 			this.panelCard.Controls.Add(this.btnSaveSettings);
 			this.panelCard.Controls.Add(this.tabMain);
@@ -69,22 +69,28 @@
 			this.panelCard.Size = new System.Drawing.Size(1139, 680);
 			this.panelCard.TabIndex = 0;
 			// 
-			// lblTitle
+			// btnSaveSettings
 			// 
-			this.lblTitle.AutoSize = true;
-			this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
-			this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.lblTitle.Location = new System.Drawing.Point(25, 15);
-			this.lblTitle.Name = "lblTitle";
-			this.lblTitle.Size = new System.Drawing.Size(302, 41);
-			this.lblTitle.TabIndex = 0;
-			this.lblTitle.Text = "System Preferences";
+			this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.btnSaveSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+			this.btnSaveSettings.FlatAppearance.BorderSize = 0;
+			this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnSaveSettings.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+			this.btnSaveSettings.ForeColor = System.Drawing.Color.White;
+			this.btnSaveSettings.Location = new System.Drawing.Point(30, 622);
+			this.btnSaveSettings.Name = "btnSaveSettings";
+			this.btnSaveSettings.Size = new System.Drawing.Size(180, 40);
+			this.btnSaveSettings.TabIndex = 4;
+			this.btnSaveSettings.Tag = "keep";
+			this.btnSaveSettings.Text = "Save Configuration";
+			this.btnSaveSettings.UseVisualStyleBackColor = false;
+			this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
 			// 
 			// tabMain
 			// 
-			this.tabMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-			| System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.tabMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tabMain.Controls.Add(this.tabGeneral);
 			this.tabMain.Controls.Add(this.tabAppearance);
 			this.tabMain.Controls.Add(this.tabBackup);
@@ -107,98 +113,27 @@
 			this.tabGeneral.Controls.Add(this.txtDbServer);
 			this.tabGeneral.Controls.Add(this.lblDbServer);
 			this.tabGeneral.Controls.Add(this.lblDbTitle);
-			this.tabGeneral.Location = new System.Drawing.Point(4, 30);
+			this.tabGeneral.Location = new System.Drawing.Point(4, 32);
 			this.tabGeneral.Name = "tabGeneral";
 			this.tabGeneral.Padding = new System.Windows.Forms.Padding(10);
-			this.tabGeneral.Size = new System.Drawing.Size(1071, 496);
+			this.tabGeneral.Size = new System.Drawing.Size(1071, 494);
 			this.tabGeneral.TabIndex = 0;
 			this.tabGeneral.Text = "General";
 			// 
-			// lblDbTitle
-			// 
-			this.lblDbTitle.AutoSize = true;
-			this.lblDbTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-			this.lblDbTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.lblDbTitle.Location = new System.Drawing.Point(20, 20);
-			this.lblDbTitle.Name = "lblDbTitle";
-			this.lblDbTitle.Size = new System.Drawing.Size(188, 21);
-			this.lblDbTitle.TabIndex = 1;
-			this.lblDbTitle.Text = "Database Configuration";
-			// 
-			// lblDbServer
-			// 
-			this.lblDbServer.AutoSize = true;
-			this.lblDbServer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblDbServer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			this.lblDbServer.Location = new System.Drawing.Point(20, 65);
-			this.lblDbServer.Name = "lblDbServer";
-			this.lblDbServer.Size = new System.Drawing.Size(125, 17);
-			this.lblDbServer.TabIndex = 2;
-			this.lblDbServer.Text = "SQL Server Source :";
-			// 
-			// txtDbServer
-			// 
-			this.txtDbServer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.txtDbServer.Location = new System.Drawing.Point(180, 62);
-			this.txtDbServer.Name = "txtDbServer";
-			this.txtDbServer.Size = new System.Drawing.Size(300, 24);
-			this.txtDbServer.TabIndex = 0;
-			this.txtDbServer.Text = ".\\SQLEXPRESS";
-			// 
 			// btnTestConnection
 			// 
+			this.btnTestConnection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
 			this.btnTestConnection.FlatAppearance.BorderSize = 0;
 			this.btnTestConnection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnTestConnection.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+			this.btnTestConnection.ForeColor = System.Drawing.Color.White;
 			this.btnTestConnection.Location = new System.Drawing.Point(490, 60);
 			this.btnTestConnection.Name = "btnTestConnection";
 			this.btnTestConnection.Size = new System.Drawing.Size(130, 28);
 			this.btnTestConnection.TabIndex = 7;
 			this.btnTestConnection.Text = "Test Connection";
 			this.btnTestConnection.UseVisualStyleBackColor = false;
-			this.btnTestConnection.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.btnTestConnection.ForeColor = System.Drawing.Color.White;
 			this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
-			// 
-			// lblGeneralTitle
-			// 
-			this.lblGeneralTitle.AutoSize = true;
-			this.lblGeneralTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-			this.lblGeneralTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.lblGeneralTitle.Location = new System.Drawing.Point(20, 115);
-			this.lblGeneralTitle.Name = "lblGeneralTitle";
-			this.lblGeneralTitle.Size = new System.Drawing.Size(161, 21);
-			this.lblGeneralTitle.TabIndex = 8;
-			this.lblGeneralTitle.Text = "General Preferences";
-			// 
-			// lblCurrency
-			// 
-			this.lblCurrency.AutoSize = true;
-			this.lblCurrency.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblCurrency.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			this.lblCurrency.Location = new System.Drawing.Point(20, 163);
-			this.lblCurrency.Name = "lblCurrency";
-			this.lblCurrency.Size = new System.Drawing.Size(120, 17);
-			this.lblCurrency.TabIndex = 6;
-			this.lblCurrency.Text = "Receipt Currency :";
-			// 
-			// cmbCurrency
-			// 
-			this.cmbCurrency.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.cmbCurrency.FormattingEnabled = true;
-			this.cmbCurrency.Items.AddRange(new object[] {
-			"USD ($)",
-			"EUR (€)",
-			"GBP (£)",
-			"SAR (﷼)",
-			"AED (د.إ)",
-			"SLSH (Sh)",
-			"SOS (Sh)"});
-			this.cmbCurrency.Location = new System.Drawing.Point(180, 160);
-			this.cmbCurrency.Name = "cmbCurrency";
-			this.cmbCurrency.Size = new System.Drawing.Size(300, 25);
-			this.cmbCurrency.TabIndex = 2;
-			this.cmbCurrency.Text = "USD ($)";
 			// 
 			// chkAutoBackup
 			// 
@@ -209,10 +144,77 @@
 			this.chkAutoBackup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
 			this.chkAutoBackup.Location = new System.Drawing.Point(20, 205);
 			this.chkAutoBackup.Name = "chkAutoBackup";
-			this.chkAutoBackup.Size = new System.Drawing.Size(262, 21);
+			this.chkAutoBackup.Size = new System.Drawing.Size(321, 25);
 			this.chkAutoBackup.TabIndex = 3;
 			this.chkAutoBackup.Text = "Enable Automatic Daily Database Backups";
 			this.chkAutoBackup.UseVisualStyleBackColor = true;
+			// 
+			// lblGeneralTitle
+			// 
+			this.lblGeneralTitle.AutoSize = true;
+			this.lblGeneralTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+			this.lblGeneralTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			this.lblGeneralTitle.Location = new System.Drawing.Point(20, 115);
+			this.lblGeneralTitle.Name = "lblGeneralTitle";
+			this.lblGeneralTitle.Size = new System.Drawing.Size(202, 28);
+			this.lblGeneralTitle.TabIndex = 8;
+			this.lblGeneralTitle.Text = "General Preferences";
+			// 
+			// cmbCurrency
+			// 
+			this.cmbCurrency.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.cmbCurrency.FormattingEnabled = true;
+			this.cmbCurrency.Items.AddRange(new object[] {
+            "USD ($)",
+            "EUR (€)",
+            "SLSH (Sh)"});
+			this.cmbCurrency.Location = new System.Drawing.Point(180, 160);
+			this.cmbCurrency.Name = "cmbCurrency";
+			this.cmbCurrency.Size = new System.Drawing.Size(300, 29);
+			this.cmbCurrency.TabIndex = 2;
+			this.cmbCurrency.Text = "USD ($)";
+			// 
+			// lblCurrency
+			// 
+			this.lblCurrency.AutoSize = true;
+			this.lblCurrency.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.lblCurrency.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			this.lblCurrency.Location = new System.Drawing.Point(20, 163);
+			this.lblCurrency.Name = "lblCurrency";
+			this.lblCurrency.Size = new System.Drawing.Size(135, 21);
+			this.lblCurrency.TabIndex = 6;
+			this.lblCurrency.Text = "Receipt Currency :";
+			// 
+			// txtDbServer
+			// 
+			this.txtDbServer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.txtDbServer.Location = new System.Drawing.Point(180, 62);
+			this.txtDbServer.Name = "txtDbServer";
+			this.txtDbServer.Size = new System.Drawing.Size(300, 29);
+			this.txtDbServer.TabIndex = 0;
+			this.txtDbServer.Text = ".\\SQLEXPRESS";
+			// 
+			// lblDbServer
+			// 
+			this.lblDbServer.AutoSize = true;
+			this.lblDbServer.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.lblDbServer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			this.lblDbServer.Location = new System.Drawing.Point(20, 65);
+			this.lblDbServer.Name = "lblDbServer";
+			this.lblDbServer.Size = new System.Drawing.Size(147, 21);
+			this.lblDbServer.TabIndex = 2;
+			this.lblDbServer.Text = "SQL Server Source :";
+			// 
+			// lblDbTitle
+			// 
+			this.lblDbTitle.AutoSize = true;
+			this.lblDbTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+			this.lblDbTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			this.lblDbTitle.Location = new System.Drawing.Point(20, 20);
+			this.lblDbTitle.Name = "lblDbTitle";
+			this.lblDbTitle.Size = new System.Drawing.Size(237, 28);
+			this.lblDbTitle.TabIndex = 1;
+			this.lblDbTitle.Text = "Database Configuration";
 			// 
 			// tabAppearance
 			// 
@@ -220,23 +222,12 @@
 			this.tabAppearance.BackColor = System.Drawing.Color.White;
 			this.tabAppearance.Controls.Add(this.cmbTheme);
 			this.tabAppearance.Controls.Add(this.lblTheme);
-			this.tabAppearance.Location = new System.Drawing.Point(4, 30);
+			this.tabAppearance.Location = new System.Drawing.Point(4, 32);
 			this.tabAppearance.Name = "tabAppearance";
 			this.tabAppearance.Padding = new System.Windows.Forms.Padding(10);
-			this.tabAppearance.Size = new System.Drawing.Size(1071, 496);
+			this.tabAppearance.Size = new System.Drawing.Size(1071, 494);
 			this.tabAppearance.TabIndex = 1;
 			this.tabAppearance.Text = "Appearance && Themes";
-			// 
-			// lblTheme
-			// 
-			this.lblTheme.AutoSize = true;
-			this.lblTheme.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-			this.lblTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-			this.lblTheme.Location = new System.Drawing.Point(20, 25);
-			this.lblTheme.Name = "lblTheme";
-			this.lblTheme.Size = new System.Drawing.Size(95, 17);
-			this.lblTheme.TabIndex = 4;
-			this.lblTheme.Text = "Interface Style :";
 			// 
 			// cmbTheme
 			// 
@@ -245,8 +236,19 @@
 			this.cmbTheme.FormattingEnabled = true;
 			this.cmbTheme.Location = new System.Drawing.Point(180, 22);
 			this.cmbTheme.Name = "cmbTheme";
-			this.cmbTheme.Size = new System.Drawing.Size(300, 25);
+			this.cmbTheme.Size = new System.Drawing.Size(300, 29);
 			this.cmbTheme.TabIndex = 1;
+			// 
+			// lblTheme
+			// 
+			this.lblTheme.AutoSize = true;
+			this.lblTheme.Font = new System.Drawing.Font("Segoe UI", 9.5F);
+			this.lblTheme.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+			this.lblTheme.Location = new System.Drawing.Point(20, 25);
+			this.lblTheme.Name = "lblTheme";
+			this.lblTheme.Size = new System.Drawing.Size(114, 21);
+			this.lblTheme.TabIndex = 4;
+			this.lblTheme.Text = "Interface Style :";
 			// 
 			// tabBackup
 			// 
@@ -255,39 +257,12 @@
 			this.tabBackup.Controls.Add(this.btnRestoreDb);
 			this.tabBackup.Controls.Add(this.btnBackupDb);
 			this.tabBackup.Controls.Add(this.lblBackupTitle);
-			this.tabBackup.Location = new System.Drawing.Point(4, 30);
+			this.tabBackup.Location = new System.Drawing.Point(4, 32);
 			this.tabBackup.Name = "tabBackup";
 			this.tabBackup.Padding = new System.Windows.Forms.Padding(10);
-			this.tabBackup.Size = new System.Drawing.Size(1071, 496);
+			this.tabBackup.Size = new System.Drawing.Size(1071, 494);
 			this.tabBackup.TabIndex = 2;
 			this.tabBackup.Text = "Backup && Maintenance";
-			// 
-			// lblBackupTitle
-			// 
-			this.lblBackupTitle.AutoSize = true;
-			this.lblBackupTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-			this.lblBackupTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-			this.lblBackupTitle.Location = new System.Drawing.Point(20, 20);
-			this.lblBackupTitle.Name = "lblBackupTitle";
-			this.lblBackupTitle.Size = new System.Drawing.Size(262, 21);
-			this.lblBackupTitle.TabIndex = 10;
-			this.lblBackupTitle.Text = "Database Backup && Maintenance";
-			// 
-			// btnBackupDb
-			// 
-			this.btnBackupDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-			this.btnBackupDb.FlatAppearance.BorderSize = 0;
-			this.btnBackupDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnBackupDb.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
-			this.btnBackupDb.ForeColor = System.Drawing.Color.White;
-			this.btnBackupDb.Location = new System.Drawing.Point(20, 70);
-			this.btnBackupDb.Name = "btnBackupDb";
-			this.btnBackupDb.Size = new System.Drawing.Size(150, 38);
-			this.btnBackupDb.TabIndex = 5;
-			this.btnBackupDb.Tag = "keep";
-			this.btnBackupDb.Text = "Backup Database";
-			this.btnBackupDb.UseVisualStyleBackColor = false;
-			this.btnBackupDb.Click += new System.EventHandler(this.btnBackupDb_Click);
 			// 
 			// btnRestoreDb
 			// 
@@ -305,22 +280,43 @@
 			this.btnRestoreDb.UseVisualStyleBackColor = false;
 			this.btnRestoreDb.Click += new System.EventHandler(this.btnRestoreDb_Click);
 			// 
-			// btnSaveSettings
+			// btnBackupDb
 			// 
-			this.btnSaveSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.btnSaveSettings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-			this.btnSaveSettings.FlatAppearance.BorderSize = 0;
-			this.btnSaveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnSaveSettings.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-			this.btnSaveSettings.ForeColor = System.Drawing.Color.White;
-			this.btnSaveSettings.Location = new System.Drawing.Point(30, 622);
-			this.btnSaveSettings.Name = "btnSaveSettings";
-			this.btnSaveSettings.Size = new System.Drawing.Size(180, 40);
-			this.btnSaveSettings.TabIndex = 4;
-			this.btnSaveSettings.Tag = "keep";
-			this.btnSaveSettings.Text = "Save Configuration";
-			this.btnSaveSettings.UseVisualStyleBackColor = false;
-			this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+			this.btnBackupDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+			this.btnBackupDb.FlatAppearance.BorderSize = 0;
+			this.btnBackupDb.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnBackupDb.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Bold);
+			this.btnBackupDb.ForeColor = System.Drawing.Color.White;
+			this.btnBackupDb.Location = new System.Drawing.Point(20, 70);
+			this.btnBackupDb.Name = "btnBackupDb";
+			this.btnBackupDb.Size = new System.Drawing.Size(150, 38);
+			this.btnBackupDb.TabIndex = 5;
+			this.btnBackupDb.Tag = "keep";
+			this.btnBackupDb.Text = "Backup Database";
+			this.btnBackupDb.UseVisualStyleBackColor = false;
+			this.btnBackupDb.Click += new System.EventHandler(this.btnBackupDb_Click);
+			// 
+			// lblBackupTitle
+			// 
+			this.lblBackupTitle.AutoSize = true;
+			this.lblBackupTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+			this.lblBackupTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			this.lblBackupTitle.Location = new System.Drawing.Point(20, 20);
+			this.lblBackupTitle.Name = "lblBackupTitle";
+			this.lblBackupTitle.Size = new System.Drawing.Size(327, 28);
+			this.lblBackupTitle.TabIndex = 10;
+			this.lblBackupTitle.Text = "Database Backup && Maintenance";
+			// 
+			// lblTitle
+			// 
+			this.lblTitle.AutoSize = true;
+			this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 22F, System.Drawing.FontStyle.Bold);
+			this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+			this.lblTitle.Location = new System.Drawing.Point(25, 15);
+			this.lblTitle.Name = "lblTitle";
+			this.lblTitle.Size = new System.Drawing.Size(359, 50);
+			this.lblTitle.TabIndex = 0;
+			this.lblTitle.Text = "System Preferences";
 			// 
 			// uSettings
 			// 

@@ -135,9 +135,10 @@ namespace key_luxery1
 		{
 			if (MessageBox.Show("Are you sure you want to log out?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
-				Form loginForm = Application.OpenForms["frmLogin"];
+				frmLogin loginForm = new frmLogin();
 				if (loginForm != null) loginForm.Show();
-				this.Hide();
+				//frmDashboard dash = new frmDashboard();
+				Hide();
 			}
 		}
 

@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmdashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -23,28 +15,44 @@
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uhome.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uhome.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmdashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmdashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\usettings.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\usettings.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|d:\\software development\\abdi\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\thememanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\thememanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\thememanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\usettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\umanageusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -65,10 +73,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\uproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\resources\\key_luxery_logo.png||{58961B49-13E0-48C0-9258-13CBC4D40279}",
@@ -112,10 +116,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmmanagepayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\frmmanagepayment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|solutionrelative:key_luxery1\\sharedclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF99F7D5-BF46-4E56-BB9B-C6FCE8730001}|key_luxery1\\key_luxery1.csproj|D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
@@ -321,62 +321,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Appsettings.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Appsettings.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\Appsettings.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Appsettings.cs",
-              "RelativeToolTip": "key_luxery1\\Appsettings.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAtwC4AAAADAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Program.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\Program.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Program.cs",
+              "RelativeToolTip": "key_luxery1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T07:28:41.987Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmDashboard.Designer.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.Designer.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.Designer.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.Designer.cs",
-              "RelativeToolTip": "key_luxery1\\frmDashboard.Designer.cs",
-              "ViewState": "AgIAAO8BAAAAAAAAAAAkwAACAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T17:36:28.248Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T13:17:42.295Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "frmDashboard.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs",
-              "RelativeToolTip": "key_luxery1\\frmDashboard.cs",
-              "ViewState": "AgIAABsAAAAAAAAAAAAkwCYAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T13:56:35.095Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmDashboard.cs [Design]",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs [Design]",
-              "RelativeToolTip": "key_luxery1\\frmDashboard.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T13:55:31.739Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "uHome.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uHome.cs",
@@ -388,33 +349,113 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "uHome.Designer.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.Designer.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\uHome.Designer.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.Designer.cs",
-              "RelativeToolTip": "key_luxery1\\uHome.Designer.cs",
-              "ViewState": "AgIAADgDAAAAAAAAAAAIwFEDAAABAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "frmDashboard.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs",
+              "RelativeToolTip": "key_luxery1\\frmDashboard.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAtwG8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T19:15:59.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T13:56:35.095Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "uHome.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uHome.cs",
               "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.cs",
               "RelativeToolTip": "key_luxery1\\uHome.cs",
-              "ViewState": "AgIAACkBAAAAAAAAAADwvzQBAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAADEBAAAAAAAAAAAiwD0BAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T19:15:48.086Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-16T19:15:48.086Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 8,
+              "Title": "frmDashboard.Designer.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.Designer.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.Designer.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.Designer.cs",
+              "RelativeToolTip": "key_luxery1\\frmDashboard.Designer.cs",
+              "ViewState": "AgIAALQCAAAAAAAAAAAawMICAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T17:36:28.248Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "sharedClass.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\sharedClass.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\sharedClass.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\sharedClass.cs",
+              "RelativeToolTip": "key_luxery1\\sharedClass.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAACgAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T12:13:38.49Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "uHome.Designer.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.Designer.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\uHome.Designer.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uHome.Designer.cs",
+              "RelativeToolTip": "key_luxery1\\uHome.Designer.cs",
+              "ViewState": "AgIAANsDAAAAAAAAAAAUwPIDAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T19:15:59.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmDashboard.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\frmDashboard.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmDashboard.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\frmDashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-16T13:55:31.739Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "uSettings.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\uSettings.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs",
+              "RelativeToolTip": "key_luxery1\\uSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAPQCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T05:59:22.416Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "uSettings.cs [Design]",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\uSettings.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs [Design]",
+              "RelativeToolTip": "key_luxery1\\uSettings.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-17T05:59:19.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Appsettings.cs",
+              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Appsettings.cs",
+              "RelativeDocumentMoniker": "key_luxery1\\Appsettings.cs",
+              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Appsettings.cs",
+              "RelativeToolTip": "key_luxery1\\Appsettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-30T07:28:41.987Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "uSales.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSales.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uSales.cs",
@@ -426,7 +467,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "uManageUsers.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uManageUsers.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uManageUsers.cs",
@@ -438,32 +479,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "uSettings.cs [Design]",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\uSettings.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs [Design]",
-              "RelativeToolTip": "key_luxery1\\uSettings.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T05:59:19.079Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "uSettings.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\uSettings.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.cs",
-              "RelativeToolTip": "key_luxery1\\uSettings.cs",
-              "ViewState": "AgIAADcBAAAAAAAAAAAgwEcBAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-17T05:59:22.416Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "uSettings.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uSettings.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uSettings.Designer.cs",
@@ -471,12 +487,11 @@
               "RelativeToolTip": "key_luxery1\\uSettings.Designer.cs",
               "ViewState": "AgIAAFgBAAAAAAAAAAAIwHEBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T07:00:21.455Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T07:00:21.455Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "Thememanager.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Thememanager.cs",
               "RelativeDocumentMoniker": "key_luxery1\\Thememanager.cs",
@@ -484,12 +499,11 @@
               "RelativeToolTip": "key_luxery1\\Thememanager.cs",
               "ViewState": "AgIAAGsAAAAAAAAAAAAgwHMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-30T07:27:26.728Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-30T07:27:26.728Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "frmReport.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmReport.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmReport.cs",
@@ -501,7 +515,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "uCustomer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uCustomer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uCustomer.cs",
@@ -513,7 +527,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "uProducts.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\uProducts.cs",
               "RelativeDocumentMoniker": "key_luxery1\\uProducts.cs",
@@ -525,19 +539,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Program.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\Program.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Program.cs",
-              "RelativeToolTip": "key_luxery1\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T13:17:42.295Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "key_luxery_logo.png",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Resources\\key_luxery_logo.png",
               "RelativeDocumentMoniker": "key_luxery1\\Resources\\key_luxery_logo.png",
@@ -548,7 +550,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "frmLogin.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmLogin.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmLogin.cs",
@@ -560,7 +562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "frmLogin.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmLogin.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmLogin.cs",
@@ -571,7 +573,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "Settings.Designer.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Properties\\Settings.Designer.cs",
               "RelativeDocumentMoniker": "key_luxery1\\Properties\\Settings.Designer.cs",
@@ -583,7 +585,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "frmReport.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmReport.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmReport.cs",
@@ -594,7 +596,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "key_luxery1",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\key_luxery1.csproj",
               "RelativeDocumentMoniker": "key_luxery1\\key_luxery1.csproj",
@@ -605,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "frmManageSale.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmManageSale.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.cs",
@@ -617,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "frmManageInvoice.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmManageInvoice.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageInvoice.cs",
@@ -628,7 +630,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "frmManageInvoice.cs",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmManageInvoice.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageInvoice.cs",
@@ -640,7 +642,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "frmManageSale.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmManageSale.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManageSale.cs",
@@ -651,7 +653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "frmManagePayment.cs [Design]",
               "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\frmManagePayment.cs",
               "RelativeDocumentMoniker": "key_luxery1\\frmManagePayment.cs",
@@ -669,20 +671,7 @@
               "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\Properties\\Settings.settings",
               "RelativeToolTip": "key_luxery1\\Properties\\Settings.settings",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002767|",
-              "WhenOpened": "2026-10-23T20:12:54.943Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "sharedClass.cs",
-              "DocumentMoniker": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\sharedClass.cs",
-              "RelativeDocumentMoniker": "key_luxery1\\sharedClass.cs",
-              "ToolTip": "D:\\Software Development\\ABDI\\key_luxery2.0 to add themes and appearance flexible\\key_luxery1\\sharedClass.cs",
-              "RelativeToolTip": "key_luxery1\\sharedClass.cs",
-              "ViewState": "AgIAALIAAAAAAAAAAAAQwM4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-16T12:13:38.49Z"
+              "WhenOpened": "2026-10-23T20:12:54.943Z"
             },
             {
               "$type": "Document",
