@@ -475,3 +475,4 @@ D:\Software Development\ABDI\key_luxery2.0 to add themes and appearance flexible
 D:\Software Development\ABDI\key_luxery2.0 to add themes and appearance flexible\key_luxery1\obj\Debug\key_luxe.80CD0542.Up2Date
 D:\Software Development\ABDI\key_luxery2.0 to add themes and appearance flexible\key_luxery1\obj\Debug\key_luxery1.exe
 D:\Software Development\ABDI\key_luxery2.0 to add themes and appearance flexible\key_luxery1\obj\Debug\key_luxery1.pdb
+D:\Software Development\ABDI\key_luxery2.0 to add themes and appearance flexible\key_luxery1\obj\Debug\key_luxery1.ReceiptItem.resources

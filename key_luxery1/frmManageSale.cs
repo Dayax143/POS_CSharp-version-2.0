@@ -922,7 +922,7 @@ namespace key_luxery1
 
 		private void cmbCurrencyMode_TextChanged(object sender, EventArgs e)
 		{
-			cmbCurrencyMode_SelectedIndexChanged(sender , e);
+			cmbCurrencyMode_SelectedIndexChanged(sender, e);
 		}
 
 		private void cmbCurrencyMode_SelectedIndexChanged_1(object sender, EventArgs e)
