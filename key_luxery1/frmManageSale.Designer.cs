@@ -146,7 +146,7 @@
 			this.btnFindCustomer.Name = "btnFindCustomer";
 			this.btnFindCustomer.Size = new System.Drawing.Size(99, 29);
 			this.btnFindCustomer.TabIndex = 1;
-			this.btnFindCustomer.Text = "Register";
+			this.btnFindCustomer.Text = "Search";
 			this.btnFindCustomer.UseVisualStyleBackColor = false;
 			this.btnFindCustomer.Click += new System.EventHandler(this.btnFindCustomer_Click);
 			// 

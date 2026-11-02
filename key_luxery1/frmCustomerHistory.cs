@@ -12,6 +12,9 @@ namespace key_luxery1
 		public frmCustomerHistory()
 		{
 			InitializeComponent();
+
+			// Wire up the selection change event to optionally filter products by selected invoice
+			this.dgvCustomerInvoices.SelectionChanged += new System.EventHandler(this.dgvCustomerInvoices_SelectionChanged);
 		}
 
 		private void frmCustomerHistory_Load(object sender, EventArgs e)
@@ -34,7 +37,8 @@ namespace key_luxery1
 				string safeCustomerName = CustomerName.Replace("'", "''");
 
 				// 1. Load Invoices for this customer
-				string invoiceQuery = $@"SELECT i.invoice_no AS [Invoice No], 
+				string invoiceQuery = $@"SELECT i.invoice_id AS [InvoiceID], 
+								 i.invoice_no AS [Invoice No], 
 								 i.invoice_date AS [Date], 
 								 i.due_date AS [Due Date],
 								 i.subtotal AS [Subtotal ($)], 
@@ -51,6 +55,12 @@ namespace key_luxery1
 				DataTable dtInvoices = sharedClass.GetData(invoiceQuery);
 				dgvCustomerInvoices.DataSource = dtInvoices;
 
+				// Hide the raw ID column if it exists in the grid
+				if (dgvCustomerInvoices.Columns["InvoiceID"] != null)
+				{
+					dgvCustomerInvoices.Columns["InvoiceID"].Visible = false;
+				}
+
 				// 2. Load Payments for this customer
 				string paymentQuery = $@"SELECT p.reference_No AS [Reference No], 
 								 p.payment_Date AS [Payment Date], 
@@ -62,11 +72,26 @@ namespace key_luxery1
 						  WHERE c.customer_name = '{safeCustomerName}' 
 						  ORDER BY p.payment_Date DESC";
 
-				//WHERE customer_Name = '{safeCustomerName}' 
 				DataTable dtPayments = sharedClass.GetData(paymentQuery);
 				dgvCustomerPayments.DataSource = dtPayments;
 
-				// 3. Calculate Summary Metrics
+				// 3. Load All Sold Products (Line Items) for this customer via tblSale and tblProduct
+				string productQuery = $@"SELECT p.product_name AS [Product Name],
+                 s.quantity AS [Qty],
+                 s.unit_price AS [Unit Price ($)],
+                 s.total_price AS [Total ($)],
+                 i.invoice_no AS [Invoice No]
+          FROM tblSale s
+          INNER JOIN tblProduct p ON s.product_id = p.product_id
+          INNER JOIN tblInvoice i ON s.invoice_id = i.invoice_id
+          INNER JOIN tblCustomer c ON i.customer_id = c.customer_id
+          WHERE c.customer_name = '{safeCustomerName}'
+          ORDER BY i.invoice_date DESC";
+
+				DataTable dtProducts = sharedClass.GetData(productQuery);
+				dgvCustomerProducts.DataSource = dtProducts;
+
+				// 4. Calculate Summary Metrics
 				int invoiceCount = dtInvoices.Rows.Count;
 				decimal totalSales = 0;
 				foreach (DataRow row in dtInvoices.Rows)
@@ -101,6 +126,38 @@ namespace key_luxery1
 			{
 				MessageBox.Show("Error loading customer history: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
+		}
+
+		private void dgvCustomerInvoices_SelectionChanged(object sender, EventArgs e)
+		{
+			// Optional: If you want clicking an invoice to filter the products table for just that invoice, 
+			// uncomment the logic below. Otherwise, it currently displays all products bought by the customer.
+
+			/*
+			if (dgvCustomerInvoices.SelectedRows.Count > 0)
+			{
+				var row = dgvCustomerInvoices.SelectedRows[0];
+				if (row.Cells["InvoiceID"].Value != null)
+				{
+					int invoiceId = Convert.ToInt32(row.Cells["InvoiceID"].Value);
+					string safeCustomerName = CustomerName.Replace("'", "''");
+
+					string filteredProductQuery = $@"SELECT pr.product_name AS [Product Name],
+									 ii.quantity AS [Qty],
+									 ii.unit_price AS [Unit Price ($)],
+									 ii.total_price AS [Total ($)],
+									 i.invoice_no AS [Invoice No]
+							  FROM tblInvoice ii
+							  INNER JOIN tblProduct pr ON ii.product_id = pr.product_id
+							  INNER JOIN tblInvoice i ON ii.invoice_id = i.invoice_id
+							  WHERE ii.invoice_id = {invoiceId}
+							  ORDER BY ii.invoice_item_id DESC";
+
+					DataTable dtFilteredProducts = sharedClass.GetData(filteredProductQuery);
+					dgvCustomerProducts.DataSource = dtFilteredProducts;
+				}
+			}
+			*/
 		}
 	}
 }

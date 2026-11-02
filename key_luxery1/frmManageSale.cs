@@ -58,7 +58,7 @@ namespace key_luxery1
 				string currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
 				// Insert a draft/unpaid placeholder record immediately into tblInvoice
-				string query = $"INSERT INTO tblInvoice (invoice_no, invoice_date, subtotal, discount,tax, grand_total, status) " +
+				string query = $"INSERT INTO tblInvoice (invoice_no, invoice_date, subtotal, discount,tax, grand_total, status,ref) " +
 							   $"VALUES ('{generatedInvoiceNo}', '{currentDate}', 0.00, 0.00, 0.00, 0.00, 'Draft')";
 				db.ExecuteQueries(query);
 
@@ -238,6 +238,7 @@ namespace key_luxery1
 		// --- 3. COMPLETE SALE & FINALISE DRAFT INVOICE ---
 		private void btnCompleteSale_Click(object sender, EventArgs e)
 		{
+			RegisterCustomer();
 			completeSale();
 			printPreviewFunction();
 		}
@@ -758,6 +759,7 @@ namespace key_luxery1
 
 		private void btnSaveOnly_Click(object sender, EventArgs e)
 		{
+			RegisterCustomer();
 			completeSale();
 			this.Close();
 		}
@@ -855,7 +857,7 @@ namespace key_luxery1
 				string query = $"INSERT INTO tblCustomer (customer_phone, customer_name, deleted, status, date) VALUES ('{phone.Replace("'", "''")}', '{name.Replace("'", "''")}', 0, 'Active', GETDATE())";
 				db.ExecuteQueries(query);
 
-				MessageBox.Show("Customer registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+				//MessageBox.Show("Customer registered successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 				// Automatically reload the newly registered customer and switch button back to "History"
 				LoadSearchedCustomer();
@@ -883,11 +885,7 @@ namespace key_luxery1
 		{
 			string currentAction = btnFindCustomer.Text.Trim();
 
-			if (currentAction == "Register")
-			{
-				RegisterCustomer();
-			}
-			else if (currentAction == "History")
+			if (currentAction == "History")
 			{
 				// Open the Customer History Profile form we built
 				frmCustomerHistory historyForm = new frmCustomerHistory();
